@@ -65,6 +65,7 @@ backlog: 100 points across 38 stories and 8 epics.
 | D8 | Interview bank kept private: its audience is me, not the reader, and the ADRs already carry the public reasoning. Publishing later is free; unpublishing is not | 4 Sep | Accepted |
 | D9 | AI-assisted working method disclosed in the case study; artefact authorship remains Diogo Pereira. Half-disclosed is weaker than either fully stated or fully absent | 4 Sep | Accepted |
 | D10 | Process documentation lives in `docs/`; the repository root holds only conventional files (`README.md`, `LICENSE`, `CHANGELOG.md`, `.gitattributes`, `.gitignore`) | 4 Sep | Accepted |
+| D11 | MIT licence for the code, with written content and imagery carved out and reserved. Stated in both `LICENSE` and the README, since a reader of either should find the distinction. A portfolio repository holds software and personal material; they should not carry the same terms | 4 Sep | Accepted |
 | ADR-001 | Nuxt 4 as the framework | 4 Sep | Accepted |
 | ADR-002 | Static site generation over SSR or SPA | 4 Sep | Accepted |
 | ADR-003 | Markdown in the repository over a headless CMS | 4 Sep | Accepted |
