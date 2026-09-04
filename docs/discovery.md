@@ -1,17 +1,21 @@
-# Discovery — diogopereira.dev (working title)
+# Discovery — diogo-pereira.dev
 
 | | |
 |---|---|
 | **Stage** | 1. Discovery |
-| **Status** | Draft — awaiting product owner approval |
-| **Product owner / tech lead** | Diogo Pereira |
-| **Author** | Claude (developer) |
-| **Date** | 3 September 2026 |
-| **Target release** | v1.0.0, 8 September 2026 |
+| **Status** | **Accepted** — 4 September 2026 |
+| **Owner** | Diogo Pereira (product owner and tech lead) |
+| **Author** | Diogo Pereira |
+| **Date** | 4 September 2026 |
+| **Target release** | v1.0.0, 9 September 2026 |
 
 > **Discovery** is the lifecycle stage where the problem, the people affected and the
 > conditions for success are written down before any solution is chosen. Its output is
 > the input to Requirements, not a description of a design.
+
+**Identifier convention.** `DEL-n` are delivery metrics in §3. `NFR-n` are non-functional
+requirements in §4. `D-n` refers to accepted decisions, which live in the decision log in
+`docs/STATUS.md` and nowhere else. `US-n` are user stories in `docs/requirements.md`.
 
 ---
 
@@ -37,8 +41,8 @@ differentiator at this level is evidence of process rather than evidence of synt
 **What this project changes.** It produces a live, owned URL that (a) answers a
 recruiter's screening questions in under a minute, (b) gives a hiring engineer a
 repository with a public decision trail and a running pipeline to judge, and (c) forces
-Diogo through one complete, small, real software lifecycle so the vocabulary becomes
-automatic rather than rehearsed.
+one complete, small, real software lifecycle to be walked end to end, so the vocabulary
+becomes automatic rather than rehearsed.
 
 **Explicit non-goal.** This site is not the impressive artefact. Its architecture is
 deliberately unambitious. Credibility comes from the pipeline, the decision records and
@@ -79,13 +83,13 @@ system-design weight.
 | **Loses the reader** | Jargon-first headline. Work rights buried on About. No email. Slow load. Anything that looks stale. |
 | **Leaves with** | A yes/no on forwarding the CV to the hiring manager. |
 
-**Ordering note.** The recruiter is the *gating* reader (the engineer usually never sees
-the site unless the recruiter passes the CV on), but the engineer is the *deciding*
-reader and the expensive one to satisfy. The recruiter's needs are met by roughly six
-lines of copy above the fold; everything else in the project serves Persona A. See
-Open Decision D1 — this ordering contradicts `portfolio-goals.md` §2 and needs a ruling.
+**Ordering.** The recruiter is the *gating* reader — the engineer usually never sees the
+site unless the recruiter passes the CV on — but the engineer is the *deciding* reader and
+the expensive one to satisfy. The recruiter's needs are met by roughly six lines of copy
+above the fold; everything else in the project serves Persona A. **Resolved 4 September
+(D1): engineer-first governs, and `portfolio-goals.md` §2 is to be amended to match.**
 
-### Stakeholder C — Diogo in an interview (internal reader)
+### Stakeholder C — The interview (internal reader)
 
 Not a persona, but a hard constraint on every artefact: **if a page or document cannot be
 explained cold, in professional vocabulary, without preparation, it is wrong and must be
@@ -101,16 +105,16 @@ Split into four tiers. Only the first three are under our control.
 > **lagging indicator** is measured after and confirms it. Portfolio projects have
 > excellent leading indicators and almost no attributable lagging ones.
 
-### Tier 1 — Delivery (binary, measured 8 September)
+### Tier 1 — Delivery (binary, measured 9 September)
 
 | # | Metric | Target |
 |---|---|---|
-| D1 | Live on the owned `.dev` domain over HTTPS | Yes |
-| D2 | Public repository, all V1 gates passing on `main` | Yes |
-| D3 | Five page types working; one case study live | Yes |
-| D4 | ADRs 001–008 written, dated, public | 8 of 8 |
-| D5 | `CHANGELOG.md` with a v1.0.0 entry, tagged in git | Yes |
-| D6 | Retrospective written | Yes |
+| DEL-1 | Live on the owned `.dev` domain over HTTPS | Yes |
+| DEL-2 | Public repository, all V1 gates passing on `main` | Yes |
+| DEL-3 | Five page types working; one case study live | Yes |
+| DEL-4 | ADRs 001–008 written, dated, public | 8 of 8 |
+| DEL-5 | `CHANGELOG.md` with a v1.0.0 entry, tagged in git | Yes |
+| DEL-6 | Retrospective written | Yes |
 
 ### Tier 2 — Quality (measured, and gated in CI)
 
@@ -122,7 +126,7 @@ Split into four tiers. Only the first three are under our control.
 | Q4 | Automated accessibility violations | 0 | axe scan per route in Playwright |
 | Q5 | Manual WCAG 2.2 AA checklist | Pass, signed off once per release | Human, documented |
 | Q6 | Broken internal links | 0 | Link checker in CI |
-| Q7 | Cold clone to running dev server, README only | Under 10 minutes, no undocumented step | Timed run in a clean container (see D4 open decision) |
+| Q7 | Cold clone to running dev server, README only | Under 10 minutes, no undocumented step | Timed run in a clean container, performed by the developer and labelled as the weaker check — see D4 in the decision log |
 
 ### Tier 3 — Process (the actual curriculum)
 
@@ -138,7 +142,7 @@ Split into four tiers. Only the first three are under our control.
 
 | # | Metric | Target |
 |---|---|---|
-| L1 | Glossary terms Diogo can define correctly, unprompted, in under 60 seconds, **with a project-specific example**, at the final rehearsal | 10 of 10 |
+| L1 | Glossary terms definable correctly, unprompted, in under 60 seconds, **with a project-specific example**, at the final rehearsal | 10 of 10 |
 | L2 | Interview rehearsals completed | 3 (after ADR-001, after first green pipeline, at retrospective) |
 | L3 | Terms corrected in rehearsal 3 that were also wrong in rehearsal 1 | 0 |
 
@@ -184,52 +188,47 @@ those occurrences; do not turn them into a number.
 
 Each of these could be wrong and would change the plan.
 
-1. One of the candidate `.dev` domains is available and purchasable at an at-cost
-   registrar with the payment method to hand, **on day 1**.
-2. Nuxt 4 prerenders cleanly to Cloudflare Pages without adapter friction worth more than
-   a few hours. M1 exists specifically to falsify this early.
-3. The Nuxt 3 end-of-life date and the current pinned versions stated in the brief are
-   correct. **These will be verified from primary sources before ADR-001 is written, not
-   restated from the brief or from recall.**
-4. Lighthouse CI can be run against Cloudflare Pages preview deployments from GitHub
-   Actions without a paid tier.
-5. The CV metrics cleared for publication are accurate as printed and remain cleared.
+| # | Assumption | State |
+|---|---|---|
+| A1 | A suitable `.dev` domain is available and purchasable at an at-cost registrar on day 1 | **Settled 4 Sep** — `diogo-pereira.dev` registered at Cloudflare Registrar |
+| A2 | Nuxt 4 prerenders cleanly to Cloudflare Pages without adapter friction worth more than a few hours | Open — M1 exists specifically to falsify this early. Tracked as R-A in `docs/STATUS.md` |
+| A3 | The Nuxt 3 end-of-life date and the current stack versions are as stated in the brief | **Settled 4 Sep** — verified against the npm registry and the Nuxt roadmap before ADR-001. Two corrections resulted: Nuxt 5 is imminent, and the TypeScript `latest` tag is ahead of the version Nuxt builds against |
+| A4 | Lighthouse CI can run against Cloudflare Pages preview deployments from GitHub Actions without a paid tier | Open — verified at M1 |
+| A5 | The CV metrics cleared for publication are accurate as printed and remain cleared | Open — confirmed before the About copy ships |
 
 ---
 
 ## 6. Risks
 
-| # | Risk | Impact | Mitigation |
-|---|---|---|---|
-| R1 | The milestone plan is seven days long; six remain (3–8 September inclusive) | Slip or silent process-cutting | Compress M0 and M1 into day 1, or move the target to 9 September. Product owner call — see D2 |
-| R2 | Domain purchase blocks everything downstream and sits on the critical path on day 1 | Whole plan stalls | Purchase before writing a single ADR; keep the fallback names in priority order; use the same provider for registration and DNS |
-| R3 | Copy writing is the hardest and least parallelisable task and is scheduled at M3, day 5 | The About experience section ships rushed or thin — the one section carrying real career evidence | Draft About and Home copy from day 1; it has no dependency on any code |
-| R4 | Lighthouse accessibility 100 is treated as WCAG 2.2 AA conformance | An accessibility claim the site cannot support, in front of the one reader who might check | NFR-04 requires a manual pass as a separate gate. See D3 |
-| R5 | "Claude writes the code" means the TypeScript and Vue gaps are closed on paper only | A CV claim that collapses in a technical interview | See D5 — needs an explicit ruling on how the claim is worded and how much code Diogo writes |
-| R6 | The projects index contains only itself | Reads as "has built nothing" | Already accepted and stated plainly on the page; mitigated by the About experience section doing the evidential work, and by flagship 2 starting immediately after v1.0.0 |
+| # | Risk | Impact | Mitigation | State |
+|---|---|---|---|---|
+| R1 | The milestone plan was seven days long; six days remained | Slip, or silent process-cutting | Target moved to 9 September (D2) and M3 dissolved into M2 once copy drafting moved to day 1 (D6) | **Resolved 4 Sep** |
+| R2 | Domain purchase blocks everything downstream and sits on the critical path on day 1 | Whole plan stalls | Purchased before any other M0 work, at the same provider as DNS | **Resolved 4 Sep** |
+| R3 | Copy writing is the hardest and least parallelisable task and was scheduled late | The About experience section ships rushed or thin — the one section carrying real career evidence | Copy drafting moved to day 1, in parallel with setup (D6) | **Resolved 4 Sep** |
+| R4 | Lighthouse accessibility 100 treated as WCAG 2.2 AA conformance | An accessibility claim the site cannot support, in front of the one reader who might check | Manual seven-item pass added to the Definition of Done as a separate gate (D3) | **Resolved 4 Sep** |
+| R5 | Skill claims stronger than what was actually done | A CV claim that collapses in a technical interview | Claims phrased as judgement and review rather than authorship (D5) | **Resolved 4 Sep** |
+| R6 | The projects index contains only itself | Reads as "has built nothing" | Accepted and stated plainly on the page; the About experience section carries the evidential weight, and flagship 2 starts immediately after v1.0.0 | Open, accepted |
+| R7 | M1 is 25 story points in one day and carries every unverified technical assumption | The one non-negotiable milestone slips | Deliberate: risk belongs at the front, where there is still time to respond to it. Cut list defined in `docs/planning.md` | Open, accepted |
+
+Live technical risks are tracked in `docs/STATUS.md` rather than duplicated here.
 
 ---
 
-## 7. Open decisions (product owner)
+## 7. Decisions
 
-| # | Decision needed | Blocking |
-|---|---|---|
-| D1 | Persona priority: this brief says engineer-first, `portfolio-goals.md` §2 says recruiter-first. Which governs, and does the other document get amended? | Requirements (epic ordering, home page copy) |
-| D2 | Six days available versus a seven-day plan: compress, or move the date to 9 September? | The whole milestone plan |
-| D3 | Does the manual WCAG 2.2 AA pass become a Definition of Done item, in addition to the Lighthouse gate? | Definition of Done, M4 scope |
-| D4 | Who performs the cold README run (NFR-10)? A real second person, or a clean container run by Diogo, labelled as the weaker check it is? | M5 |
-| D5 | How the TypeScript and Vue skill claims are worded given the "Claude writes the code" model | Nothing yet; blocks the CV and the case study copy |
-| D6 | Whether copy drafting moves to day 1 in parallel with setup (R3) | Milestone plan |
+Product owner decisions arising from this document were resolved on 4 September 2026 and
+are recorded in the decision log in **`docs/STATUS.md`** — D1 (persona priority), D2
+(release date), D3 (manual accessibility pass), D4 (README cold-run verifier), D5 (skill
+claim wording) and D6 (copy drafting sequence).
+
+The decision log is the single source of truth for decisions. This section is a pointer,
+deliberately, so the two cannot drift apart.
 
 ---
 
-## 8. Vocabulary introduced (for `GLOSSARY.md`)
+## 8. Vocabulary
 
-- **Discovery** — the lifecycle stage that defines the problem, the affected people and the conditions for success, before any solution is chosen.
-- **Persona** — a condensed, evidence-based description of one reader, used as a tool for settling design arguments.
-- **Non-functional requirement (NFR)** — a constraint on how well the system must behave, as opposed to what it must do; testable, with a target and a verification method.
-- **Quality attribute** — the category an NFR belongs to (performance, accessibility, security, operability, and so on).
-- **Leading indicator** — a measure taken during the work that predicts the outcome.
-- **Lagging indicator** — a measure taken after the work that confirms the outcome.
-- **MoSCoW** — a prioritisation scheme classifying items as Must, Should, Could or Won't-have-this-time.
-- **Verification method** — the specific, repeatable procedure that shows a requirement is met; the thing that separates a requirement from an aspiration.
+Every term introduced in this document is defined in **`docs/GLOSSARY.md`**: discovery,
+persona, non-functional requirement, quality attribute, leading and lagging indicator,
+MoSCoW, and verification method. If a term appears in an artefact and is not in the
+glossary, that is a defect.
