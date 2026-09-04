@@ -195,6 +195,10 @@ every change as it is integrated, and automatically delivering it to an environm
 **Changelog** — a human-readable, curated record of what changed in each release; this project
 follows the Keep a Changelog format.
 
+**Cherry-pick** — applying a single commit from one branch onto another, rather than merging the whole branch.
+
+**Default branch** — the branch a repository shows first and that pull requests target by default; changing it moves a pointer and leaves the old branch untouched.
+
 **Force push** — overwriting a remote branch's history; `--force-with-lease` is the safe form,
 which aborts if the remote moved since you last saw it.
 
@@ -211,11 +215,17 @@ Active LTS is the appropriate choice for production.
 **Preview deployment** — a deployment of a branch to its own URL, so a change can be reviewed
 and tested as a real artefact before merging.
 
+**Prune** — deleting local remote-tracking references whose upstream branch no longer exists.
+
 **Rebase** — replaying commits onto a new base; `rebase -i` (interactive) additionally allows
 reordering, squashing or rewording them.
 
+**Remote-tracking reference** — a local cached record of where a branch was on the remote when it was last fetched (`origin/main`); not a branch you can commit to, and stale until fetched or pruned.
+
 **Required status check** — a CI job whose success is a precondition for merging; a gate not
 named in the ruleset is not enforced.
+
+**Reset** — moving a branch pointer to another commit; `--soft` keeps the working tree and staged changes, `--hard` discards both, making it the command that actually destroys work.
 
 **Rollback** — returning production to a previous known-good state.
 

@@ -176,7 +176,7 @@ maintaining the site), **Visitor** (either reader, or anyone).
 - **Given** the close of v1.0.0, **when** the retrospective is written, **then** it records what worked, what did not, and what changes for flagship 2 — including the enforced-versus-disciplined distinction in the PR review gate.
 
 **US-37 · Must** — As the Owner, I want a glossary, so that the vocabulary is written down where it can be revised.
-- **Given** `GLOSSARY.md`, **when** v1.0.0 ships, **then** every term introduced across the artefacts has a one-sentence definition.
+- **Given** `docs/GLOSSARY.md`, **when** v1.0.0 ships, **then** every term introduced across the artefacts has a one-sentence definition.
 
 **US-38 · Should** — As the Owner, I want the contact surface verified before release, so that nothing unwanted is committed permanently.
 - **Given** a release candidate, **when** the repository and its full history are searched, **then** no phone number, postal address or CV file is present in the working tree, the build output or `git log -p`.

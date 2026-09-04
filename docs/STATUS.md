@@ -32,7 +32,9 @@ backlog: 100 points across 38 stories and 8 epics.
 - Repository settings: squash-merge only, auto-delete head branches, Issues on, Wikis/Projects/Discussions off, GitHub Pages off.
 - Actions: read-only default workflow permissions; Actions cannot create or approve pull requests; actions required to be pinned to a full commit SHA; fork PR workflows require approval for all external contributors.
 - Security: private vulnerability reporting, Dependabot alerts, Dependabot security updates, secret scanning with push protection — all enabled.
-- `discovery.md`, `requirements.md`, `planning.md`, `docs/adr/001–005`, `.gitattributes` committed to `main`.
+- `docs/discovery.md`, `docs/requirements.md`, `docs/planning.md`, `docs/adr/001–005`, `docs/GLOSSARY.md`, `docs/STATUS.md` and `.gitattributes` committed directly to `main` under the recorded GitHub Flow exception, before the `main protection` ruleset was active.
+- Legacy `master` branch deleted; `main` is the default and only branch.
+- Ruleset `main protection` active on `main`: pull request required, 0 approvals, conversation resolution required, linear history, squash-only merges, force pushes blocked, deletions restricted, empty bypass list. Verified by attempting a direct push and confirming rejection (GH013), rather than by trusting the settings page.
 - ADRs 001–005 accepted.
 - `GLOSSARY.md` and `docs/STATUS.md` committed. The interview question bank is deliberately outside this repository — see D8.
 - Legacy `master` branch deleted; `main` is the default branch and the only branch.
@@ -61,6 +63,8 @@ backlog: 100 points across 38 stories and 8 epics.
 | D6 | Copy drafting moved to day 1, in parallel with setup | 4 Sep | Accepted |
 | D7 | US-21 (this site's case study) moved from M2 to M4 | 4 Sep | Accepted |
 | D8 | Interview bank kept private: its audience is me, not the reader, and the ADRs already carry the public reasoning. Publishing later is free; unpublishing is not | 4 Sep | Accepted |
+| D9 | AI-assisted working method disclosed in the case study; artefact authorship remains Diogo Pereira. Half-disclosed is weaker than either fully stated or fully absent | 4 Sep | Accepted |
+| D10 | Process documentation lives in `docs/`; the repository root holds only conventional files (`README.md`, `LICENSE`, `CHANGELOG.md`, `.gitattributes`, `.gitignore`) | 4 Sep | Accepted |
 | ADR-001 | Nuxt 4 as the framework | 4 Sep | Accepted |
 | ADR-002 | Static site generation over SSR or SPA | 4 Sep | Accepted |
 | ADR-003 | Markdown in the repository over a headless CMS | 4 Sep | Accepted |

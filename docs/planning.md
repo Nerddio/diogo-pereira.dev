@@ -37,11 +37,12 @@ A ticket is not done until all of these hold.
 2. Lint, format check, `vue-tsc` strict and production build all pass locally before the PR is opened.
 3. End-to-end coverage added or updated if the ticket changed a user-facing route.
 4. Documentation updated if behaviour or setup changed.
-5. Any new dependency justified in the PR: what it is for, what it weighs, what it replaces.
-6. PR opened with: the ticket link, what changed, how it was verified, a review checklist, and **what the author is least confident about** in this change. If nothing, the PR says why not.
-7. Reviewed by Diogo with a written comment, all CI gates green, merged.
-8. `CHANGELOG.md` updated under `Unreleased`.
-9. Branch deleted.
+5. Any term, acronym or piece of shorthand introduced by this ticket is defined in `docs/GLOSSARY.md`.
+6. Any new dependency justified in the PR: what it is for, what it weighs, what it replaces.
+7. PR opened with: the ticket link, what changed, how it was verified, a review checklist, and **what the author is least confident about** in this change. If nothing, the PR says why not.
+8. Reviewed by Diogo with a written comment, all CI gates green, merged.
+9. `CHANGELOG.md` updated under `Unreleased`.
+10. Branch deleted.
 
 **Work-in-progress limit: 1.** One ticket in flight. The next does not start until the current one is merged.
 
