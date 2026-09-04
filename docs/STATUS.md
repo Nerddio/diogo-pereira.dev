@@ -34,11 +34,12 @@ backlog: 100 points across 38 stories and 8 epics.
 - Security: private vulnerability reporting, Dependabot alerts, Dependabot security updates, secret scanning with push protection — all enabled.
 - `discovery.md`, `requirements.md`, `planning.md`, `docs/adr/001–005`, `.gitattributes` committed to `main`.
 - ADRs 001–005 accepted.
+- `GLOSSARY.md` and `docs/STATUS.md` committed. The interview question bank is deliberately outside this repository — see D8.
+- Legacy `master` branch deleted; `main` is the default branch and the only branch.
+- Ruleset `main protection` active on `main`: pull request required, 0 approvals, conversation resolution required, linear history, squash-only merges, force pushes blocked, deletions restricted, empty bypass list.
 
 **In progress**
 
-- `GLOSSARY.md`, `docs/INTERVIEW.md`, `docs/STATUS.md`.
-- Branch protection ruleset on `main` (Pass 2).
 - `.gitignore`, `LICENSE`, stub `README.md`, pull request template, issue template.
 
 **Not started**
@@ -59,6 +60,7 @@ backlog: 100 points across 38 stories and 8 epics.
 | D5 | Skill claims phrased as judgement and review, not authorship | 4 Sep | Accepted |
 | D6 | Copy drafting moved to day 1, in parallel with setup | 4 Sep | Accepted |
 | D7 | US-21 (this site's case study) moved from M2 to M4 | 4 Sep | Accepted |
+| D8 | Interview bank kept private: its audience is me, not the reader, and the ADRs already carry the public reasoning. Publishing later is free; unpublishing is not | 4 Sep | Accepted |
 | ADR-001 | Nuxt 4 as the framework | 4 Sep | Accepted |
 | ADR-002 | Static site generation over SSR or SPA | 4 Sep | Accepted |
 | ADR-003 | Markdown in the repository over a headless CMS | 4 Sep | Accepted |
@@ -96,4 +98,4 @@ If the schedule demands it: US-13 (recency signal), US-09 (dependency bot), US-0
 previews if not free), US-17 reduced to no photograph rather than a placeholder.
 
 **Never cut:** any ADR, any pull request review, the accessibility pass, the retrospective,
-the interview bank.
+or maintaining the interview bank — kept outside this repository, see D8.
