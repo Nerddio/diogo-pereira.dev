@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Nuxt build output
+.nuxt/
+.output/
+.nitro/
+.cache/
+dist/
+
+# Environment files — never commit secrets.
+# A committed secret stays in git history permanently, even after deletion.
+.env
+.env.*
+!.env.example
+
+# Test artefacts
+test-results/
+playwright-report/
+playwright/.cache/
+blob-report/
+.lighthouseci/
+
+# Editor and OS
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Local overrides
+*.local
