@@ -4,7 +4,7 @@ The single place to look for where this project actually is. Updated at the end 
 milestone, and whenever a decision is accepted.
 
 **Last updated:** 5 September 2026 · **Current milestone:** M1 · **Release target:**
-v1.0.0 on 9 September 2026
+live 11 September 2026, v1.0.0 tagged 18 September 2026
 
 ---
 
@@ -13,10 +13,10 @@ v1.0.0 on 9 September 2026
 | Milestone | Date | Points | State |
 |---|---|---|---|
 | M0 — Discovery, requirements, planning, ADRs, domain, repository | Fri 4 Sep | — | **Complete** |
-| M1 — E1 in full: live on the real domain, every gate green | Sat 5 Sep | 28 | **In progress** |
-| M2 — All routes, real content, metadata | Sun 6 – Mon 7 Sep | 32 | Not started |
-| M4 — Tests, privacy assertions, accessibility pass, ADRs 006–008, case study | Tue 8 Sep | 22 | Not started |
-| M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | Wed 9 Sep | 21 | Not started |
+| M1 — E1 in full: live on the real domain, every gate green | Fri 11 Sep | 28 | **In progress** |
+| M2 — All routes, real content, metadata | Mon 14 – Wed 16 Sep | 32 | Not started |
+| M4 — Tests, privacy assertions, accessibility pass, ADRs 006–008, case study | Thu 17 Sep | 22 | Not started |
+| M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | Fri 18 Sep | 21 | Not started |
 
 M3 was dissolved into M2 when copy drafting moved to run in parallel from day 1 (D6). The
 gap in the numbering is deliberate: identifiers are allocated once and never reused, so
@@ -95,6 +95,7 @@ Start with #4. Everything else in E1 either depends on it or on the deployment i
 | D10 | Process documentation lives in `docs/`; the repository root holds only conventional files | 4 Sep | Accepted |
 | D11 | MIT licence for the code, with written content and imagery carved out and reserved, stated in both `LICENSE` and the README | 4 Sep | Accepted |
 | D12 | Identifiers are allocated once and never reused or renumbered — ADRs, decisions, open questions, milestones and stories alike. Gaps are information | 5 Sep | Accepted |
+| D13 | Re-planned. M0 took roughly twice its estimate, most of it in learning rather than in the work itself. M1 committed to 11 September; v1.0.0 targeted 18 September. The live URL — the artefact with job-search value — still lands in week one; v1.0.0 is a documentation and quality milestone, not the point the site becomes visible. No scope cut: the projects index is retained at one entry, since the typed content collection is needed for the case study page regardless, and the URL belongs on the CV now rather than later | 5 Sep | Accepted |
 | ADR-001 | Nuxt 4 as the framework | 4 Sep | Accepted |
 | ADR-002 | Static site generation over SSR or SPA | 4 Sep | Accepted |
 | ADR-003 | Markdown in the repository over a headless CMS | 4 Sep | Accepted |
@@ -148,3 +149,4 @@ Recorded at the time rather than reconstructed at the end.
 - E1 had no story creating the application its CI gates would run against. The gap was invisible in the milestone plan and obvious the moment the tickets were written against the Definition of Ready.
 - Estimating revealed that E7 and E8 were 42% of the backlog and sat entirely in the final two days of the original plan. The resequencing came from the estimate, not from the plan.
 - Branch protection requires zero approvals because GitHub does not permit self-approval. The status checks are enforced; the review is disciplined. Knowing which is which is worth more than claiming both.
+- The original plan assumed familiarity with git, GitHub Flow and the tooling. The real constraint was learning time, not writing time, and no estimate accounted for it. Re-planned openly at the point it became clear, rather than allowed to slip silently.
