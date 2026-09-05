@@ -112,7 +112,7 @@ Split into four tiers. Only the first three are under our control.
 | DEL-1 | Live on the owned `.dev` domain over HTTPS | Yes |
 | DEL-2 | Public repository, all V1 gates passing on `main` | Yes |
 | DEL-3 | Five page types working; one case study live | Yes |
-| DEL-4 | ADRs 001–008 written, dated, public | 8 of 8 |
+| DEL-4 | ADRs 001–009 written, dated, public | 9 of 9 |
 | DEL-5 | `CHANGELOG.md` with a v1.0.0 entry, tagged in git | Yes |
 | DEL-6 | Retrospective written | Yes |
 

@@ -66,6 +66,7 @@ backlog: 100 points across 38 stories and 8 epics.
 | D9 | AI-assisted working method disclosed in the case study; artefact authorship remains Diogo Pereira. Half-disclosed is weaker than either fully stated or fully absent | 4 Sep | Accepted |
 | D10 | Process documentation lives in `docs/`; the repository root holds only conventional files (`README.md`, `LICENSE`, `CHANGELOG.md`, `.gitattributes`, `.gitignore`) | 4 Sep | Accepted |
 | D11 | MIT licence for the code, with written content and imagery carved out and reserved. Stated in both `LICENSE` and the README, since a reader of either should find the distinction. A portfolio repository holds software and personal material; they should not carry the same terms | 4 Sep | Accepted |
+| ADR-009 | GitHub Actions as the deployment trigger, over Cloudflare's Git integration | 5 Sep | Accepted |
 | ADR-001 | Nuxt 4 as the framework | 4 Sep | Accepted |
 | ADR-002 | Static site generation over SSR or SPA | 4 Sep | Accepted |
 | ADR-003 | Markdown in the repository over a headless CMS | 4 Sep | Accepted |
@@ -78,8 +79,6 @@ backlog: 100 points across 38 stories and 8 epics.
 
 | # | Question | Owner | Blocking |
 |---|---|---|---|
-| OQ-1 | Licence: MIT plus a README note excluding written content and photograph, or none | Diogo | `LICENSE`, first ticket |
-| OQ-2 | Deployment trigger: Cloudflare's own Git connection versus GitHub Actions with an API token. Determines whether a red pipeline can block a deploy, and which secrets exist. Probably ADR-worthy | Diogo, with verified options from Claude | M1, US-04/05/07/08 |
 | OQ-3 | Subdomain name for the tools project (`lab.` or `tools.`) — reserved, not built. Do not act on this before v1.0.0 | Diogo | Nothing |
 
 ---
@@ -91,9 +90,10 @@ backlog: 100 points across 38 stories and 8 epics.
 | R-A | Nuxt static preset on Cloudflare Pages — unverified | Open, tested at M1 |
 | R-B | TypeScript 6 pin against Nuxt's expectations — unverified either way | Open, tested at M1 |
 | R-C | Nuxt Content v3 may ship a client-side bundle, breaching the JavaScript budget | Open, measured at M1 |
-| R-D | M1 is 25 points in one day and carries all three unverified risks | Accepted deliberately — risk belongs at the front |
+| R-D | M1 is 25 points in one day and carries every unverified technical assumption | Accepted deliberately — risk belongs at the front |
 | R-E | Cloudflare Pages free-tier build quotas not yet read from primary source | Open, before M1 |
 | R-F | Nuxt 5 supersedes Nuxt 4 within roughly a year | Accepted, scheduled post-launch |
+| R-G | `wrangler-action` against a Nuxt 4 static build is untested; the older `pages-action` still appears in much documentation | Open, verified at M1 |
 
 ---
 
