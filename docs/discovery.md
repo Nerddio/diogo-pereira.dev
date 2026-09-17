@@ -7,7 +7,7 @@
 | **Owner**          | Diogo Pereira (product owner and tech lead) |
 | **Author**         | Diogo Pereira                               |
 | **Date**           | 4 September 2026                            |
-| **Target release** | v1.0.0, 9 September 2026                    |
+| **Target release** | No fixed date (D14)                    |
 
 > **Discovery** is the lifecycle stage where the problem, the people affected and the
 > conditions for success are written down before any solution is chosen. Its output is
@@ -105,7 +105,7 @@ Split into four tiers. Only the first three are under our control.
 > **lagging indicator** is measured after and confirms it. Portfolio projects have
 > excellent leading indicators and almost no attributable lagging ones.
 
-### Tier 1 — Delivery (binary, measured 9 September)
+### Tier 1 — Delivery (binary)
 
 | #     | Metric                                            | Target |
 | ----- | ------------------------------------------------- | ------ |
