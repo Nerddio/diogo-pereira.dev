@@ -1,11 +1,11 @@
 # ADR-003 — Markdown in the repository over a headless CMS
 
-| | |
-|---|---|
-| **Status** | Proposed — awaiting tech lead approval |
-| **Date** | 3 September 2026 |
-| **Deciders** | Diogo Pereira (tech lead) |
-| **Depends on** | ADR-001, ADR-002 (accepted) |
+|                |                                        |
+| -------------- | -------------------------------------- |
+| **Status**     | Proposed — awaiting tech lead approval |
+| **Date**       | 3 September 2026                       |
+| **Deciders**   | Diogo Pereira (tech lead)              |
+| **Depends on** | ADR-001, ADR-002 (accepted)            |
 
 ## Context
 

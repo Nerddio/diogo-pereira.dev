@@ -1,11 +1,11 @@
 # Planning — diogo-pereira.dev v1.0.0
 
-| | |
-|---|---|
-| **Stage** | 4. Planning |
-| **Status** | Draft — awaiting product owner approval |
-| **Date** | 4 September 2026 |
-| **Release** | v1.0.0, target 9 September 2026 |
+|                |                                                                      |
+| -------------- | -------------------------------------------------------------------- |
+| **Stage**      | 4. Planning                                                          |
+| **Status**     | Draft — awaiting product owner approval                              |
+| **Date**       | 4 September 2026                                                     |
+| **Release**    | v1.0.0, target 9 September 2026                                      |
 | **Depends on** | `discovery.md`, `requirements.md`, ADR-001 to ADR-005 (all accepted) |
 
 ---
@@ -18,7 +18,7 @@
 
 A ticket may not move to In Progress until all of these hold.
 
-1. It has a user story in *As a / I want / so that* form, naming a real role from `discovery.md` §2.
+1. It has a user story in _As a / I want / so that_ form, naming a real role from `discovery.md` §2.
 2. It has Given/When/Then acceptance criteria that can be demonstrated. A criterion nobody could fail is rewritten or removed.
 3. Its MoSCoW priority is set.
 4. Every design decision it depends on has an **accepted** ADR. Not a drafted one.
@@ -58,17 +58,17 @@ A ticket is not done until all of these hold.
 Scale: 1, 2, 3, 5, 8 (Fibonacci). Anchor: **US-24, the 404 page, is 2 points.** Everything
 else is sized against it. An 8 means "split this before starting", so nothing here is an 8.
 
-| Epic | Stories | Points |
-|---|---|---|
-| E1 Foundation and pipeline | US-01…09 | **25** |
-| E2 Home | US-10…13 | **7** |
-| E3 About | US-14…17 | **10** |
-| E4 Projects index | US-18…19 | **6** |
-| E5 Project detail and case study | US-20…21 | **8** |
-| E6 Contact | US-22 | **2** |
-| E7 Cross-cutting quality | US-23…30 | **20** |
-| E8 Documentation and release | US-31…38 | **22** |
-| | **Total** | **100** |
+| Epic                             | Stories   | Points  |
+| -------------------------------- | --------- | ------- |
+| E1 Foundation and pipeline       | US-01…09  | **25**  |
+| E2 Home                          | US-10…13  | **7**   |
+| E3 About                         | US-14…17  | **10**  |
+| E4 Projects index                | US-18…19  | **6**   |
+| E5 Project detail and case study | US-20…21  | **8**   |
+| E6 Contact                       | US-22     | **2**   |
+| E7 Cross-cutting quality         | US-23…30  | **20**  |
+| E8 Documentation and release     | US-31…38  | **22**  |
+|                                  | **Total** | **100** |
 
 Per-story points, largest first, are the ones worth arguing about:
 
@@ -102,13 +102,13 @@ alongside the pages costs almost nothing; deferring them to M4 concentrates risk
 narrowest part of the schedule. ADRs 006–008 also move earlier, while the reasoning is fresh
 rather than reconstructed on the last day.
 
-| Milestone | Date | Content | Points |
-|---|---|---|---|
-| **M0** | Fri 4 Sep | Discovery, requirements, planning, ADRs 001–005, domain, repo. *Substantially complete.* | — |
-| **M1** | Sat 5 Sep | E1 in full. **Live, ugly, deployed on the real domain with every gate green.** Non-negotiable. | 25 |
-| **M2** | Sun 6 – Mon 7 Sep | E2, E3, E4, E5, E6 plus US-23 to US-26. All routes, real content, metadata. | 37 |
-| **M4** | Tue 8 Sep | US-27, US-28, US-29, US-30. Playwright suite complete, privacy assertions, accessibility pass. ADRs 006–008. | 17 |
-| **M5** | Wed 9 Sep | README, C4 diagrams, glossary, runbook, rollback rehearsal, CHANGELOG, tag v1.0.0, retrospective. | 21 |
+| Milestone | Date              | Content                                                                                                      | Points |
+| --------- | ----------------- | ------------------------------------------------------------------------------------------------------------ | ------ |
+| **M0**    | Fri 4 Sep         | Discovery, requirements, planning, ADRs 001–005, domain, repo. _Substantially complete._                     | —      |
+| **M1**    | Sat 5 Sep         | E1 in full. **Live, ugly, deployed on the real domain with every gate green.** Non-negotiable.               | 25     |
+| **M2**    | Sun 6 – Mon 7 Sep | E2, E3, E4, E5, E6 plus US-23 to US-26. All routes, real content, metadata.                                  | 37     |
+| **M4**    | Tue 8 Sep         | US-27, US-28, US-29, US-30. Playwright suite complete, privacy assertions, accessibility pass. ADRs 006–008. | 17     |
+| **M5**    | Wed 9 Sep         | README, C4 diagrams, glossary, runbook, rollback rehearsal, CHANGELOG, tag v1.0.0, retrospective.            | 21     |
 
 M1 remains the single largest day at 25 points and the one with the most unverified
 assumptions in it — the Nuxt static preset on Pages (ADR-004 R3), the TypeScript 6 pin

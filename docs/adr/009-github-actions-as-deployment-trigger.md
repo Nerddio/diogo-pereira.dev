@@ -1,12 +1,12 @@
 # ADR-009 — GitHub Actions as the deployment trigger
 
-| | |
-|---|---|
-| **Status** | **Accepted** — 5 September 2026 |
-| **Date** | 5 September 2026 |
-| **Deciders** | Diogo Pereira (tech lead) |
-| **Depends on** | ADR-002, ADR-004 (accepted) |
-| **Unblocks** | #8, #9, #11, #12 |
+|                |                                 |
+| -------------- | ------------------------------- |
+| **Status**     | **Accepted** — 5 September 2026 |
+| **Date**       | 5 September 2026                |
+| **Deciders**   | Diogo Pereira (tech lead)       |
+| **Depends on** | ADR-002, ADR-004 (accepted)     |
+| **Unblocks**   | #8, #9, #11, #12                |
 
 ## Context
 

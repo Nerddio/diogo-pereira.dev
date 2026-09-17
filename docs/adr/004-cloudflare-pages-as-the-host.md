@@ -1,11 +1,11 @@
 # ADR-004 — Cloudflare Pages as the host
 
-| | |
-|---|---|
-| **Status** | Proposed — **tech lead ruling required**, see "The finding" below |
-| **Date** | 3 September 2026 |
-| **Deciders** | Diogo Pereira (tech lead) |
-| **Depends on** | ADR-002 (accepted) |
+|                |                                                                   |
+| -------------- | ----------------------------------------------------------------- |
+| **Status**     | Proposed — **tech lead ruling required**, see "The finding" below |
+| **Date**       | 3 September 2026                                                  |
+| **Deciders**   | Diogo Pereira (tech lead)                                         |
+| **Depends on** | ADR-002 (accepted)                                                |
 
 ## Context
 

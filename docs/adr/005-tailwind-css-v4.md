@@ -1,11 +1,11 @@
 # ADR-005 — Tailwind CSS v4 over hand-authored CSS
 
-| | |
-|---|---|
-| **Status** | Proposed — awaiting tech lead approval |
-| **Date** | 3 September 2026 |
-| **Deciders** | Diogo Pereira (tech lead) |
-| **Depends on** | ADR-001 (accepted) |
+|                |                                        |
+| -------------- | -------------------------------------- |
+| **Status**     | Proposed — awaiting tech lead approval |
+| **Date**       | 3 September 2026                       |
+| **Deciders**   | Diogo Pereira (tech lead)              |
+| **Depends on** | ADR-001 (accepted)                     |
 
 ## Context
 

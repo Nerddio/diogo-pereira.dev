@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-07',
+  modules: ['@nuxt/eslint'],
 
   // ADR-002: static site generation. Every route is prerendered at build
   // time; there is no runtime server in production.

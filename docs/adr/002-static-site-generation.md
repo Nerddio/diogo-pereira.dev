@@ -1,11 +1,11 @@
 # ADR-002 — Static site generation over SSR or SPA
 
-| | |
-|---|---|
-| **Status** | Proposed — awaiting tech lead approval |
-| **Date** | 3 September 2026 |
-| **Deciders** | Diogo Pereira (tech lead) |
-| **Depends on** | ADR-001 (accepted) |
+|                |                                        |
+| -------------- | -------------------------------------- |
+| **Status**     | Proposed — awaiting tech lead approval |
+| **Date**       | 3 September 2026                       |
+| **Deciders**   | Diogo Pereira (tech lead)              |
+| **Depends on** | ADR-001 (accepted)                     |
 
 ## Context
 
@@ -14,7 +14,7 @@ content, no data that changes without a human editing a file. Nuxt supports seve
 rendering strategies, and the choice determines the hosting bill, the operational surface,
 the SEO outcome and whether the site can meet its performance budget.
 
-The strategies differ in *when* HTML is produced. **Static site generation (SSG)** produces
+The strategies differ in _when_ HTML is produced. **Static site generation (SSG)** produces
 it at build time. **Server-side rendering (SSR)** produces it per request. A **single-page
 application (SPA)** produces it in the browser after JavaScript loads.
 
