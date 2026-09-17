@@ -1,11 +1,11 @@
 # ADR-001 — Nuxt 4 as the framework
 
-| | |
-|---|---|
-| **Status** | Proposed — awaiting tech lead approval |
-| **Date** | 3 September 2026 |
-| **Deciders** | Diogo Pereira (tech lead) |
-| **Supersedes / superseded by** | — |
+|                                |                                        |
+| ------------------------------ | -------------------------------------- |
+| **Status**                     | Proposed — awaiting tech lead approval |
+| **Date**                       | 3 September 2026                       |
+| **Deciders**                   | Diogo Pereira (tech lead)              |
+| **Supersedes / superseded by** | —                                      |
 
 > An **Architecture Decision Record** captures one significant technical decision: the
 > context that forced it, the decision taken, and the consequences accepted. It is
@@ -35,18 +35,18 @@ Use **Nuxt 4**, pinned to exact versions, with TypeScript in strict mode.
 Versions verified against the npm registry on 3 September 2026. Exact pins, no ranges;
 the lockfile is committed and CI installs with `--frozen-lockfile`.
 
-| Package | Pin | Published |
-|---|---|---|
-| `nuxt` | 4.5.2 | 2026-08-05 |
-| `@nuxt/content` | 3.16.0 | 2026-08-27 |
-| `tailwindcss` / `@tailwindcss/vite` | 4.3.3 | 2026-07-16 |
-| `typescript` | 6.0.3 — **not** the npm `latest` tag, see risk R2 | 2026-04-16 |
-| `vue-tsc` | 3.3.11 | 2026-08-21 |
-| `@playwright/test` | 1.62.1 | 2026-07-30 |
-| `eslint` | 10.9.1 | 2026-08-24 |
-| `prettier` | 3.9.6 | 2026-07-21 |
-| Node | 24.x (Active LTS) — exact patch pinned in `.nvmrc` at scaffold and mirrored in CI | — |
-| pnpm | 11.25.0 | 2026-08-29 |
+| Package                             | Pin                                                                               | Published  |
+| ----------------------------------- | --------------------------------------------------------------------------------- | ---------- |
+| `nuxt`                              | 4.5.2                                                                             | 2026-08-05 |
+| `@nuxt/content`                     | 3.16.0                                                                            | 2026-08-27 |
+| `tailwindcss` / `@tailwindcss/vite` | 4.3.3                                                                             | 2026-07-16 |
+| `typescript`                        | 6.0.3 — **not** the npm `latest` tag, see risk R2                                 | 2026-04-16 |
+| `vue-tsc`                           | 3.3.11                                                                            | 2026-08-21 |
+| `@playwright/test`                  | 1.62.1                                                                            | 2026-07-30 |
+| `eslint`                            | 10.9.1                                                                            | 2026-08-24 |
+| `prettier`                          | 3.9.6                                                                             | 2026-07-21 |
+| Node                                | 24.x (Active LTS) — exact patch pinned in `.nvmrc` at scaffold and mirrored in CI | —          |
+| pnpm                                | 11.25.0                                                                           | 2026-08-29 |
 
 Nuxt 4.5.2 declares `engines.node: ^22.19.0 || ^24.11.0 || >=26.0.0`. Node 24 is the
 current Active LTS line; Node 22 is in maintenance and Node 26 is not yet LTS. Node 24 is

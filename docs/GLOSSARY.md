@@ -65,8 +65,8 @@ deliberately not a unit of time, and useless for forecasting without a measured 
 **Traceability** — the property that every item of work can be linked back to a requirement,
 and every requirement to a reader who needs it.
 
-**User story** — a capability stated from one reader's point of view in the form *As a
-&lt;role&gt;, I want &lt;capability&gt;, so that &lt;benefit&gt;*; a placeholder for a conversation, not a
+**User story** — a capability stated from one reader's point of view in the form _As a
+&lt;role&gt;, I want &lt;capability&gt;, so that &lt;benefit&gt;_; a placeholder for a conversation, not a
 specification.
 
 **Velocity** — the number of story points a team completes per iteration, measured from

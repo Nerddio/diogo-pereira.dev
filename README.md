@@ -22,14 +22,14 @@ Exact versions are pinned and recorded in [ADR-001](docs/adr/001-nuxt-4-as-the-f
 
 ## Documentation
 
-| | |
-|---|---|
-| [Discovery](docs/discovery.md) | Problem statement, reader personas, success metrics, non-functional requirements |
-| [Requirements](docs/requirements.md) | User stories with acceptance criteria, MoSCoW priorities |
-| [Planning](docs/planning.md) | Definition of Ready and Done, estimates, milestones |
-| [Decision records](docs/adr/) | Every significant technical decision, with what it gave up |
-| [Status](docs/STATUS.md) | Current milestone, decision log, open questions, live risks |
-| [Glossary](docs/GLOSSARY.md) | Every term used in this repository |
+|                                      |                                                                                  |
+| ------------------------------------ | -------------------------------------------------------------------------------- |
+| [Discovery](docs/discovery.md)       | Problem statement, reader personas, success metrics, non-functional requirements |
+| [Requirements](docs/requirements.md) | User stories with acceptance criteria, MoSCoW priorities                         |
+| [Planning](docs/planning.md)         | Definition of Ready and Done, estimates, milestones                              |
+| [Decision records](docs/adr/)        | Every significant technical decision, with what it gave up                       |
+| [Status](docs/STATUS.md)             | Current milestone, decision log, open questions, live risks                      |
+| [Glossary](docs/GLOSSARY.md)         | Every term used in this repository                                               |
 
 ## Running locally
 
