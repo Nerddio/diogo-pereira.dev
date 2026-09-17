@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "diogo-pereira-dev",
+  "compatibility_date": "2026-09-17",
+    "send_metrics": false,
+
+  // No "main" entry. With no Worker script, Cloudflare serves the
+  // prerendered files directly — this is an assets-only Worker (ADR-010).
+  "assets": {
+    "directory": ".output/public"
+  }
+}
