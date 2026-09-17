@@ -3,20 +3,19 @@
 The single place to look for where this project actually is. Updated at the end of every
 milestone, and whenever a decision is accepted.
 
-**Last updated:** 5 September 2026 · **Current milestone:** M1 · **Release target:**
-live 11 September 2026, v1.0.0 tagged 18 September 2026
-
+**Last updated:** 17 September 2026 · **Current milestone:** M1 · **Release:** no fixed
+date; milestones are sequencing containers, not commitments
 ---
 
 ## Milestone board
 
-| Milestone                                                                      | Date                | Points | State           |
-| ------------------------------------------------------------------------------ | ------------------- | ------ | --------------- |
-| M0 — Discovery, requirements, planning, ADRs, domain, repository               | Fri 4 Sep           | —      | **Complete**    |
-| M1 — E1 in full: live on the real domain, every gate green                     | Fri 11 Sep          | 28     | **In progress** |
-| M2 — All routes, real content, metadata                                        | Mon 14 – Wed 16 Sep | 32     | Not started     |
-| M4 — Tests, privacy assertions, accessibility pass, ADRs 006–008, case study   | Thu 17 Sep          | 22     | Not started     |
-| M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | Fri 18 Sep          | 21     | Not started     |
+| Milestone | Points | State |
+|---|---|---|
+| M0 — Discovery, requirements, planning, ADRs, domain, repository | — | **Complete** |
+| M1 — E1 in full: live on the real domain, every gate green | 28 | **In progress** |
+| M2 — All routes, real content, metadata | 32 | Not started |
+| M4 — Tests, privacy assertions, accessibility pass, ADRs 006–008, case study | 22 | Not started |
+| M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | 21 | Not started |
 
 M3 was dissolved into M2 when copy drafting moved to run in parallel from day 1 (D6). The
 gap in the numbering is deliberate: identifiers are allocated once and never reused, so
@@ -57,16 +56,16 @@ Total backlog: 103 points across 39 stories and 8 epics.
 
 | Issue | Story                                            | Points | State                            |
 | ----- | ------------------------------------------------ | ------ | -------------------------------- |
-| #4    | US-39 Scaffold the Nuxt application              | 3      | Ready                            |
+| #4    | US-39 Scaffold the Nuxt application              | 3      | **Closed**                             |
 | #5    | US-01 Live on the domain over HTTPS              | 3      | Ready                            |
 | #6    | US-02 Public repository                          | 1      | **Closed** — satisfied during M0 |
-| #7    | US-03 Static analysis gates the merge            | 5      | Blocked by #4                    |
+| #7    | US-03 Static analysis gates the merge            | 5      | **Closed**                       |
 | #8    | US-04 End-to-end tests against a real deployment | 5      | Ready                            |
 | #9    | US-05 Performance and accessibility budgets      | 5      | Ready                            |
-| #10   | US-06 No broken internal links                   | 2      | Blocked by #4                    |
+| #10   | US-06 No broken internal links                   | 2      | **Closed**                       |
 | #11   | US-07 Merges to main deploy automatically        | 2      | Ready                            |
 | #12   | US-08 Preview deployment per branch              | 1      | Ready                            |
-| #13   | US-09 Dependency updates as pull requests        | 1      | Blocked by #4                    |
+| #13   | US-09 Dependency updates as pull requests        | 1      | **Closed**                       |
 
 Start with #4. Everything else in E1 either depends on it or on the deployment it produces.
 
@@ -96,6 +95,9 @@ Start with #4. Everything else in E1 either depends on it or on the deployment i
 | D11     | MIT licence for the code, with written content and imagery carved out and reserved, stated in both `LICENSE` and the README                                                                                                                                                                                                                                                                                                                                                                                                              | 4 Sep | Accepted |
 | D12     | Identifiers are allocated once and never reused or renumbered — ADRs, decisions, open questions, milestones and stories alike. Gaps are information                                                                                                                                                                                                                                                                                                                                                                                      | 5 Sep | Accepted |
 | D13     | Re-planned. M0 took roughly twice its estimate, most of it in learning rather than in the work itself. M1 committed to 11 September; v1.0.0 targeted 18 September. The live URL — the artefact with job-search value — still lands in week one; v1.0.0 is a documentation and quality milestone, not the point the site becomes visible. No scope cut: the projects index is retained at one entry, since the typed content collection is needed for the case study page regardless, and the URL belongs on the CV now rather than later | 5 Sep | Accepted |
+
+| D14 | Deadlines dropped. Two re-plans in two weeks, both missed, while interview preparation took priority — which is the correct priority, since interviews are what this project exists to support. Milestones remain as sequencing containers without due dates. A plan with dates that have passed is worse evidence than one that states plainly it is not date-driven | 17 Sep | Accepted |
+
 | ADR-001 | Nuxt 4 as the framework                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 4 Sep | Accepted |
 | ADR-002 | Static site generation over SSR or SPA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 4 Sep | Accepted |
 | ADR-003 | Markdown in the repository over a headless CMS                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 4 Sep | Accepted |
@@ -120,8 +122,8 @@ analytics, and contact information exposure.
 
 | #   | Risk                                                                                                                      | State                                             |
 | --- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| R-A | Nuxt static preset on Cloudflare Pages — unverified                                                                       | Open, tested at M1 by #4 and #5                   |
-| R-B | TypeScript 6 pin against Nuxt's expectations — unverified either way                                                      | Open, tested at M1 by #4                          |
+| R-A | Nuxt static preset on Cloudflare Pages | **Closed 7 Sep** — prerenders cleanly, four routes, no server output             |                                                   |
+| R-B | TypeScript 6 pin against Nuxt's expectations | **Closed 17 Sep** — `vue-tsc` strict, zero errors                          |                                                   |
 | R-C | Nuxt Content v3 may ship a client-side bundle, breaching the JavaScript budget                                            | Open, measured at M1 by #9                        |
 | R-D | M1 is 28 points in one day and carries every unverified technical assumption                                              | Accepted deliberately — risk belongs at the front |
 | R-E | Cloudflare Pages free-tier build quotas not yet read from primary source                                                  | Open, before M1                                   |
@@ -150,3 +152,4 @@ Recorded at the time rather than reconstructed at the end.
 - Estimating revealed that E7 and E8 were 42% of the backlog and sat entirely in the final two days of the original plan. The resequencing came from the estimate, not from the plan.
 - Branch protection requires zero approvals because GitHub does not permit self-approval. The status checks are enforced; the review is disciplined. Knowing which is which is worth more than claiming both.
 - The original plan assumed familiarity with git, GitHub Flow and the tooling. The real constraint was learning time, not writing time, and no estimate accounted for it. Re-planned openly at the point it became clear, rather than allowed to slip silently.
+- Two re-plans in two weeks, both missed, before dropping dates entirely. The estimates were not wrong about the work; they were wrong about how much of it a person job-hunting would do in a week. Available hours were never the constraint the plan modelled.

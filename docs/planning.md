@@ -87,44 +87,33 @@ justifies having estimated at all, and §4 responds to it.
 
 ---
 
-## 4. Revised milestone plan
+## 4. Milestone plan
 
-The original plan was seven days. Six remain. Two changes absorb the difference, and neither
-of them cuts process.
+Milestones are sequencing containers, not commitments (D14). Each is a coherent
+block of work; the order matters and the timing does not.
 
-**Change 1 — M3 dissolves into M2.** D6 moved copy drafting to day 1, in parallel with
-setup. Content is therefore no longer a milestone that waits for pages to exist; it arrives
-with them. M3 as a separate day was only ever a consequence of the sequencing D6 removed.
+M3 dissolved into M2 when copy drafting moved to run in parallel (D6). The gap in
+the numbering is deliberate — identifiers are allocated once and never reused (D12).
 
-**Change 2 — cheap cross-cutting work moves forward.** US-23 (skip link), US-24 (404),
-US-25 (metadata) and US-26 (sitemap and robots) are page-adjacent and small. Building them
-alongside the pages costs almost nothing; deferring them to M4 concentrates risk in the
-narrowest part of the schedule. ADRs 006–008 also move earlier, while the reasoning is fresh
-rather than reconstructed on the last day.
+| Milestone | Content | Points |
+|---|---|---|
+| **M0** | Discovery, requirements, planning, ADRs 001–005 and 009, domain, repository | — |
+| **M1** | E1 in full. **Live, ugly, deployed on the real domain with every gate green.** | 28 |
+| **M2** | E2, E3, E4, E5, E6 plus US-23 to US-26. All routes, real content, metadata | 32 |
+| **M4** | US-27 to US-30. Playwright suite, privacy assertions, accessibility pass. ADRs 006–008 | 22 |
+| **M5** | README, C4 diagrams, glossary, runbook, rollback rehearsal, CHANGELOG, tag v1.0.0, retrospective | 21 |
 
-| Milestone | Date              | Content                                                                                                      | Points |
-| --------- | ----------------- | ------------------------------------------------------------------------------------------------------------ | ------ |
-| **M0**    | Fri 4 Sep         | Discovery, requirements, planning, ADRs 001–005, domain, repo. _Substantially complete._                     | —      |
-| **M1**    | Sat 5 Sep         | E1 in full. **Live, ugly, deployed on the real domain with every gate green.** Non-negotiable.               | 25     |
-| **M2**    | Sun 6 – Mon 7 Sep | E2, E3, E4, E5, E6 plus US-23 to US-26. All routes, real content, metadata.                                  | 37     |
-| **M4**    | Tue 8 Sep         | US-27, US-28, US-29, US-30. Playwright suite complete, privacy assertions, accessibility pass. ADRs 006–008. | 17     |
-| **M5**    | Wed 9 Sep         | README, C4 diagrams, glossary, runbook, rollback rehearsal, CHANGELOG, tag v1.0.0, retrospective.            | 21     |
+M1 carries the most unverified assumptions and is sequenced first deliberately.
+Risk belongs at the front, where there is still time to respond to it.
 
-M1 remains the single largest day at 25 points and the one with the most unverified
-assumptions in it — the Nuxt static preset on Pages (ADR-004 R3), the TypeScript 6 pin
-(ADR-001 R2), and the Nuxt Content bundle question (ADR-003). This is intentional. Risk
-belongs at the front, where there is still time to respond to it.
+**If M1 stalls**, the response is to cut E2/E3 polish and V1.1 items, never to cut
+a gate. A live site with one thin page and a green pipeline beats a beautiful
+undeployed one, because the pipeline is the artefact and the page is not.
 
-**If M1 slips**, the response is to cut E2/E3 polish and V1.1 items, never to cut a gate. A
-live site with one thin page and a green pipeline beats a beautiful undeployed one, because
-the pipeline is the artefact and the page is not.
-
-**Cut list, in order**, if the schedule demands it: US-13 (recency signal), US-09
-(dependency bot), US-08 (branch previews, if Pages does not give them free), US-17 reduced
-to no photograph at all rather than a placeholder. Never cut: any ADR, any PR review, the
-accessibility pass, the retrospective.
-
----
+**Cut list, in order:** US-13 (recency signal), US-09 (dependency bot), US-08
+(branch previews — but #8, #9 and #11 depend on it), US-17 reduced to no
+photograph rather than a placeholder. Never cut: any ADR, any pull request
+review, the accessibility pass, the retrospective.
 
 ## 5. Immediate next actions
 
