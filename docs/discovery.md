@@ -7,7 +7,7 @@
 | **Owner**          | Diogo Pereira (product owner and tech lead) |
 | **Author**         | Diogo Pereira                               |
 | **Date**           | 4 September 2026                            |
-| **Target release** | No fixed date (D14)                    |
+| **Target release** | No fixed date (D14)                         |
 
 > **Discovery** is the lifecycle stage where the problem, the people affected and the
 > conditions for success are written down before any solution is chosen. Its output is
