@@ -1,12 +1,12 @@
 # ADR-010 — Cloudflare Workers static assets as the host
 
-| | |
-|---|---|
-| **Status** | Proposed — awaiting tech lead approval |
-| **Date** | 17 September 2026 |
-| **Deciders** | Diogo Pereira (tech lead) |
-| **Supersedes** | ADR-004 |
-| **Depends on** | ADR-002, ADR-009 (accepted) |
+|                |                                        |
+| -------------- | -------------------------------------- |
+| **Status**     | Proposed — awaiting tech lead approval |
+| **Date**       | 17 September 2026                      |
+| **Deciders**   | Diogo Pereira (tech lead)              |
+| **Supersedes** | ADR-004                                |
+| **Depends on** | ADR-002, ADR-009 (accepted)            |
 
 ## Context
 

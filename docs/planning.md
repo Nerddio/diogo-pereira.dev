@@ -95,13 +95,13 @@ block of work; the order matters and the timing does not.
 M3 dissolved into M2 when copy drafting moved to run in parallel (D6). The gap in
 the numbering is deliberate — identifiers are allocated once and never reused (D12).
 
-| Milestone | Content | Points |
-|---|---|---|
-| **M0** | Discovery, requirements, planning, ADRs 001–005 and 009, domain, repository | — |
-| **M1** | E1 in full. **Live, ugly, deployed on the real domain with every gate green.** | 28 |
-| **M2** | E2, E3, E4, E5, E6 plus US-23 to US-26. All routes, real content, metadata | 32 |
-| **M4** | US-27 to US-30. Playwright suite, privacy assertions, accessibility pass. ADRs 006–008 | 22 |
-| **M5** | README, C4 diagrams, glossary, runbook, rollback rehearsal, CHANGELOG, tag v1.0.0, retrospective | 21 |
+| Milestone | Content                                                                                          | Points |
+| --------- | ------------------------------------------------------------------------------------------------ | ------ |
+| **M0**    | Discovery, requirements, planning, ADRs 001–005 and 009, domain, repository                      | —      |
+| **M1**    | E1 in full. **Live, ugly, deployed on the real domain with every gate green.**                   | 28     |
+| **M2**    | E2, E3, E4, E5, E6 plus US-23 to US-26. All routes, real content, metadata                       | 32     |
+| **M4**    | US-27 to US-30. Playwright suite, privacy assertions, accessibility pass. ADRs 006–008           | 22     |
+| **M5**    | README, C4 diagrams, glossary, runbook, rollback rehearsal, CHANGELOG, tag v1.0.0, retrospective | 21     |
 
 M1 carries the most unverified assumptions and is sequenced first deliberately.
 Risk belongs at the front, where there is still time to respond to it.
