@@ -144,7 +144,7 @@ jobs:
           PLAYWRIGHT_BASE_URL: ${{ needs.preview.outputs.preview-url }}
       - name: Upload the report when a test fails
         if: failure()
-        uses: actions/upload-artifact@PASTE_SHA_HERE # v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: playwright-report
           path: playwright-report/
