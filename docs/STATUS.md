@@ -98,6 +98,8 @@ Start with #4. Everything else in E1 either depends on it or on the deployment i
 
 | D14 | Deadlines dropped. Two re-plans in two weeks, both missed, while interview preparation took priority — which is the correct priority, since interviews are what this project exists to support. Milestones remain as sequencing containers without due dates. A plan with dates that have passed is worse evidence than one that states plainly it is not date-driven | 17 Sep | Accepted |
 
+| D15 | Custom domain live: apex canonical, `www` 301s to it with paths preserved, plain HTTP redirected by Always Use HTTPS. Verified by forcing the connection rather than trusting the browser, which is how it emerged that HTTPS was not in fact enforced | 17 Sep | Accepted |
+
 | ADR-001 | Nuxt 4 as the framework | 4 Sep | Accepted |
 | ADR-002 | Static site generation over SSR or SPA | 4 Sep | Accepted |
 | ADR-003 | Markdown in the repository over a headless CMS | 4 Sep | Accepted |
@@ -120,15 +122,15 @@ analytics, and contact information exposure.
 
 ## Live risks
 
-| #   | Risk                                                                                                                      | State                                                                |
-| --- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| R-A | Nuxt static preset on Cloudflare Pages                                                                                    | **Closed 7 Sep** — prerenders cleanly, four routes, no server output |     |
-| R-B | TypeScript 6 pin against Nuxt's expectations                                                                              | **Closed 17 Sep** — `vue-tsc` strict, zero errors                    |     |
-| R-C | Nuxt Content v3 may ship a client-side bundle, breaching the JavaScript budget                                            | Open, measured at M1 by #9                                           |
-| R-D | M1 is 28 points in one day and carries every unverified technical assumption                                              | Accepted deliberately — risk belongs at the front                    |
-| R-E | Cloudflare Pages free-tier build quotas not yet read from primary source                                                  | Open, before M1                                                      |
-| R-F | Nuxt 5 supersedes Nuxt 4 within roughly a year                                                                            | Accepted, scheduled post-launch                                      |
-| R-G | `wrangler-action` against a Nuxt 4 static build is untested; the older `pages-action` still appears in much documentation | Open, verified at M1 by #12                                          |
+| #   | Risk                                                                           | State                                                                                                                              |
+| --- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| R-A | Nuxt static preset on Cloudflare Pages                                         | **Closed 7 Sep** — prerenders cleanly, four routes, no server output                                                               |
+| R-B | TypeScript 6 pin against Nuxt's expectations                                   | **Closed 17 Sep** — `vue-tsc` strict, zero errors                                                                                  |
+| R-C | Nuxt Content v3 may ship a client-side bundle, breaching the JavaScript budget | Open, measured at M1 by #9                                                                                                         |
+| R-D | M1 is 28 points in one day and carries every unverified technical assumption   | Accepted deliberately — risk belongs at the front                                                                                  |
+| R-E | Cloudflare Pages free-tier build quotas not yet read from primary source       | Open, before M1                                                                                                                    |
+| R-F | Nuxt 5 supersedes Nuxt 4 within roughly a year                                 | Accepted, scheduled post-launch                                                                                                    |
+| R-G | `wrangler-action` against a Nuxt 4 static build                                | **Closed 17 Sep** — superseded by ADR-010; wrangler runs as a pinned dev dependency, and the automated deploy to Workers succeeded |
 
 ---
 
@@ -153,3 +155,5 @@ Recorded at the time rather than reconstructed at the end.
 - Branch protection requires zero approvals because GitHub does not permit self-approval. The status checks are enforced; the review is disciplined. Knowing which is which is worth more than claiming both.
 - The original plan assumed familiarity with git, GitHub Flow and the tooling. The real constraint was learning time, not writing time, and no estimate accounted for it. Re-planned openly at the point it became clear, rather than allowed to slip silently.
 - Two re-plans in two weeks, both missed, before dropping dates entirely. The estimates were not wrong about the work; they were wrong about how much of it a person job-hunting would do in a week. Available hours were never the constraint the plan modelled.
+- Three controls were configured but not working: the ruleset gap that let two pull requests merge with failing checks, a link checker reporting Successful 0 while passing, and Always Use HTTPS switched off with `.dev` HSTS preload hiding it in browsers. All three surfaced by testing behaviour rather than reading settings.
+- Required status checks could only be added after the workflow had run once, so the pipeline was advisory for its first several merges — including the one that put an invalid workflow file on `main`. The ordering is forced by GitHub, and it is worth knowing that the gap exists rather than assuming protection from the moment a ruleset is created.
