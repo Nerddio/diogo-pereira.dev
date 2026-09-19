@@ -63,6 +63,66 @@ jobs:
           args: --offline --no-progress --root-dir "$(pwd)/.output/public" .output/public
           fail: true
 
+  preview:
+    name: preview
+    # Pull requests only. Skips cleanly when the token is absent, which is the
+    # case for Dependabot pull requests and any fork — GitHub withholds secrets
+    # from both, and a missing credential is not a failure.
+    if: github.event_name == 'pull_request'
+    needs: [lint, format, typecheck, build-and-links]
+    runs-on: ubuntu-latest
+    outputs:
+      preview-url: ${{ steps.upload.outputs.preview-url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+      - run: corepack enable
+
+      - name: Check for deploy credentials
+        id: creds
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$TOKEN" ] && [ -n "$ACCOUNT" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "No Cloudflare credentials on this pull request; skipping preview." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - if: steps.creds.outputs.available == 'true'
+        run: pnpm install --frozen-lockfile
+      - if: steps.creds.outputs.available == 'true'
+        run: pnpm generate
+
+      - name: Upload preview version
+        id: upload
+        if: steps.creds.outputs.available == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Wrangler writes structured NDJSON here. Parsing this is supported;
+          # scraping stdout would break the first time a log line changes.
+          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.json
+        run: |
+          pnpm wrangler versions upload
+          URL=$(grep -o 'https://[^"]*\.workers\.dev' "$WRANGLER_OUTPUT_FILE_PATH" | head -1)
+          if [ -z "$URL" ]; then
+            echo "Could not find a preview URL in the wrangler output file." >&2
+            cat "$WRANGLER_OUTPUT_FILE_PATH" >&2
+            exit 1
+          fi
+          echo "preview-url=$URL" >> "$GITHUB_OUTPUT"
+          echo "Preview: $URL" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify the preview serves real content
+        if: steps.creds.outputs.available == 'true'
+        run: |
+          curl -sf "${{ steps.upload.outputs.preview-url }}" | grep -q "<html" \
+            || { echo "Preview URL did not return HTML."; exit 1; }
   deploy:
     name: deploy
     # Production only. Pull requests never reach this job.
