@@ -12,13 +12,13 @@ date; milestones are sequencing containers, not commitments (D14)
 
 ## Milestone board
 
-| Milestone                                                                      | Points | State                                |
-| ------------------------------------------------------------------------------ | ------ | ------------------------------------ |
-| M0 — Discovery, requirements, planning, ADRs, domain, repository               | —      | **Complete**                         |
-| M1 — E1: live on the real domain, gates green                                  | 23     | **Complete** — 9 of 10; #9 carried   |
-| M2 — All routes, real content, metadata, plus #9                               | 37     | **Next**                             |
-| M4 — Tests, privacy assertions, accessibility pass, ADRs 007–008, case study   | 22     | Not started                          |
-| M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | 21     | Not started                          |
+| Milestone                                                                      | Points | State                              |
+| ------------------------------------------------------------------------------ | ------ | ---------------------------------- |
+| M0 — Discovery, requirements, planning, ADRs, domain, repository               | —      | **Complete**                       |
+| M1 — E1: live on the real domain, gates green                                  | 23     | **Complete** — 9 of 10; #9 carried |
+| M2 — All routes, real content, metadata, plus #9                               | 37     | **Next**                           |
+| M4 — Tests, privacy assertions, accessibility pass, ADRs 007–008, case study   | 22     | Not started                        |
+| M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | 21     | Not started                        |
 
 M3 dissolved into M2 (D6). Numbering gaps are deliberate — identifiers are allocated once
 and never reused (D12). Total backlog: 103 points across 39 stories and 8 epics.
@@ -32,18 +32,18 @@ D16.
 
 ## M1 — complete
 
-| Issue | Story                                        | Points | State                                |
-| ----- | -------------------------------------------- | ------ | ------------------------------------ |
-| #4    | US-39 Scaffold the Nuxt application          | 3      | **Closed**                           |
-| #5    | US-01 Live on the domain over HTTPS          | 3      | **Closed**                           |
-| #6    | US-02 Public repository                      | 1      | **Closed** — satisfied at M0         |
-| #7    | US-03 Static analysis gates the merge        | 5      | **Closed**                           |
-| #8    | US-04 End-to-end tests against a deployment  | 5      | **Closed**                           |
-| #9    | US-05 Performance and accessibility budgets  | 5      | **Carried to M2** — blocked, see D16 |
-| #10   | US-06 No broken internal links               | 2      | **Closed**                           |
-| #11   | US-07 Merges to main deploy automatically    | 2      | **Closed**                           |
-| #12   | US-08 Preview deployment per branch          | 1      | **Closed**                           |
-| #13   | US-09 Dependency updates as pull requests    | 1      | **Closed**                           |
+| Issue | Story                                       | Points | State                                |
+| ----- | ------------------------------------------- | ------ | ------------------------------------ |
+| #4    | US-39 Scaffold the Nuxt application         | 3      | **Closed**                           |
+| #5    | US-01 Live on the domain over HTTPS         | 3      | **Closed**                           |
+| #6    | US-02 Public repository                     | 1      | **Closed** — satisfied at M0         |
+| #7    | US-03 Static analysis gates the merge       | 5      | **Closed**                           |
+| #8    | US-04 End-to-end tests against a deployment | 5      | **Closed**                           |
+| #9    | US-05 Performance and accessibility budgets | 5      | **Carried to M2** — blocked, see D16 |
+| #10   | US-06 No broken internal links              | 2      | **Closed**                           |
+| #11   | US-07 Merges to main deploy automatically   | 2      | **Closed**                           |
+| #12   | US-08 Preview deployment per branch         | 1      | **Closed**                           |
+| #13   | US-09 Dependency updates as pull requests   | 1      | **Closed**                           |
 
 **Delivered**
 
@@ -82,32 +82,32 @@ stays blocked until it is gone.
 
 ## Decision log
 
-| #        | Decision                                                                                                                                                                                                                                                                | Date   | State    |
-| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- |
-| D1       | Engineer-first persona priority; `portfolio-goals.md` §2 to be amended to match                                                                                                                                                                                         | 4 Sep  | Accepted |
-| D2       | Release target moved to 9 September                                                                                                                                                                                                                                     | 4 Sep  | Accepted |
-| D3       | Manual WCAG 2.2 AA pass added to the Definition of Done, scoped to seven items                                                                                                                                                                                          | 4 Sep  | Accepted |
-| D4       | README cold run performed by the developer in a clean container, labelled as the weaker check                                                                                                                                                                           | 4 Sep  | Accepted |
-| D5       | Skill claims phrased as judgement and review, not authorship                                                                                                                                                                                                            | 4 Sep  | Accepted |
-| D6       | Copy drafting moved to day 1, in parallel with setup                                                                                                                                                                                                                    | 4 Sep  | Accepted |
-| D7       | US-21 (this site's case study) moved from M2 to M4                                                                                                                                                                                                                      | 4 Sep  | Accepted |
-| D8       | Interview bank kept private: its audience is me, not the reader, and the ADRs already carry the public reasoning. Publishing later is free; unpublishing is not                                                                                                          | 4 Sep  | Accepted |
-| D9       | AI-assisted working method disclosed in the case study; artefact authorship remains Diogo Pereira                                                                                                                                                                       | 4 Sep  | Accepted |
-| D10      | Process documentation lives in `docs/`; the repository root holds only conventional files                                                                                                                                                                               | 4 Sep  | Accepted |
-| D11      | MIT licence for the code, with written content and imagery carved out and reserved, stated in both `LICENSE` and the README                                                                                                                                             | 4 Sep  | Accepted |
-| D12      | Identifiers are allocated once and never reused or renumbered. Gaps are information                                                                                                                                                                                     | 5 Sep  | Accepted |
-| D13      | Re-planned. M1 committed to 11 September, v1.0.0 targeted 18 September                                                                                                                                                                                                  | 5 Sep  | Accepted |
-| D14      | Deadlines dropped. Two re-plans in two weeks, both missed, while interview preparation took priority — which is the correct priority. Milestones remain as sequencing containers. A plan with dates that have passed is worse evidence than one that is not date-driven | 17 Sep | Accepted |
-| D15      | Custom domain live: apex canonical, `www` 301s with paths preserved, plain HTTP redirected. Verified by forcing the connection rather than trusting the browser, which is how it emerged that HTTPS was not in fact enforced                                             | 17 Sep | Accepted |
-| D16      | Lighthouse budgets gated at target and #9 blocked until M2, rather than ratcheted from the current score. Two of four thresholds fail on `<NuxtWelcome />`, a demo component M2 deletes; a gate set to 88 accepts the failure permanently and nothing forces tightening   | 19 Sep | Accepted |
-| ADR-001  | Nuxt 4 as the framework                                                                                                                                                                                                                                                 | 4 Sep  | Accepted |
-| ADR-002  | Static site generation over SSR or SPA                                                                                                                                                                                                                                  | 4 Sep  | Accepted |
-| ADR-003  | Markdown in the repository over a headless CMS                                                                                                                                                                                                                          | 4 Sep  | Accepted |
-| ADR-004  | Cloudflare Pages as the host                                                                                                                                                                                                                                            | 4 Sep  | **Superseded by ADR-010** |
-| ADR-005  | Tailwind CSS v4 over hand-authored CSS                                                                                                                                                                                                                                  | 4 Sep  | Accepted, unimplemented until M2 |
-| ADR-006  | Test strategy: smoke tests and budgets, no coverage target, three browser engines                                                                                                                                                                                       | 19 Sep | Accepted |
-| ADR-009  | GitHub Actions as the deployment trigger                                                                                                                                                                                                                                | 17 Sep | Accepted |
-| ADR-010  | Cloudflare Workers static assets as the host, superseding ADR-004                                                                                                                                                                                                       | 17 Sep | Accepted |
+| #       | Decision                                                                                                                                                                                                                                                                | Date   | State                            |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------------------------------- |
+| D1      | Engineer-first persona priority; `portfolio-goals.md` §2 to be amended to match                                                                                                                                                                                         | 4 Sep  | Accepted                         |
+| D2      | Release target moved to 9 September                                                                                                                                                                                                                                     | 4 Sep  | Accepted                         |
+| D3      | Manual WCAG 2.2 AA pass added to the Definition of Done, scoped to seven items                                                                                                                                                                                          | 4 Sep  | Accepted                         |
+| D4      | README cold run performed by the developer in a clean container, labelled as the weaker check                                                                                                                                                                           | 4 Sep  | Accepted                         |
+| D5      | Skill claims phrased as judgement and review, not authorship                                                                                                                                                                                                            | 4 Sep  | Accepted                         |
+| D6      | Copy drafting moved to day 1, in parallel with setup                                                                                                                                                                                                                    | 4 Sep  | Accepted                         |
+| D7      | US-21 (this site's case study) moved from M2 to M4                                                                                                                                                                                                                      | 4 Sep  | Accepted                         |
+| D8      | Interview bank kept private: its audience is me, not the reader, and the ADRs already carry the public reasoning. Publishing later is free; unpublishing is not                                                                                                         | 4 Sep  | Accepted                         |
+| D9      | AI-assisted working method disclosed in the case study; artefact authorship remains Diogo Pereira                                                                                                                                                                       | 4 Sep  | Accepted                         |
+| D10     | Process documentation lives in `docs/`; the repository root holds only conventional files                                                                                                                                                                               | 4 Sep  | Accepted                         |
+| D11     | MIT licence for the code, with written content and imagery carved out and reserved, stated in both `LICENSE` and the README                                                                                                                                             | 4 Sep  | Accepted                         |
+| D12     | Identifiers are allocated once and never reused or renumbered. Gaps are information                                                                                                                                                                                     | 5 Sep  | Accepted                         |
+| D13     | Re-planned. M1 committed to 11 September, v1.0.0 targeted 18 September                                                                                                                                                                                                  | 5 Sep  | Accepted                         |
+| D14     | Deadlines dropped. Two re-plans in two weeks, both missed, while interview preparation took priority — which is the correct priority. Milestones remain as sequencing containers. A plan with dates that have passed is worse evidence than one that is not date-driven | 17 Sep | Accepted                         |
+| D15     | Custom domain live: apex canonical, `www` 301s with paths preserved, plain HTTP redirected. Verified by forcing the connection rather than trusting the browser, which is how it emerged that HTTPS was not in fact enforced                                            | 17 Sep | Accepted                         |
+| D16     | Lighthouse budgets gated at target and #9 blocked until M2, rather than ratcheted from the current score. Two of four thresholds fail on `<NuxtWelcome />`, a demo component M2 deletes; a gate set to 88 accepts the failure permanently and nothing forces tightening | 19 Sep | Accepted                         |
+| ADR-001 | Nuxt 4 as the framework                                                                                                                                                                                                                                                 | 4 Sep  | Accepted                         |
+| ADR-002 | Static site generation over SSR or SPA                                                                                                                                                                                                                                  | 4 Sep  | Accepted                         |
+| ADR-003 | Markdown in the repository over a headless CMS                                                                                                                                                                                                                          | 4 Sep  | Accepted                         |
+| ADR-004 | Cloudflare Pages as the host                                                                                                                                                                                                                                            | 4 Sep  | **Superseded by ADR-010**        |
+| ADR-005 | Tailwind CSS v4 over hand-authored CSS                                                                                                                                                                                                                                  | 4 Sep  | Accepted, unimplemented until M2 |
+| ADR-006 | Test strategy: smoke tests and budgets, no coverage target, three browser engines                                                                                                                                                                                       | 19 Sep | Accepted                         |
+| ADR-009 | GitHub Actions as the deployment trigger                                                                                                                                                                                                                                | 17 Sep | Accepted                         |
+| ADR-010 | Cloudflare Workers static assets as the host, superseding ADR-004                                                                                                                                                                                                       | 17 Sep | Accepted                         |
 
 ADRs 007 and 008 are reserved and scheduled for M4: cookieless analytics, and contact
 information exposure.
@@ -116,24 +116,24 @@ information exposure.
 
 ## Open questions
 
-| #    | Question                                                                                                      | Owner | Blocking |
-| ---- | ------------------------------------------------------------------------------------------------------------- | ----- | -------- |
-| OQ-3 | Subdomain name for the tools project (`lab.` or `tools.`) — reserved, not built. Do not act before v1.0.0      | Diogo | Nothing  |
-| OQ-4 | Lighthouse tooling: `@lhci/cli` pinned to Lighthouse 12.6.1, or Lighthouse 13.5.0 driven by a script we own. Deferred with #9 and re-verified before implementing | Diogo | #9 |
+| #    | Question                                                                                                                                                          | Owner | Blocking |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | -------- |
+| OQ-3 | Subdomain name for the tools project (`lab.` or `tools.`) — reserved, not built. Do not act before v1.0.0                                                         | Diogo | Nothing  |
+| OQ-4 | Lighthouse tooling: `@lhci/cli` pinned to Lighthouse 12.6.1, or Lighthouse 13.5.0 driven by a script we own. Deferred with #9 and re-verified before implementing | Diogo | #9       |
 
 ---
 
 ## Live risks
 
-| #   | Risk                                                                                                                | State                                                                                                       |
-| --- | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| R-A | Nuxt static preset on the host                                                                                      | **Closed 7 Sep** — prerenders cleanly, four routes, no server output                                        |
-| R-B | TypeScript 6 pin against Nuxt's expectations                                                                        | **Closed 17 Sep** — `vue-tsc` strict, zero errors                                                           |
-| R-C | Nuxt Content v3 may ship a client-side bundle, breaching the JavaScript budget                                      | Open — Content is not installed until M2; measured then                                                     |
-| R-E | Cloudflare Pages free-tier build quotas never read from primary source                                              | **Closed 17 Sep** — moot. ADR-010 moved off Pages, and builds run on GitHub Actions                         |
-| R-F | Nuxt 5 supersedes Nuxt 4 within roughly a year                                                                      | Accepted, scheduled post-launch                                                                             |
-| R-G | `wrangler` against a Nuxt 4 static build untested                                                                   | **Closed 17 Sep** — assets-only Worker deploys and serves correctly                                         |
-| R-H | `@lhci/cli` has had no release since June 2025 and pins Lighthouse 12.6.1 against a current 13.5.0                   | Open — see OQ-4. Scores will not match Chrome DevTools, and it may not run on Node 24                       |
+| #   | Risk                                                                                               | State                                                                                 |
+| --- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| R-A | Nuxt static preset on the host                                                                     | **Closed 7 Sep** — prerenders cleanly, four routes, no server output                  |
+| R-B | TypeScript 6 pin against Nuxt's expectations                                                       | **Closed 17 Sep** — `vue-tsc` strict, zero errors                                     |
+| R-C | Nuxt Content v3 may ship a client-side bundle, breaching the JavaScript budget                     | Open — Content is not installed until M2; measured then                               |
+| R-E | Cloudflare Pages free-tier build quotas never read from primary source                             | **Closed 17 Sep** — moot. ADR-010 moved off Pages, and builds run on GitHub Actions   |
+| R-F | Nuxt 5 supersedes Nuxt 4 within roughly a year                                                     | Accepted, scheduled post-launch                                                       |
+| R-G | `wrangler` against a Nuxt 4 static build untested                                                  | **Closed 17 Sep** — assets-only Worker deploys and serves correctly                   |
+| R-H | `@lhci/cli` has had no release since June 2025 and pins Lighthouse 12.6.1 against a current 13.5.0 | Open — see OQ-4. Scores will not match Chrome DevTools, and it may not run on Node 24 |
 
 ---
 
@@ -141,14 +141,14 @@ information exposure.
 
 Recorded so later numbers have something to be compared against.
 
-| What                                        | Value                    | Measured                                              |
-| ------------------------------------------- | ------------------------ | ----------------------------------------------------- |
-| First-load JavaScript, main chunk           | 157.93 kB raw / 57.67 kB gzipped | 7 Sep, build output, empty page                |
-| Main chunk transferred                      | 56.9 KiB                 | 19 Sep, PageSpeed Insights against production         |
-| Lighthouse Performance (mobile)             | 100                      | 19 Sep, PageSpeed Insights                            |
-| Lighthouse Accessibility (mobile)           | 88                       | 19 Sep — three failures, two of them `<NuxtWelcome />`'s |
-| Lighthouse Best Practices (mobile)          | 100                      | 19 Sep                                                |
-| Lighthouse SEO (mobile)                     | 91                       | 19 Sep                                                |
+| What                               | Value                            | Measured                                                 |
+| ---------------------------------- | -------------------------------- | -------------------------------------------------------- |
+| First-load JavaScript, main chunk  | 157.93 kB raw / 57.67 kB gzipped | 7 Sep, build output, empty page                          |
+| Main chunk transferred             | 56.9 KiB                         | 19 Sep, PageSpeed Insights against production            |
+| Lighthouse Performance (mobile)    | 100                              | 19 Sep, PageSpeed Insights                               |
+| Lighthouse Accessibility (mobile)  | 88                               | 19 Sep — three failures, two of them `<NuxtWelcome />`'s |
+| Lighthouse Best Practices (mobile) | 100                              | 19 Sep                                                   |
+| Lighthouse SEO (mobile)            | 91                               | 19 Sep                                                   |
 
 NFR-02's budget is set from the measured figure plus 20% when #9 is implemented, not before.
 
