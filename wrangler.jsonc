@@ -12,7 +12,11 @@
 
   // No "main" entry. With no Worker script, Cloudflare serves the
   // prerendered files directly — this is an assets-only Worker (ADR-010).
-  "assets": {
-    "directory": ".output/public"
+    "assets": {
+    "directory": ".output/public",
+    // Without this, Cloudflare's default for a missing path is a bare 404 with
+    // no body — a visitor who mistypes a URL gets a blank page with no way
+    // back. "404-page" serves the 404.html that Nuxt prerenders.
+    "not_found_handling": "404-page"
   }
 }
