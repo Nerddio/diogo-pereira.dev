@@ -2,6 +2,12 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "diogo-pereira-dev",
   "compatibility_date": "2026-09-17",
+  // The workers.dev subdomain served the site during verification. It is now
+  // off: the site was reachable at two URLs, which is duplicate content on an
+  // indexable domain and works against NFR-08. preview_urls defaults to
+  // workers_dev, so it is set explicitly to keep per-version previews.
+  "workers_dev": false,
+  "preview_urls": true,
     "send_metrics": false,
 
   // No "main" entry. With no Worker script, Cloudflare serves the
