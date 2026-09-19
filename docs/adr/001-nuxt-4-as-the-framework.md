@@ -3,7 +3,7 @@
 |                                |                                        |
 | ------------------------------ | -------------------------------------- |
 | **Status**                     | Proposed — awaiting tech lead approval |
-| **Date**                       | 3 September 2026                       |
+| **Date**                       | 4 September 2026                       |
 | **Deciders**                   | Diogo Pereira (tech lead)              |
 | **Supersedes / superseded by** | —                                      |
 
@@ -32,7 +32,7 @@ within the Nuxt ecosystem v4 is the only defensible major.
 
 Use **Nuxt 4**, pinned to exact versions, with TypeScript in strict mode.
 
-Versions verified against the npm registry on 3 September 2026. Exact pins, no ranges;
+Versions verified against the npm registry on 4 September 2026. Exact pins, no ranges;
 the lockfile is committed and CI installs with `--frozen-lockfile`.
 
 | Package                             | Pin                                                                               | Published  |
@@ -52,6 +52,11 @@ Nuxt 4.5.2 declares `engines.node: ^22.19.0 || ^24.11.0 || >=26.0.0`. Node 24 is
 current Active LTS line; Node 22 is in maintenance and Node 26 is not yet LTS. Node 24 is
 therefore the only choice that is both supported by the framework and appropriate for a
 production deployment.
+
+**Amended 17 September 2026.** These pins are the starting state, not a freeze.
+Dependabot raises version updates as pull requests, which pass the same gates as
+any other change. The pin prevents silent drift; it does not prevent deliberate,
+reviewed updates. ESLint has since moved to 10.10.0 by this route.
 
 ## Options considered
 
