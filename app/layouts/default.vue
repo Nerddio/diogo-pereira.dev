@@ -10,10 +10,39 @@
       Skip to content
     </a>
 
-    <header class="py-10">
+    <header class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 py-10">
       <NuxtLink to="/" class="font-heading text-lg font-medium tracking-tight">
         Diogo Pereira
       </NuxtLink>
+
+      <nav aria-label="Main">
+        <ul class="flex gap-6 text-sm">
+          <li>
+            <!-- active-class marks the current page with colour AND an
+                 underline. Colour alone would fail WCAG 1.4.1, which forbids
+                 using colour as the only visual means of conveying
+                 information. NuxtLink sets aria-current="page" itself, which
+                 covers assistive technology but not a sighted user who cannot
+                 distinguish the hue. -->
+            <NuxtLink
+              to="/about"
+              active-class="text-accent underline underline-offset-4"
+              class="hover:text-accent"
+            >
+              About
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink
+              to="/contact"
+              active-class="text-accent underline underline-offset-4"
+              class="hover:text-accent"
+            >
+              Contact
+            </NuxtLink>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <!-- The main landmark. Its absence was one of the three accessibility
