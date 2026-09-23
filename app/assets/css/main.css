@@ -1,0 +1,69 @@
+@import 'tailwindcss';
+
+/* ADR-005: tokens defined deliberately rather than left at Tailwind's
+   defaults, which are recognisable enough to produce exactly the templated
+   look the project goals rule out. */
+
+@theme {
+  /* Type. @nuxt/fonts detects these families and self-hosts them at build
+     time, so no request goes to a font CDN — NFR-05 says no request leaves
+     this origin. */
+  --font-heading: 'Jost', system-ui, sans-serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+
+  /* Colour: near-monochrome, one accent. Every pair below was computed, not
+     eyeballed.
+       ink on paper     16.97:1  AAA
+       muted on paper    6.54:1  AA
+       accent on paper   7.56:1  AAA
+       paper on accent   7.56:1  AAA  */
+  --color-paper: #fcfcfa;
+  --color-ink: #1a1a18;
+  --color-muted: #5c5c58;
+  --color-accent: #0f5c5c;
+
+  /* Two greys, deliberately. WCAG 1.4.11 requires 3:1 for the boundary of a
+     user interface component but exempts purely decorative dividers. Keeping
+     them as separate tokens makes that distinction a decision in the code
+     rather than a judgement call each time one is used.
+       border on paper   3.12:1  passes 1.4.11 — use on controls
+       rule on paper     1.31:1  decorative only — never on a control  */
+  --color-border: #90908c;
+  --color-rule: #dededa;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+  }
+
+  /* NFR-04 requires visible focus on every interactive element. Declaring it
+     once in the base layer means it holds by construction rather than by
+     remembering a class on each control. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* NFR-04. Nothing animates yet, so this guards future CSS rather than
+   current — but a motion preference that has to be remembered later is one
+   that gets forgotten. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
