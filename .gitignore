@@ -8,6 +8,9 @@ node_modules/
 .nitro/
 .cache/
 dist/
+# Nuxt also creates a `dist` SYMLINK to .output/public. The pattern above
+# matches directories only, so git reports the symlink as untracked.
+dist
 
 # Environment files — never commit secrets.
 # A committed secret stays in git history permanently, even after deletion.

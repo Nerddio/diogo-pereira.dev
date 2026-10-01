@@ -32,6 +32,28 @@ export default defineNuxtConfig({
       crawlLinks: true,
       failOnError: true,
     },
+
+    // ADR-011. Nuxt 4.5.2 adds /200.html and /404.html to the prerender list
+    // and then forces both to render WITHOUT server-side rendering, so
+    // 404.html ships as an empty shell and the error page only appears once
+    // JavaScript has run. That breaks NFR-03 for unknown routes.
+    //
+    // Cloudflare's not_found_handling only ever looks for a file named
+    // 404.html, so the fix has to produce that exact name: skip Nuxt's empty
+    // shell, and write the prerendered /404 page there instead.
+    //
+    // Delete this hook and app/pages/404.vue once Nuxt ships
+    // experimental.prerenderErrorPages (merged for 4.6.0, unreleased).
+    hooks: {
+      'prerender:generate'(route) {
+        if (route.route === '/404.html') {
+          route.skip = true
+        }
+        if (route.route === '/404') {
+          route.fileName = '404.html'
+        }
+      },
+    },
   },
 
   typescript: {

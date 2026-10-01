@@ -79,6 +79,9 @@ it is one.
 
 ## Architecture and rendering
 
+**Build hook** — a callback a build tool exposes at a defined point in its pipeline, letting a
+project alter what the build produces without forking the tool.
+
 **C4 model** — a way of drawing software architecture at four zoom levels: system context
 (L1), containers (L2), components (L3) and code (L4); this project uses L1 and L2 only.
 
@@ -115,6 +118,10 @@ target.
 
 **SPA (Single-Page Application)** — an application that renders content in the browser after
 JavaScript loads, updating the page without full navigations.
+
+**SPA fallback** — an HTML file containing no prerendered content, served by a static host
+for a path it has no file for, so the application can boot in the browser and render the route
+itself. Correct for a client-side route, wrong for a page a visitor reaches as a destination.
 
 **SSG (Static Site Generation)** — producing every route's HTML at build time, so production
 has no runtime server.
@@ -160,6 +167,10 @@ unexpectedly during load.
 
 **E2E (end-to-end) test** — a test driving the real application through a browser as a user
 would, rather than testing a unit in isolation.
+
+**Falsifiability (of a test)** — whether a test can actually fail when the thing it checks is
+broken. Demonstrated by reintroducing the defect and watching the test go red; a test never
+observed failing provides no evidence, only reassurance.
 
 **Lighthouse** — an automated auditing tool scoring performance, accessibility, best
 practices and SEO.
