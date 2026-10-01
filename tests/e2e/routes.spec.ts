@@ -38,4 +38,21 @@ test.describe('unknown routes', () => {
     const body = (await page.locator('body').innerText()).trim()
     expect(body.length).toBeGreaterThan(0)
   })
+
+  // The 200-route tests above assert no console errors. This one deliberately
+  // asserts only uncaught exceptions: a document served with a 404 status makes
+  // the browser log resource-loading errors that are correct behaviour, not
+  // defects, so asserting on them here would fail for the wrong reason. An
+  // uncaught exception is the signal that matters — it is what a broken
+  // hydration of the error page would produce.
+  test('the 404 page hydrates without throwing', async ({ page }) => {
+    const thrown: string[] = []
+
+    page.on('pageerror', (error) => {
+      thrown.push(error.message)
+    })
+
+    await page.goto('/a-route-that-does-not-exist', { waitUntil: 'networkidle' })
+    expect(thrown).toEqual([])
+  })
 })

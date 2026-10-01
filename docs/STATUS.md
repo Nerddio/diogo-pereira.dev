@@ -3,7 +3,7 @@
 The single place to look for where this project actually is. Updated at the end of every
 milestone, and whenever a decision is accepted.
 
-**Last updated:** 19 September 2026 · **Current milestone:** M2 · **Release:** no fixed
+**Last updated:** 1 October 2026 · **Current milestone:** M2 · **Release:** no fixed
 date; milestones are sequencing containers, not commitments (D14)
 
 **Live:** https://diogo-pereira.dev
@@ -78,6 +78,13 @@ E2 to E6 plus US-23 to US-26 and the carried #9. All routes, real content, metad
 page. Two of the four Lighthouse thresholds cannot be met while it is on the site, so #9
 stays blocked until it is gone.
 
+**In flight:** the shell, home, About, Contact and the 404 page. The 404 page turned out to
+be a real NFR-03 breach rather than a styling ticket — Nuxt 4.5.2 ships `404.html` as an
+empty shell, so the error page only existed after JavaScript ran. Fixed under ADR-011, with
+the JavaScript-disabled suite extended to cover an unknown route. `#9` remains blocked on
+`<NuxtWelcome />` and the production Lighthouse figures have not yet been re-measured since
+the home page replaced it.
+
 ---
 
 ## Decision log
@@ -100,6 +107,7 @@ stays blocked until it is gone.
 | D14     | Deadlines dropped. Two re-plans in two weeks, both missed, while interview preparation took priority — which is the correct priority. Milestones remain as sequencing containers. A plan with dates that have passed is worse evidence than one that is not date-driven | 17 Sep | Accepted                         |
 | D15     | Custom domain live: apex canonical, `www` 301s with paths preserved, plain HTTP redirected. Verified by forcing the connection rather than trusting the browser, which is how it emerged that HTTPS was not in fact enforced                                            | 17 Sep | Accepted                         |
 | D16     | Lighthouse budgets gated at target and #9 blocked until M2, rather than ratcheted from the current score. Two of four thresholds fail on `<NuxtWelcome />`, a demo component M2 deletes; a gate set to 88 accepts the failure permanently and nothing forces tightening | 19 Sep | Accepted                         |
+| D17     | 404 page prerendered through a Nitro build hook, rather than narrowing NFR-03 or waiting for the unreleased Nuxt 4.6 feature that does it first-party. The hook carries an explicit expiry and a ticket to remove it                                                    | 1 Oct  | Accepted                         |
 | ADR-001 | Nuxt 4 as the framework                                                                                                                                                                                                                                                 | 4 Sep  | Accepted                         |
 | ADR-002 | Static site generation over SSR or SPA                                                                                                                                                                                                                                  | 4 Sep  | Accepted                         |
 | ADR-003 | Markdown in the repository over a headless CMS                                                                                                                                                                                                                          | 4 Sep  | Accepted                         |
@@ -108,6 +116,7 @@ stays blocked until it is gone.
 | ADR-006 | Test strategy: smoke tests and budgets, no coverage target, three browser engines                                                                                                                                                                                       | 19 Sep | Accepted                         |
 | ADR-009 | GitHub Actions as the deployment trigger                                                                                                                                                                                                                                | 17 Sep | Accepted                         |
 | ADR-010 | Cloudflare Workers static assets as the host, superseding ADR-004                                                                                                                                                                                                       | 17 Sep | Accepted                         |
+| ADR-011 | Prerendering the 404 page                                                                                                                                                                                                                                               | 1 Oct  | Proposed — awaiting approval     |
 
 ADRs 007 and 008 are reserved and scheduled for M4: cookieless analytics, and contact
 information exposure.
@@ -202,6 +211,24 @@ Recorded at the time rather than reconstructed at the end.
 - A pull request description reading `Closes #7, #10 and #13` closed only #7. GitHub needs
   the keyword before each number. The work shipped, the tracker silently drifted, and three
   issues sat open for two weeks.
+- A fourth control was configured but not verifying what it claimed. The
+  JavaScript-disabled end-to-end suite iterates the list of routes that return 200, so the
+  one page that was not prerendered was the one page it never tested. NFR-03 read as
+  satisfied for two weeks while being false for every unknown URL.
+- The 404 defect was caught by a test that passed with the defect present. It failed in
+  Chromium and passed in Firefox and WebKit, which looked like flakiness and was actually a
+  race: with JavaScript enabled, hydration fills the body before the assertion runs, so
+  whether the test sees content depends on engine timing. Rebuilding without the fix
+  confirmed the original test still passes. The replacement — the same assertion with
+  JavaScript disabled — fails deterministically. The lesson is narrower than "write more
+  tests": a test whose outcome depends on timing is evidence of nothing, and the way to find
+  out is to reintroduce the defect and watch.
+- The first instinct on seeing one engine fail was to suspect the assertion and reach for a
+  different way of reading the page text, which would have turned a real defect green. The
+  raw trace, not the reasoning, is what corrected it.
+- `nuxt typecheck` in strict mode caught a genuine error introduced while fixing the 404
+  page: `NuxtError.statusCode` is optional and was being passed to a required prop. The gate
+  paid for itself on a four-line change.
 - Two tools named in the original brief had aged by the time they were used: Cloudflare
   Pages now carries a "legacy" label in its own dashboard, and `@lhci/cli` has had no
   release in fifteen months. Verifying a specification against its primary source before
