@@ -3,7 +3,7 @@
 The single place to look for where this project actually is. Updated at the end of every
 milestone, and whenever a decision is accepted.
 
-**Last updated:** 1 October 2026 · **Current milestone:** M2 · **Release:** no fixed
+**Last updated:** 3 October 2026 · **Current milestone:** M2 · **Release:** no fixed
 date; milestones are sequencing containers, not commitments (D14)
 
 **Live:** https://diogo-pereira.dev
@@ -116,7 +116,7 @@ the home page replaced it.
 | ADR-006 | Test strategy: smoke tests and budgets, no coverage target, three browser engines                                                                                                                                                                                       | 19 Sep | Accepted                         |
 | ADR-009 | GitHub Actions as the deployment trigger                                                                                                                                                                                                                                | 17 Sep | Accepted                         |
 | ADR-010 | Cloudflare Workers static assets as the host, superseding ADR-004                                                                                                                                                                                                       | 17 Sep | Accepted                         |
-| ADR-011 | Prerendering the 404 page                                                                                                                                                                                                                                               | 1 Oct  | Proposed — awaiting approval     |
+| ADR-011 | Prerendering the 404 page                                                                                                                                                                                                                                               | 1 Oct  | Accepted                         |
 
 ADRs 007 and 008 are reserved and scheduled for M4: cookieless analytics, and contact
 information exposure.
