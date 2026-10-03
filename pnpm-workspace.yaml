@@ -1,7 +1,18 @@
+# Install-time build scripts are denied for every package. A package's install
+# script runs with full rights on the machine doing the install, which in this
+# project means a GitHub Actions runner holding the Cloudflare deploy token.
+# These three ship native binaries and would normally run one; none of them
+# needs to for a static build, verified by building without them.
 allowBuilds:
   esbuild: false
   unrs-resolver: false
   workerd: false
-minimumReleaseAgeExclude:
-  - miniflare@5.20260916.0-alpha
-  - wrangler@4.133.0
+# pnpm 11 refuses versions published less than 24 hours ago (minimumReleaseAge
+# defaults to 1440 minutes), which is the window in which most compromised npm
+# releases are caught and pulled. minimumReleaseAgeExclude lists specific
+# versions that bypass that wait.
+#
+# It is deliberately empty. Entries are added only when a named version is
+# genuinely needed before it has aged, and removed once it is no longer in the
+# lockfile — a list of versions that are no longer installed exempts nothing and
+# makes the control look weaker than it is.
