@@ -1,11 +1,11 @@
 # ADR-011 — Prerendering the 404 page
 
-|                |                                        |
-| -------------- | -------------------------------------- |
-| **Status**     | Proposed — awaiting tech lead approval |
-| **Date**       | 1 October 2026                         |
-| **Deciders**   | Diogo Pereira (tech lead)              |
-| **Depends on** | ADR-002, ADR-006, ADR-010 (accepted)   |
+|                |                                      |
+| -------------- | ------------------------------------ |
+| **Status**     | **Accepted** — 3 October 2026        |
+| **Date**       | 1 October 2026                       |
+| **Deciders**   | Diogo Pereira (tech lead)            |
+| **Depends on** | ADR-002, ADR-006, ADR-010 (accepted) |
 
 ## Context
 
