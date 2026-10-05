@@ -1,11 +1,11 @@
 # ADR-001 — Nuxt 4 as the framework
 
-|                                |                                        |
-| ------------------------------ | -------------------------------------- |
-| **Status**                     | Proposed — awaiting tech lead approval |
-| **Date**                       | 4 September 2026                       |
-| **Deciders**                   | Diogo Pereira (tech lead)              |
-| **Supersedes / superseded by** | —                                      |
+|                                |                                 |
+| ------------------------------ | ------------------------------- |
+| **Status**                     | **Accepted** — 4 September 2026 |
+| **Date**                       | 4 September 2026                |
+| **Deciders**                   | Diogo Pereira (tech lead)       |
+| **Supersedes / superseded by** | —                               |
 
 > An **Architecture Decision Record** captures one significant technical decision: the
 > context that forced it, the decision taken, and the consequences accepted. It is

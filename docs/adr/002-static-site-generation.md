@@ -1,11 +1,11 @@
 # ADR-002 — Static site generation over SSR or SPA
 
-|                |                                        |
-| -------------- | -------------------------------------- |
-| **Status**     | Proposed — awaiting tech lead approval |
-| **Date**       | 3 September 2026                       |
-| **Deciders**   | Diogo Pereira (tech lead)              |
-| **Depends on** | ADR-001 (accepted)                     |
+|                |                                 |
+| -------------- | ------------------------------- |
+| **Status**     | **Accepted** — 4 September 2026 |
+| **Date**       | 3 September 2026                |
+| **Deciders**   | Diogo Pereira (tech lead)       |
+| **Depends on** | ADR-001 (accepted)              |
 
 ## Context
 
