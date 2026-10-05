@@ -23,5 +23,34 @@ useSeoMeta({
     <p class="mt-4 text-lg leading-relaxed">
       EU citizen, resident in the Netherlands. No sponsorship required.
     </p>
+
+    <!-- US-12. Both links sit on this page rather than relying on the footer.
+         The acceptance criterion is about the home page, and one satisfied by
+         the layout would stop being met the day the layout changed, without
+         anything noticing. -->
+    <section class="border-rule mt-16 border-t pt-8">
+      <h2 class="font-heading text-2xl font-medium tracking-tight">Current focus</h2>
+
+      <p class="mt-4 text-lg leading-relaxed">
+        Building this site in the open as the first of two flagship projects — public decision
+        records, a pipeline that gates every merge, and a changelog. The second starts once this one
+        is tagged.
+      </p>
+
+      <p class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-lg">
+        <NuxtLink class="hover:text-accent underline underline-offset-4" to="/projects">
+          Read the case study
+        </NuxtLink>
+        <a
+          class="hover:text-accent underline underline-offset-4"
+          href="https://github.com/Nerddio"
+          target="_blank"
+          rel="noopener"
+        >
+          Code on GitHub
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+      </p>
+    </section>
   </article>
 </template>

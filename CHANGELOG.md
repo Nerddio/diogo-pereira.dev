@@ -37,6 +37,9 @@ to compare against.
   what was rejected, the pipeline and its gates, the budgets, why there is no database, API or
   container, and the five controls that were found to be passing without working.
 
+- A current-focus section on the home page linking to the projects index and the GitHub
+  profile, and Projects added to the main navigation.
+
 ### Changed
 
 - Host moved from Cloudflare Pages to Cloudflare Workers static assets. ADR-010 supersedes

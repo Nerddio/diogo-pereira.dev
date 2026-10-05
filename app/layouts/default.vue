@@ -25,6 +25,15 @@
                  covers assistive technology but not a sighted user who cannot
                  distinguish the hue. -->
             <NuxtLink
+              to="/projects"
+              active-class="text-accent underline underline-offset-4"
+              class="hover:text-accent"
+            >
+              Projects
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink
               to="/about"
               active-class="text-accent underline underline-offset-4"
               class="hover:text-accent"
