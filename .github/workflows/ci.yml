@@ -150,6 +150,27 @@ jobs:
           path: playwright-report/
           retention-days: 7
 
+  lighthouse:
+    name: lighthouse
+    # Needs a deployed URL, so pull requests only, and skips in lockstep with
+    # the preview job when there are no credentials. Measuring a local build
+    # would measure a different artefact: no CDN compression, no real network.
+    if: github.event_name == 'pull_request' && needs.preview.outputs.preview-url != ''
+    needs: [preview]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      # No Chrome install step: the runner image ships Chrome and
+      # chrome-launcher finds it. See ADR-013.
+      - run: pnpm lighthouse
+        env:
+          LIGHTHOUSE_BASE_URL: ${{ needs.preview.outputs.preview-url }}
+
   deploy:
     name: deploy
     # Production only. Pull requests never reach this job.
