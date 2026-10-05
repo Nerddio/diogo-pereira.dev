@@ -180,14 +180,16 @@ is a maintenance burden that outlives the problem it was added for.
 
 Recorded so later numbers have something to be compared against.
 
-| What                               | Value                            | Measured                                                 |
-| ---------------------------------- | -------------------------------- | -------------------------------------------------------- |
-| First-load JavaScript, main chunk  | 157.93 kB raw / 57.67 kB gzipped | 7 Sep, build output, empty page                          |
-| Main chunk transferred             | 56.9 KiB                         | 19 Sep, PageSpeed Insights against production            |
-| Lighthouse Performance (mobile)    | 100                              | 19 Sep, PageSpeed Insights                               |
-| Lighthouse Accessibility (mobile)  | 88                               | 19 Sep — three failures, two of them `<NuxtWelcome />`'s |
-| Lighthouse Best Practices (mobile) | 100                              | 19 Sep                                                   |
-| Lighthouse SEO (mobile)            | 91                               | 19 Sep                                                   |
+| What                               | Value                            | Measured                                                                                                         |
+| ---------------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| First-load JavaScript, main chunk  | 157.93 kB raw / 57.67 kB gzipped | 7 Sep, build output, empty page                                                                                  |
+| Main chunk transferred             | 56.9 KiB                         | 19 Sep, PageSpeed Insights against production                                                                    |
+| Lighthouse Performance (mobile)    | 100                              | 19 Sep, PageSpeed Insights                                                                                       |
+| Lighthouse Accessibility (mobile)  | 88                               | 19 Sep — three failures, two of them `<NuxtWelcome />`'s                                                         |
+| Lighthouse Best Practices (mobile) | 100                              | 19 Sep                                                                                                           |
+| Lighthouse SEO (mobile)            | 91                               | 19 Sep                                                                                                           |
+| Lighthouse, all four (mobile)      | 100 / 100 / 100 / 100            | 3 Oct, PageSpeed Insights, after the welcome component                                                           |
+| Agentic Browsing (mobile)          | 2 / 2                            | 3 Oct — recorded, not gated: the category is under development and its audits change between Lighthouse releases |
 
 NFR-02's budget is set from the measured figure plus 20% when #9 is implemented, not before.
 
