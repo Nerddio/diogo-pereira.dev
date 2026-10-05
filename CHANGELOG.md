@@ -60,3 +60,5 @@ to compare against.
   installation on a runner that holds the deployment token.
 - `actions/upload-artifact` pinned to a commit SHA rather than a mutable tag, so a change
   to that tag cannot alter what runs in continuous integration.
+- `esbuild` forced to 0.28.1 or later. Earlier versions let any page open in the same
+  browser read files from the machine through the development server.

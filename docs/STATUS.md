@@ -3,7 +3,7 @@
 The single place to look for where this project actually is. Updated at the end of every
 milestone, and whenever a decision is accepted.
 
-**Last updated:** 3 October 2026 · **Current milestone:** M2 · **Release:** no fixed
+**Last updated:** 5 October 2026 · **Current milestone:** M2 · **Release:** no fixed
 date; milestones are sequencing containers, not commitments (D14)
 
 **Live:** https://diogo-pereira.dev
@@ -143,6 +143,33 @@ information exposure.
 | R-F | Nuxt 5 supersedes Nuxt 4 within roughly a year                                                     | Accepted, scheduled post-launch                                                       |
 | R-G | `wrangler` against a Nuxt 4 static build untested                                                  | **Closed 17 Sep** — assets-only Worker deploys and serves correctly                   |
 | R-H | `@lhci/cli` has had no release since June 2025 and pins Lighthouse 12.6.1 against a current 13.5.0 | Open — see OQ-4. Scores will not match Chrome DevTools, and it may not run on Node 24 |
+
+---
+
+## Dependency advisories
+
+Eight advisories are open on the default branch and are deliberately not fixed. They are
+recorded here rather than left as a count nobody has read, because being able to say why a
+control is unnecessary is worth as much as implementing one.
+
+None of these packages reaches a visitor. This site is prerendered to static files; all
+four are build or development tooling, and nothing in the shipped output contains them.
+
+| Package           | Resolved     | Reached via  | Rating             | Reachable here                                                                                                                           |
+| ----------------- | ------------ | ------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `brace-expansion` | 2.1.4, 5.0.9 | `minimatch`  | 4 high, 2 moderate | No. Denial of service from crafted glob patterns; the patterns are our own configuration, written by us, never supplied by anyone else   |
+| `braces`          | 3.0.3        | `micromatch` | 1 high             | No. Same shape — stack exhaustion from a crafted pattern we would have to write ourselves                                                |
+| `node-forge`      | 1.4.0        | `listhen`    | 1 high             | No. `listhen` is the development-server listener used by `nuxt dev` for local certificates, and is never present in the production build |
+
+**Severity is not reachability.** Six of these are rated high and none of them is exploitable
+here, while the one advisory that was worth acting on — a development-server file read in
+`esbuild` below 0.28.1 — was rated low. It is fixed by an override in `pnpm-workspace.yaml`
+and was the only one with a path an attacker could actually take: a page open in the same
+browser as a running `pnpm dev` could read files from the machine.
+
+Revisit when an upstream release lifts any of the three, which Dependabot will raise as a
+pull request. Do not add overrides for them in the meantime: an override that is not needed
+is a maintenance burden that outlives the problem it was added for.
 
 ---
 

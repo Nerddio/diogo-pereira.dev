@@ -16,3 +16,10 @@ allowBuilds:
 # genuinely needed before it has aged, and removed once it is no longer in the
 # lockfile — a list of versions that are no longer installed exempts nothing and
 # makes the control look weaker than it is.
+
+# US-44. esbuild below 0.28.1 allows any page in the browser to read files from
+# the machine through the development server's permissive CORS headers. Only the
+# 0.27.x copy pulled in transitively is affected; the tree already resolves
+# 0.28.x elsewhere, so forcing the floor costs nothing.
+overrides:
+  esbuild: '>=0.28.1'
