@@ -50,6 +50,10 @@ to compare against.
   "awaiting tech lead approval" for decisions accepted weeks earlier, and ADR-004 did not
   record that it had been superseded.
 
+- Architecture decision record 012: markdown is rendered and validated at build time rather
+  than through Nuxt Content, so an entry with invalid frontmatter fails the build instead of
+  rendering an empty card.
+
 ### Security
 
 - `devalue` updated to 5.9.4, addressing six advisories including an information-disclosure
