@@ -138,6 +138,25 @@ rather than per-route assertions and resource budgets.
   eliminate it. If a build ever fails on performance alone while the content did not change,
   the first thing to check is the runner rather than the site.
 
+**Measuring a preview URL**
+
+Cloudflare serves every `workers.dev` preview with an `X-Robots-Tag: noindex` response header,
+so Lighthouse's `is-crawlable` audit fails on a preview by construction. That audit carries 31%
+of the SEO category, and with `canonical` and `hreflang` not applicable to these pages it
+carries 36.6% of the weight actually in play — which is why every route scored exactly 63 the
+first time this gate ran in continuous integration.
+
+The audit is therefore skipped and the category rescales over the nine that remain. In its
+place the gate fetches each page and fails if the HTML declares a `robots` or `googlebot` meta
+tag asking not to be indexed. That is the half a pull request can break. The response header
+and `robots.txt` are deploy configuration rather than anything a branch changes, and belong in
+the release checklist.
+
+Verified in both directions against a local server sending the same header. Without the skip,
+all five routes scored 63, reproducing the continuous integration failure exactly; with it, all
+five scored 100. A `noindex` meta tag injected into one page failed that route by name and left
+the other four passing.
+
 **Security**
 
 The gate adds no secret and no network surface: it drives a browser already present on the
