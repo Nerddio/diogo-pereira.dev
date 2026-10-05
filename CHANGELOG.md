@@ -29,6 +29,12 @@ to compare against.
 - Project documentation: discovery, requirements, planning, a glossary, a status record,
   and architecture decision records 001-006 and 009-011.
 
+- A projects index and a project detail page, driven by markdown files with typed
+  frontmatter. An entry whose frontmatter does not match its schema fails the build rather
+  than rendering an incomplete card.
+- The site's own case study as the first and only entry, with the single-entry state stated
+  on the page rather than disguised with placeholder cards.
+
 ### Changed
 
 - Host moved from Cloudflare Pages to Cloudflare Workers static assets. ADR-010 supersedes
