@@ -33,7 +33,9 @@ to compare against.
   frontmatter. An entry whose frontmatter does not match its schema fails the build rather
   than rendering an incomplete card.
 - The site's own case study as the first and only entry, with the single-entry state stated
-  on the page rather than disguised with placeholder cards.
+  on the page rather than disguised with placeholder cards. It covers the stack decision and
+  what was rejected, the pipeline and its gates, the budgets, why there is no database, API or
+  container, and the five controls that were found to be passing without working.
 
 ### Changed
 
