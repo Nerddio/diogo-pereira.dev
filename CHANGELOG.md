@@ -65,6 +65,10 @@ to compare against.
   than through Nuxt Content, so an entry with invalid frontmatter fails the build instead of
   rendering an empty card.
 
+- Architecture decision record 013: Lighthouse runs from a script in this repository rather
+  than through Lighthouse CI, so the merge gate measures with the current Lighthouse rather
+  than a version two majors behind.
+
 ### Security
 
 - `devalue` updated to 5.9.4, addressing six advisories including an information-disclosure

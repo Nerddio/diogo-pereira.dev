@@ -119,7 +119,10 @@ the home page replaced it.
 | D19     | Nuxt Content rejected after measurement. The brief chose it because "typed collection schemas mean frontmatter is validated at build time"; it does not validate, and a file broken three ways builds clean with exit 0. Build-time markdown with zod validation instead | 5 Oct  | Accepted                         |
 | ADR-011 | Prerendering the 404 page                                                                                                                                                                                                                                                | 1 Oct  | Accepted                         |
 
+| D20 | Lighthouse driven directly rather than through Lighthouse CI. Lighthouse removed budget enforcement in 12.0.0, so measuring and asserting are separate layers either way; @lhci/cli still pins 12.6.1 exactly and has had no release in sixteen months | 5 Oct | Accepted |
 | ADR-012 | Build-time markdown over Nuxt Content | 5 Oct | Accepted |
+
+| ADR-013 | Driving Lighthouse directly rather than through Lighthouse CI | 5 Oct | Accepted |
 
 ADRs 007 and 008 are reserved and scheduled for M4: cookieless analytics, and contact
 information exposure.
@@ -128,24 +131,24 @@ information exposure.
 
 ## Open questions
 
-| #    | Question                                                                                                                                                          | Owner | Blocking |
-| ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | -------- |
-| OQ-3 | Subdomain name for the tools project (`lab.` or `tools.`) — reserved, not built. Do not act before v1.0.0                                                         | Diogo | Nothing  |
-| OQ-4 | Lighthouse tooling: `@lhci/cli` pinned to Lighthouse 12.6.1, or Lighthouse 13.5.0 driven by a script we own. Deferred with #9 and re-verified before implementing | Diogo | #9       |
+| #    | Question                                                                                                                                                                                       | Owner | Blocking |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | -------- |
+| OQ-3 | Subdomain name for the tools project (`lab.` or `tools.`) — reserved, not built. Do not act before v1.0.0                                                                                      | Diogo | Nothing  |
+| OQ-4 | **Closed 5 Oct** — re-verified and settled by ADR-013: Lighthouse 13.5.0 driven by a script. @lhci/cli runs on Node 24, contrary to the guess in R-H, but still pins Lighthouse 12.6.1 exactly | Diogo | Nothing  |
 
 ---
 
 ## Live risks
 
-| #   | Risk                                                                                               | State                                                                                                                                                                                                                |
-| --- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| R-A | Nuxt static preset on the host                                                                     | **Closed 7 Sep** — prerenders cleanly, four routes, no server output                                                                                                                                                 |
-| R-B | TypeScript 6 pin against Nuxt's expectations                                                       | **Closed 17 Sep** — `vue-tsc` strict, zero errors                                                                                                                                                                    |
-| R-C | Nuxt Content v3 may ship a client-side bundle, breaching the JavaScript budget                     | **Closed 5 Oct** — measured, and the risk was real: +22.5 kB gzipped first-load on a detail route against a ~57 kB baseline, plus 1,084 kB of WebAssembly SQLite in the deployed output. ADR-012 declines the module |
-| R-E | Cloudflare Pages free-tier build quotas never read from primary source                             | **Closed 17 Sep** — moot. ADR-010 moved off Pages, and builds run on GitHub Actions                                                                                                                                  |
-| R-F | Nuxt 5 supersedes Nuxt 4 within roughly a year                                                     | Accepted, scheduled post-launch                                                                                                                                                                                      |
-| R-G | `wrangler` against a Nuxt 4 static build untested                                                  | **Closed 17 Sep** — assets-only Worker deploys and serves correctly                                                                                                                                                  |
-| R-H | `@lhci/cli` has had no release since June 2025 and pins Lighthouse 12.6.1 against a current 13.5.0 | Open — see OQ-4. Scores will not match Chrome DevTools, and it may not run on Node 24                                                                                                                                |
+| #   | Risk                                                                                               | State                                                                                                                                                                                                                                        |
+| --- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| R-A | Nuxt static preset on the host                                                                     | **Closed 7 Sep** — prerenders cleanly, four routes, no server output                                                                                                                                                                         |
+| R-B | TypeScript 6 pin against Nuxt's expectations                                                       | **Closed 17 Sep** — `vue-tsc` strict, zero errors                                                                                                                                                                                            |
+| R-C | Nuxt Content v3 may ship a client-side bundle, breaching the JavaScript budget                     | **Closed 5 Oct** — measured, and the risk was real: +22.5 kB gzipped first-load on a detail route against a ~57 kB baseline, plus 1,084 kB of WebAssembly SQLite in the deployed output. ADR-012 declines the module                         |
+| R-E | Cloudflare Pages free-tier build quotas never read from primary source                             | **Closed 17 Sep** — moot. ADR-010 moved off Pages, and builds run on GitHub Actions                                                                                                                                                          |
+| R-F | Nuxt 5 supersedes Nuxt 4 within roughly a year                                                     | Accepted, scheduled post-launch                                                                                                                                                                                                              |
+| R-G | `wrangler` against a Nuxt 4 static build untested                                                  | **Closed 17 Sep** — assets-only Worker deploys and serves correctly                                                                                                                                                                          |
+| R-H | `@lhci/cli` has had no release since June 2025 and pins Lighthouse 12.6.1 against a current 13.5.0 | **Closed 5 Oct** — half confirmed, half wrong. The exact pin and the staleness are real, so its scores would not match a current run; but it does run on Node 24, verified. ADR-013 declines it for the version lock, not for the Node worry |
 
 ---
 
