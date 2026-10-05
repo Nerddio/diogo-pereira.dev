@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite'
+import markdown from './build/vite-markdown'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -20,7 +21,10 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   vite: {
-    plugins: [tailwindcss()],
+    // ADR-012. The markdown plugin runs before Tailwind's: it turns a .md file
+    // into a JavaScript module at build time, and throws if the frontmatter
+    // does not match the schema, which fails the build.
+    plugins: [markdown(), tailwindcss()],
   },
 
   // ADR-002: static site generation. Every route is prerendered at build
