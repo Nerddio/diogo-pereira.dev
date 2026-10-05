@@ -46,6 +46,10 @@ to compare against.
 - An invalid continuous integration workflow file, and a link checker that reported success
   while validating no links at all.
 
+- Architecture decision records now state their own status accurately. Seven of nine read
+  "awaiting tech lead approval" for decisions accepted weeks earlier, and ADR-004 did not
+  record that it had been superseded.
+
 ### Security
 
 - `devalue` updated to 5.9.4, addressing six advisories including an information-disclosure

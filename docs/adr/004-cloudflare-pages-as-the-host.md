@@ -1,11 +1,16 @@
 # ADR-004 — Cloudflare Pages as the host
 
-|                |                                                                   |
-| -------------- | ----------------------------------------------------------------- |
-| **Status**     | Proposed — **tech lead ruling required**, see "The finding" below |
-| **Date**       | 3 September 2026                                                  |
-| **Deciders**   | Diogo Pereira (tech lead)                                         |
-| **Depends on** | ADR-002 (accepted)                                                |
+|                |                                                                                                                      |
+| -------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Status**     | **Superseded by [ADR-010](010-cloudflare-workers-static-assets.md)** — 17 September 2026. Accepted 4 September 2026. |
+| **Date**       | 3 September 2026                                                                                                     |
+| **Deciders**   | Diogo Pereira (tech lead)                                                                                            |
+| **Depends on** | ADR-002 (accepted)                                                                                                   |
+
+> **Superseded.** [ADR-010](010-cloudflare-workers-static-assets.md) moved the site to
+> Cloudflare Workers static assets on 17 September 2026. This record is kept because the
+> reasoning below was correct when it was written and the trade-off is still the one an
+> interviewer would ask about. Do not treat the decision below as current.
 
 ## Context
 
