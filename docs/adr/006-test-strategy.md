@@ -1,12 +1,13 @@
 # ADR-006 — Test strategy: smoke tests and budgets, no coverage target
 
-|                |                                  |
-| -------------- | -------------------------------- |
-| **Status**     | **Accepted** — 19 September 2026 |
-| **Date**       | 19 September 2026                |
-| **Deciders**   | Diogo Pereira (tech lead)        |
-| **Depends on** | ADR-002, ADR-010 (accepted)      |
-| **Governs**    | #8, #9, and US-27 to US-30       |
+|                |                                                |
+| -------------- | ---------------------------------------------- |
+| **Status**     | **Accepted** — 19 September 2026               |
+| **Date**       | 19 September 2026                              |
+| **Deciders**   | Diogo Pereira (tech lead)                      |
+| **Depends on** | ADR-002, ADR-010 (accepted)                    |
+| **Governs**    | #8, #9, and US-27 to US-30                     |
+| **Refined by** | ADR-013, which decides how the budgets are run |
 
 ## Context
 
