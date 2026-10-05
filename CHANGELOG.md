@@ -40,6 +40,19 @@ to compare against.
 - A current-focus section on the home page linking to the projects index and the GitHub
   profile, and Projects added to the main navigation.
 
+- Architecture decision record 012: markdown is rendered and validated at build time rather
+  than through Nuxt Content, so an entry with invalid frontmatter fails the build instead of
+  rendering an empty card.
+
+- Architecture decision record 013: Lighthouse runs from a script in this repository rather
+  than through Lighthouse CI, so the merge gate measures with the current Lighthouse rather
+  than a version two majors behind.
+
+- Lighthouse budgets as a merge gate, measured against the pull request's own preview
+  deployment on mobile emulation: accessibility 100, performance, best practices and SEO at
+  least 95, and a transfer budget on JavaScript. Every route is checked, and the median of
+  three runs is taken so a single noisy run cannot block a merge.
+
 ### Changed
 
 - Host moved from Cloudflare Pages to Cloudflare Workers static assets. ADR-010 supersedes
@@ -60,14 +73,6 @@ to compare against.
 - Architecture decision records now state their own status accurately. Seven of nine read
   "awaiting tech lead approval" for decisions accepted weeks earlier, and ADR-004 did not
   record that it had been superseded.
-
-- Architecture decision record 012: markdown is rendered and validated at build time rather
-  than through Nuxt Content, so an entry with invalid frontmatter fails the build instead of
-  rendering an empty card.
-
-- Architecture decision record 013: Lighthouse runs from a script in this repository rather
-  than through Lighthouse CI, so the merge gate measures with the current Lighthouse rather
-  than a version two majors behind.
 
 ### Security
 
