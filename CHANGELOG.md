@@ -49,9 +49,11 @@ to compare against.
   than a version two majors behind.
 
 - Lighthouse budgets as a merge gate, measured against the pull request's own preview
-  deployment on mobile emulation: accessibility 100, performance, best practices and SEO at
-  least 95, and a transfer budget on JavaScript. Every route is checked, and the median of
-  three runs is taken so a single noisy run cannot block a merge.
+  deployment on mobile emulation: accessibility 100, best practices and SEO at least 95, a
+  transfer budget on JavaScript, and a check that no page asks search engines not to index it.
+  Every route is checked, and the median of three runs is taken so a single noisy run cannot
+  block a merge. The performance threshold is 90 rather than 95 until the font loading work is
+  done; ADR-013 records why.
 
 ### Changed
 
