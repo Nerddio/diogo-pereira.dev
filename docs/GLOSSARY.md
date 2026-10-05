@@ -94,6 +94,10 @@ an origin server.
 **Frontmatter** — the structured metadata block at the top of a markdown file, used here to
 carry typed project fields validated at build time.
 
+**Build-time validation** — checking data as the build runs and failing the build when it is
+wrong, so an invalid value cannot reach production. Distinct from a type definition, which
+constrains the code that reads a value but says nothing about the value itself.
+
 **Headless CMS** — a content management system that stores and serves content through an API
 with no front end of its own.
 
@@ -102,6 +106,9 @@ server-rendered HTML already in the browser.
 
 **Hydration payload** — the JavaScript and serialised state shipped to the browser to make
 hydration possible; the cost of choosing a hydrating framework over a zero-JavaScript one.
+
+**Payload extraction** — a Nuxt build step that resolves a page's data at prerender time and
+ships the result as a JSON file, so the code that fetched it never runs in the browser.
 
 **ISR (Incremental Static Regeneration)** — a hybrid strategy that serves prerendered pages
 and rebuilds them in the background on a schedule or on demand.
@@ -131,6 +138,10 @@ has no runtime server.
 **Static assets** — files served exactly as built (HTML, CSS, JavaScript, images) with no
 computation per request.
 
+**WebAssembly (WASM)** — a binary instruction format that runs in the browser at near-native
+speed, used to ship languages other than JavaScript to the web. Nuxt Content compiles SQLite
+to it so content queries can run client-side.
+
 ---
 
 ## Frontend
@@ -150,8 +161,14 @@ one component.
 **`<script setup>`** — Vue 3 compile-time syntax that makes the Composition API terser inside
 a single-file component.
 
+**Transitive dependency** — a package you did not ask for, pulled in because something you
+did ask for depends on it. Most of a lockfile is transitive.
+
 **Utility-first CSS** — a styling approach composing small single-purpose classes in markup
 rather than authoring semantic class names, as Tailwind does.
+
+**Vite plugin** — a hook into the build tool Nuxt uses, able to transform a file as it is
+imported. Used here to turn a markdown file into a JavaScript module at build time.
 
 ---
 
