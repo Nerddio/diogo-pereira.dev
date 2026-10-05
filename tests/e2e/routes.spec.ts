@@ -56,3 +56,16 @@ test.describe('unknown routes', () => {
     expect(thrown).toEqual([])
   })
 })
+
+// US-12. The criterion is that the home page carries a route into the projects
+// and to the GitHub profile. The link check in CI proves an internal link
+// resolves; it cannot prove the link is there. This can fail: remove either one
+// and it goes red.
+test.describe('the home page is a route into the work', () => {
+  test('links to the projects index and to the GitHub profile', async ({ page }) => {
+    await page.goto('/')
+
+    await expect(page.locator('main a[href="/projects"]')).toHaveCount(1)
+    await expect(page.locator('main a[href="https://github.com/Nerddio"]')).toHaveCount(1)
+  })
+})
