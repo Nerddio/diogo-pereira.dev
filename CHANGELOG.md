@@ -54,3 +54,5 @@ to compare against.
   its script-tag escaping.
 - Install-time build scripts denied for every package, so no dependency runs code during
   installation on a runner that holds the deployment token.
+- `actions/upload-artifact` pinned to a commit SHA rather than a mutable tag, so a change
+  to that tag cannot alter what runs in continuous integration.
