@@ -48,6 +48,8 @@ to compare against.
   than through Lighthouse CI, so the merge gate measures with the current Lighthouse rather
   than a version two majors behind.
 
+- A photograph on the About page, so the page reads as a person rather than a CV.
+
 - A `sitemap.xml` generated from the routes actually prerendered, a `robots.txt` that
   names it, and a JSON-LD `Person` block on Home and About. The sitemap cannot list a page
   that does not exist or omit one that does, and the build fails rather than shipping an

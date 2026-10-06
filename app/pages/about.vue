@@ -10,6 +10,21 @@ useSeo({
 
 <template>
   <article>
+    <!-- US-17. width and height carry the intrinsic size so the browser can
+         reserve the right space from the first layout pass; the displayed size
+         comes from the utility classes. Without them the text below jumps when
+         the image arrives, which is the cumulative layout shift ADR-014 spent a
+         ticket removing. No lazy loading: this is above the fold, and deferring
+         it would delay the largest paint rather than save anything. -->
+    <img
+      src="/portrait.webp"
+      alt="Diogo Pereira"
+      width="400"
+      height="378"
+      decoding="async"
+      class="mb-10 block h-auto w-40 sm:w-48"
+    />
+
     <h1 class="font-heading text-4xl font-medium tracking-tight sm:text-5xl">About</h1>
 
     <p class="mt-8 text-lg leading-relaxed">
