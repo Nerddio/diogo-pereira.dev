@@ -3,7 +3,7 @@
 The single place to look for where this project actually is. Updated at the end of every
 milestone, and whenever a decision is accepted.
 
-**Last updated:** 5 October 2026 · **Current milestone:** M2 · **Release:** no fixed
+**Last updated:** 6 October 2026 · **Current milestone:** M4 · **Release:** no fixed
 date; milestones are sequencing containers, not commitments (D14)
 
 **Live:** https://diogo-pereira.dev
@@ -16,8 +16,8 @@ date; milestones are sequencing containers, not commitments (D14)
 | ------------------------------------------------------------------------------ | ------ | ---------------------------------- |
 | M0 — Discovery, requirements, planning, ADRs, domain, repository               | —      | **Complete**                       |
 | M1 — E1: live on the real domain, gates green                                  | 23     | **Complete** — 9 of 10; #9 carried |
-| M2 — All routes, real content, metadata, plus #9                               | 37     | **Next**                           |
-| M4 — Tests, privacy assertions, accessibility pass, ADRs 007–008, case study   | 22     | Not started                        |
+| M2 — All routes, real content, metadata, plus #9                               | 37     | **Complete**                       |
+| M4 — Tests, privacy assertions, accessibility pass, ADRs 007–008, case study   | 22     | **Next**                           |
 | M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | 21     | Not started                        |
 
 M3 dissolved into M2 (D6). Numbering gaps are deliberate — identifiers are allocated once
@@ -26,7 +26,7 @@ and never reused (D12). Total backlog: 103 points across 39 stories and 8 epics.
 **M1 did not fully meet its own definition**, and that is recorded rather than rounded
 off. The milestone was "every gate green"; the Lighthouse gate does not exist yet, because
 two of its four thresholds fail against a third-party demo component that M2 deletes. See
-D16.
+D16. **Resolved in M2:** the gate shipped in #62 once the component was gone.
 
 ---
 
@@ -70,59 +70,81 @@ D16.
 
 ---
 
-## M2 — next
+## M2 — complete
 
-E2 to E6 plus US-23 to US-26 and the carried #9. All routes, real content, metadata.
+E2 to E6 plus US-23 to US-26, US-17, and the carried #9. All routes, real content, metadata.
 
-**Start here:** replacing `<NuxtWelcome />` is on the critical path for more than the home
-page. Two of the four Lighthouse thresholds cannot be met while it is on the site, so #9
-stays blocked until it is gone.
+**Shipped**
 
-**In flight:** the shell, home, About, Contact and the 404 page. The 404 page turned out to
-be a real NFR-03 breach rather than a styling ticket — Nuxt 4.5.2 ships `404.html` as an
-empty shell, so the error page only existed after JavaScript ran. Fixed under ADR-011, with
-the JavaScript-disabled suite extended to cover an unknown route. `#9` remains blocked on
-`<NuxtWelcome />` and the production Lighthouse figures have not yet been re-measured since
-the home page replaced it.
+| Pull request | What                                                       |
+| ------------ | ---------------------------------------------------------- |
+| #31          | Site shell and home page; `<NuxtWelcome />` deleted        |
+| #38          | About, Contact and a styled error page                     |
+| #49          | ADR-011 accepted — prerendering the 404 page               |
+| #51          | `CHANGELOG.md` created                                     |
+| #54          | `actions/upload-artifact` pinned to a commit SHA           |
+| #55          | Every ADR's recorded status corrected                      |
+| #56          | `esbuild` forced past the development-server file read     |
+| #57, #58     | ADR-012 accepted; projects index and detail pages          |
+| #59, #60     | This site's case study; a route into it from the home page |
+| #61, #62     | ADR-013 accepted; the Lighthouse gate, closing #9          |
+| #64          | Font loading fixed, closing US-46 — ADR-014                |
+| #67          | Canonical URLs and Open Graph tags, closing US-25          |
+| #68          | Sitemap, robots and JSON-LD `Person`, closing US-26        |
+| #69          | The photograph on About, closing US-17                     |
 
----
+**Every v1 gate now exists.** Merges are blocked on ESLint, Prettier, `nuxt typecheck`, a
+production build, an internal link check, end-to-end tests across three engines plus a
+JavaScript-disabled project, and Lighthouse budgets at accessibility 100, performance 95,
+best practices 95, SEO 95, with a 105,000-byte script transfer budget — all measured
+against each pull request's own preview deployment.
+
+**The gate paid for itself on its first real run.** It failed, and the cause was a genuine
+defect invisible to the eye: the two markdown routes shifted layout when the web fonts
+loaded. Chasing it down also turned up that only weight 400 was being shipped while the
+source asks for 500 and 600, so the designed weight hierarchy was not rendering at all, and
+that six writing systems were being served to a site written in English. None of that was
+findable by looking at the site. See ADR-014.
 
 ## Decision log
 
-| #       | Decision                                                                                                                                                                                                                                                                 | Date   | State                            |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | -------------------------------- |
-| D1      | Engineer-first persona priority; `portfolio-goals.md` §2 to be amended to match                                                                                                                                                                                          | 4 Sep  | Accepted                         |
-| D2      | Release target moved to 9 September                                                                                                                                                                                                                                      | 4 Sep  | Accepted                         |
-| D3      | Manual WCAG 2.2 AA pass added to the Definition of Done, scoped to seven items                                                                                                                                                                                           | 4 Sep  | Accepted                         |
-| D4      | README cold run performed by the developer in a clean container, labelled as the weaker check                                                                                                                                                                            | 4 Sep  | Accepted                         |
-| D5      | Skill claims phrased as judgement and review, not authorship                                                                                                                                                                                                             | 4 Sep  | Accepted                         |
-| D6      | Copy drafting moved to day 1, in parallel with setup                                                                                                                                                                                                                     | 4 Sep  | Accepted                         |
-| D7      | US-21 (this site's case study) moved from M2 to M4                                                                                                                                                                                                                       | 4 Sep  | Accepted                         |
-| D8      | Interview bank kept private: its audience is me, not the reader, and the ADRs already carry the public reasoning. Publishing later is free; unpublishing is not                                                                                                          | 4 Sep  | Accepted                         |
-| D9      | AI-assisted working method disclosed in the case study; artefact authorship remains Diogo Pereira                                                                                                                                                                        | 4 Sep  | Accepted                         |
-| D10     | Process documentation lives in `docs/`; the repository root holds only conventional files                                                                                                                                                                                | 4 Sep  | Accepted                         |
-| D11     | MIT licence for the code, with written content and imagery carved out and reserved, stated in both `LICENSE` and the README                                                                                                                                              | 4 Sep  | Accepted                         |
-| D12     | Identifiers are allocated once and never reused or renumbered. Gaps are information                                                                                                                                                                                      | 5 Sep  | Accepted                         |
-| D13     | Re-planned. M1 committed to 11 September, v1.0.0 targeted 18 September                                                                                                                                                                                                   | 5 Sep  | Accepted                         |
-| D14     | Deadlines dropped. Two re-plans in two weeks, both missed, while interview preparation took priority — which is the correct priority. Milestones remain as sequencing containers. A plan with dates that have passed is worse evidence than one that is not date-driven  | 17 Sep | Accepted                         |
-| D15     | Custom domain live: apex canonical, `www` 301s with paths preserved, plain HTTP redirected. Verified by forcing the connection rather than trusting the browser, which is how it emerged that HTTPS was not in fact enforced                                             | 17 Sep | Accepted                         |
-| D16     | Lighthouse budgets gated at target and #9 blocked until M2, rather than ratcheted from the current score. Two of four thresholds fail on `<NuxtWelcome />`, a demo component M2 deletes; a gate set to 88 accepts the failure permanently and nothing forces tightening  | 19 Sep | Accepted                         |
-| D17     | 404 page prerendered through a Nitro build hook, rather than narrowing NFR-03 or waiting for the unreleased Nuxt 4.6 feature that does it first-party. The hook carries an explicit expiry and a ticket to remove it                                                     | 1 Oct  | Accepted                         |
-| ADR-001 | Nuxt 4 as the framework                                                                                                                                                                                                                                                  | 4 Sep  | Accepted                         |
-| ADR-002 | Static site generation over SSR or SPA                                                                                                                                                                                                                                   | 4 Sep  | Accepted                         |
-| ADR-003 | Markdown in the repository over a headless CMS                                                                                                                                                                                                                           | 4 Sep  | Accepted                         |
-| ADR-004 | Cloudflare Pages as the host                                                                                                                                                                                                                                             | 4 Sep  | **Superseded by ADR-010**        |
-| ADR-005 | Tailwind CSS v4 over hand-authored CSS                                                                                                                                                                                                                                   | 4 Sep  | Accepted, unimplemented until M2 |
-| ADR-006 | Test strategy: smoke tests and budgets, no coverage target, three browser engines                                                                                                                                                                                        | 19 Sep | Accepted                         |
-| ADR-009 | GitHub Actions as the deployment trigger                                                                                                                                                                                                                                 | 5 Sep  | Accepted                         |
-| ADR-010 | Cloudflare Workers static assets as the host, superseding ADR-004                                                                                                                                                                                                        | 17 Sep | Accepted                         |
-| D19     | Nuxt Content rejected after measurement. The brief chose it because "typed collection schemas mean frontmatter is validated at build time"; it does not validate, and a file broken three ways builds clean with exit 0. Build-time markdown with zod validation instead | 5 Oct  | Accepted                         |
-| ADR-011 | Prerendering the 404 page                                                                                                                                                                                                                                                | 1 Oct  | Accepted                         |
-
-| D20 | Lighthouse driven directly rather than through Lighthouse CI. Lighthouse removed budget enforcement in 12.0.0, so measuring and asserting are separate layers either way; @lhci/cli still pins 12.6.1 exactly and has had no release in sixteen months | 5 Oct | Accepted |
-| ADR-012 | Build-time markdown over Nuxt Content | 5 Oct | Accepted |
-
-| ADR-013 | Driving Lighthouse directly rather than through Lighthouse CI | 5 Oct | Accepted |
+| #       | Decision                                                                                                                                                                                                                                                                                               | Date   | State                            |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | -------------------------------- |
+| D1      | Engineer-first persona priority; `portfolio-goals.md` §2 to be amended to match                                                                                                                                                                                                                        | 4 Sep  | Accepted                         |
+| D2      | Release target moved to 9 September                                                                                                                                                                                                                                                                    | 4 Sep  | Accepted                         |
+| D3      | Manual WCAG 2.2 AA pass added to the Definition of Done, scoped to seven items                                                                                                                                                                                                                         | 4 Sep  | Accepted                         |
+| D4      | README cold run performed by the developer in a clean container, labelled as the weaker check                                                                                                                                                                                                          | 4 Sep  | Accepted                         |
+| D5      | Skill claims phrased as judgement and review, not authorship                                                                                                                                                                                                                                           | 4 Sep  | Accepted                         |
+| D6      | Copy drafting moved to day 1, in parallel with setup                                                                                                                                                                                                                                                   | 4 Sep  | Accepted                         |
+| D7      | US-21 (this site's case study) moved from M2 to M4                                                                                                                                                                                                                                                     | 4 Sep  | Accepted                         |
+| D8      | Interview bank kept private: its audience is me, not the reader, and the ADRs already carry the public reasoning. Publishing later is free; unpublishing is not                                                                                                                                        | 4 Sep  | Accepted                         |
+| D9      | AI-assisted working method disclosed in the case study; artefact authorship remains Diogo Pereira                                                                                                                                                                                                      | 4 Sep  | Accepted                         |
+| D10     | Process documentation lives in `docs/`; the repository root holds only conventional files                                                                                                                                                                                                              | 4 Sep  | Accepted                         |
+| D11     | MIT licence for the code, with written content and imagery carved out and reserved, stated in both `LICENSE` and the README                                                                                                                                                                            | 4 Sep  | Accepted                         |
+| D12     | Identifiers are allocated once and never reused or renumbered. Gaps are information                                                                                                                                                                                                                    | 5 Sep  | Accepted                         |
+| D13     | Re-planned. M1 committed to 11 September, v1.0.0 targeted 18 September                                                                                                                                                                                                                                 | 5 Sep  | Accepted                         |
+| D14     | Deadlines dropped. Two re-plans in two weeks, both missed, while interview preparation took priority — which is the correct priority. Milestones remain as sequencing containers. A plan with dates that have passed is worse evidence than one that is not date-driven                                | 17 Sep | Accepted                         |
+| D15     | Custom domain live: apex canonical, `www` 301s with paths preserved, plain HTTP redirected. Verified by forcing the connection rather than trusting the browser, which is how it emerged that HTTPS was not in fact enforced                                                                           | 17 Sep | Accepted                         |
+| D16     | Lighthouse budgets gated at target and #9 blocked until M2, rather than ratcheted from the current score. Two of four thresholds fail on `<NuxtWelcome />`, a demo component M2 deletes; a gate set to 88 accepts the failure permanently and nothing forces tightening                                | 19 Sep | Accepted                         |
+| D17     | 404 page prerendered through a Nitro build hook, rather than narrowing NFR-03 or waiting for the unreleased Nuxt 4.6 feature that does it first-party. The hook carries an explicit expiry and a ticket to remove it                                                                                   | 1 Oct  | Accepted                         |
+| ADR-001 | Nuxt 4 as the framework                                                                                                                                                                                                                                                                                | 4 Sep  | Accepted                         |
+| ADR-002 | Static site generation over SSR or SPA                                                                                                                                                                                                                                                                 | 4 Sep  | Accepted                         |
+| ADR-003 | Markdown in the repository over a headless CMS                                                                                                                                                                                                                                                         | 4 Sep  | Accepted                         |
+| ADR-004 | Cloudflare Pages as the host                                                                                                                                                                                                                                                                           | 4 Sep  | **Superseded by ADR-010**        |
+| ADR-005 | Tailwind CSS v4 over hand-authored CSS                                                                                                                                                                                                                                                                 | 4 Sep  | Accepted, unimplemented until M2 |
+| ADR-006 | Test strategy: smoke tests and budgets, no coverage target, three browser engines                                                                                                                                                                                                                      | 19 Sep | Accepted                         |
+| ADR-009 | GitHub Actions as the deployment trigger                                                                                                                                                                                                                                                               | 5 Sep  | Accepted                         |
+| ADR-010 | Cloudflare Workers static assets as the host, superseding ADR-004                                                                                                                                                                                                                                      | 17 Sep | Accepted                         |
+| D19     | Nuxt Content rejected after measurement. The brief chose it because "typed collection schemas mean frontmatter is validated at build time"; it does not validate, and a file broken three ways builds clean with exit 0. Build-time markdown with zod validation instead                               | 5 Oct  | Accepted                         |
+| ADR-011 | Prerendering the 404 page                                                                                                                                                                                                                                                                              | 1 Oct  | Accepted                         |
+| D20     | Lighthouse driven directly rather than through Lighthouse CI. Lighthouse removed budget enforcement in 12.0.0, so measuring and asserting are separate layers either way; @lhci/cli still pins 12.6.1 exactly and has had no release in sixteen months                                                 | 5 Oct  | Accepted                         |
+| ADR-012 | Build-time markdown over Nuxt Content                                                                                                                                                                                                                                                                  | 5 Oct  | Accepted                         |
+| ADR-013 | Driving Lighthouse directly rather than through Lighthouse CI                                                                                                                                                                                                                                          | 5 Oct  | Accepted                         |
+| D21     | The gate's performance threshold held at 90 for one day rather than delaying the gate behind a font fix. Everything else began enforcing immediately, with the temporary figure recorded in ADR-013 rather than changed quietly                                                                        | 5 Oct  | Accepted, closed 6 Oct at 95     |
+| D22     | `font-display` set by a build plugin. @nuxt/fonts documents a `display` option on families but reads it only for a family declaring its own `src`, so a provider-resolved family always gets `swap`. The plugin throws if it finds nothing to rewrite, so the workaround cannot silently stop applying | 6 Oct  | Accepted                         |
+| ADR-014 | Font loading: four preloaded Latin faces, displayed `optional`                                                                                                                                                                                                                                         | 6 Oct  | Accepted                         |
+| D23     | US-17 closed with the real photograph rather than the placeholder its acceptance criteria described. The criteria opened "given no professional photograph exists yet"; one now does, so the placeholder and its V1.1 follow-up were both unnecessary                                                  | 6 Oct  | Accepted                         |
+| D24     | The JSON-LD `Person` entity carries no email and no street address. Schema.org permits both; a machine-readable field is a materially easier target than a link in markup, and the contact surface is email and LinkedIn only                                                                          | 6 Oct  | Accepted                         |
 
 ADRs 007 and 008 are reserved and scheduled for M4: cookieless analytics, and contact
 information exposure.
@@ -140,15 +162,16 @@ information exposure.
 
 ## Live risks
 
-| #   | Risk                                                                                               | State                                                                                                                                                                                                                                        |
-| --- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| R-A | Nuxt static preset on the host                                                                     | **Closed 7 Sep** — prerenders cleanly, four routes, no server output                                                                                                                                                                         |
-| R-B | TypeScript 6 pin against Nuxt's expectations                                                       | **Closed 17 Sep** — `vue-tsc` strict, zero errors                                                                                                                                                                                            |
-| R-C | Nuxt Content v3 may ship a client-side bundle, breaching the JavaScript budget                     | **Closed 5 Oct** — measured, and the risk was real: +22.5 kB gzipped first-load on a detail route against a ~57 kB baseline, plus 1,084 kB of WebAssembly SQLite in the deployed output. ADR-012 declines the module                         |
-| R-E | Cloudflare Pages free-tier build quotas never read from primary source                             | **Closed 17 Sep** — moot. ADR-010 moved off Pages, and builds run on GitHub Actions                                                                                                                                                          |
-| R-F | Nuxt 5 supersedes Nuxt 4 within roughly a year                                                     | Accepted, scheduled post-launch                                                                                                                                                                                                              |
-| R-G | `wrangler` against a Nuxt 4 static build untested                                                  | **Closed 17 Sep** — assets-only Worker deploys and serves correctly                                                                                                                                                                          |
-| R-H | `@lhci/cli` has had no release since June 2025 and pins Lighthouse 12.6.1 against a current 13.5.0 | **Closed 5 Oct** — half confirmed, half wrong. The exact pin and the staleness are real, so its scores would not match a current run; but it does run on Node 24, verified. ADR-013 declines it for the version lock, not for the Node worry |
+| #   | Risk                                                                                                        | State                                                                                                                                                                                                                                        |
+| --- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| R-A | Nuxt static preset on the host                                                                              | **Closed 7 Sep** — prerenders cleanly, four routes, no server output                                                                                                                                                                         |
+| R-B | TypeScript 6 pin against Nuxt's expectations                                                                | **Closed 17 Sep** — `vue-tsc` strict, zero errors                                                                                                                                                                                            |
+| R-C | Nuxt Content v3 may ship a client-side bundle, breaching the JavaScript budget                              | **Closed 5 Oct** — measured, and the risk was real: +22.5 kB gzipped first-load on a detail route against a ~57 kB baseline, plus 1,084 kB of WebAssembly SQLite in the deployed output. ADR-012 declines the module                         |
+| R-E | Cloudflare Pages free-tier build quotas never read from primary source                                      | **Closed 17 Sep** — moot. ADR-010 moved off Pages, and builds run on GitHub Actions                                                                                                                                                          |
+| R-I | `build/vite-font-display.ts` rewrites CSS @nuxt/fonts generates, so it is coupled to what that module emits | Live, bounded. The plugin throws when it finds nothing to rewrite, so the coupling fails the build loudly rather than silently reverting to a layout shift. Remove it if the module ever honours its documented `display` option             |
+| R-F | Nuxt 5 supersedes Nuxt 4 within roughly a year                                                              | Accepted, scheduled post-launch                                                                                                                                                                                                              |
+| R-G | `wrangler` against a Nuxt 4 static build untested                                                           | **Closed 17 Sep** — assets-only Worker deploys and serves correctly                                                                                                                                                                          |
+| R-H | `@lhci/cli` has had no release since June 2025 and pins Lighthouse 12.6.1 against a current 13.5.0          | **Closed 5 Oct** — half confirmed, half wrong. The exact pin and the staleness are real, so its scores would not match a current run; but it does run on Node 24, verified. ADR-013 declines it for the version lock, not for the Node worry |
 
 ---
 
@@ -194,15 +217,25 @@ Recorded so later numbers have something to be compared against.
 | Lighthouse, all four (mobile)      | 100 / 100 / 100 / 100            | 3 Oct, PageSpeed Insights, after the welcome component                                                           |
 | Agentic Browsing (mobile)          | 2 / 2                            | 3 Oct — recorded, not gated: the category is under development and its audits change between Lighthouse releases |
 
-NFR-02's budget is set from the measured figure plus 20% when #9 is implemented, not before.
+| Cumulative layout shift, the two markdown routes | 0.166 and 0.208 | 6 Oct, before ADR-014, measured against the production build |
+| Cumulative layout shift, every route | 0.000 | 6 Oct, after ADR-014 |
+| Lighthouse, all five routes (mobile) | 99 / 100 / 100 / 100 | 6 Oct, this repository's own gate, median of three runs |
+| Script transferred, home and project routes | 84,421 and 89,208 bytes | 6 Oct, against the 105,000 budget |
+| Font faces shipped | 4, Latin only | 6 Oct — was 18 across six writing systems |
+
+NFR-02's budget is set at 105,000 bytes: the measured 88,066 plus the 20% headroom, anchored
+at M2 rather than M1 because the figure recorded at M1 was the main chunk rather than total
+transferred script. ADR-013 records that honestly rather than treating a later measurement as
+the original.
 
 ---
 
 ## Cut list, in order
 
 US-13 (recency signal), US-09 (dependency bot — now delivered, so no longer available to
-cut), US-08 (branch previews — delivered, and #8 and #9 depend on it), US-17 reduced to no
-photograph rather than a placeholder.
+cut), US-08 (branch previews — delivered, and #8 and #9 depend on it). US-17 was listed here as
+"reduced to no photograph rather than a placeholder"; it shipped with the real photograph
+instead and is no longer available to cut.
 
 **Never cut:** any ADR, any pull request review, the accessibility pass, the retrospective,
 or maintaining the interview bank — kept outside this repository, see D8.
@@ -264,6 +297,39 @@ Recorded at the time rather than reconstructed at the end.
 - `nuxt typecheck` in strict mode caught a genuine error introduced while fixing the 404
   page: `NuxtError.statusCode` is optional and was being passed to a required prop. The gate
   paid for itself on a four-line change.
+- The Lighthouse gate failed on its first real run and was right to. The two markdown routes
+  shifted layout when the web fonts loaded, costing five to nine performance points, and
+  nothing about it was visible by looking at the site. The same investigation found that only
+  weight 400 was being shipped while the source asks for 500 and 600 — so the designed weight
+  hierarchy was not rendering — and that six writing systems were being served to a site
+  written in English. The honest ratio is that the gate cost most of an evening and found
+  three defects no amount of looking would have.
+- The fix I was confident about changed the number by zero. Correcting the weights, dropping
+  four writing systems and preloading every remaining face left cumulative layout shift
+  identical to three decimal places. Only suppressing the font swap moved it. Reproducing the
+  defect locally before pushing is the only reason that was discovered in ten minutes rather
+  than across three more continuous integration runs.
+- A local build was silently missing a feature because the network refused. `@nuxt/fonts`
+  could not reach Google Fonts from the development container, so it emitted no `@font-face`
+  rules at all and every local measurement was taken against a build with no web fonts in it.
+  The measurements were not wrong; they were of the wrong artefact. "It works locally" was
+  false in a way nothing reported.
+- A unit test passed while the code shipped a wrong sitemap, because its fixture was written
+  from assumed data. Nitro derives a prerendered route's `fileName` through `withoutBase()`,
+  which keeps a leading slash; the exclusion list used bare filenames and never matched, so
+  `/200.html` was published to crawlers. The test confirmed a belief rather than the
+  behaviour. The replacement asserts an invariant — every page here is an extensionless
+  route — rather than listing names to keep in sync.
+- Twice during the image work I wrote a check that could not fail: one compared only the
+  pixels already selected as the subject, the other counted skin as leftover background
+  because the skin genuinely sits 40 units from that background colour. A check whose outcome
+  is determined by the thing it is checking is not evidence, and it is easy to write while
+  believing otherwise.
+- The file-transfer tooling reported success and wrote nothing, twice, including once when it
+  served a cached copy so the file got a fresh timestamp and stale contents. Caught only by
+  comparing sizes and content on disk afterwards. Every write since is verified rather than
+  trusted — which is the same lesson as the ruleset, the link checker and the HTTPS setting,
+  arriving this time from my own tools.
 - Two tools named in the original brief had aged by the time they were used: Cloudflare
   Pages now carries a "legacy" label in its own dashboard, and `@lhci/cli` has had no
   release in fifteen months. Verifying a specification against its primary source before
