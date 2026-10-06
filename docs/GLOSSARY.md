@@ -4,7 +4,7 @@ Every term, acronym and piece of shorthand introduced in this project, defined i
 sentence. Added to as the project proceeds. If a term is used in an artefact and is not
 here, that is a defect.
 
-Last updated: 4 September 2026.
+Last updated: 6 October 2026.
 
 ---
 
@@ -273,9 +273,20 @@ availability; none is claimed here, deliberately.
 
 ## Security and privacy
 
+**Allowlist** — a list of what is explicitly permitted, with everything else refused; the
+inverse of a blocklist, and the safer default, because something new and unrecognised is
+denied rather than allowed.
+
 **Authentication** — proving who you are.
 
 **Authorization** — determining what you are allowed to do once authenticated.
+
+**Beacon** — a small script whose only job is to report measurements back to a server; it
+renders nothing and the visitor never sees it.
+
+**CSP (Content Security Policy)** — a response header listing which origins a page may load
+scripts, styles and other resources from, so injected markup cannot pull in code from
+somewhere else.
 
 **Dependabot** — GitHub's tool for alerting on vulnerable dependencies and opening update
 pull requests.
@@ -286,11 +297,25 @@ personal data.
 **HSTS (HTTP Strict Transport Security)** — a mechanism instructing browsers to use HTTPS
 only; the `.dev` TLD is preloaded, so HTTPS is mandatory and not merely preferred.
 
+**HttpOnly** — a cookie flag that hides a cookie from JavaScript, so a cross-site scripting
+flaw cannot read it; it also means the cookie is invisible to `document.cookie` and must be
+inspected through the browser rather than from the page.
+
+**IndexedDB** — a database built into the browser, holding structured data per site with no
+expiry unless the site or the visitor removes it.
+
 **Least privilege** — granting only the permissions actually required, so a compromise has
 the smallest possible blast radius.
 
+**`localStorage` and `sessionStorage`** — key/value stores built into the browser, readable
+only by the site that wrote them; `localStorage` persists indefinitely, `sessionStorage` is
+discarded when the tab closes.
+
 **MFA (Multi-Factor Authentication)** — requiring a second proof of identity beyond a
 password.
+
+**Origin** — the combination of scheme, host and port that the browser treats as one
+security boundary (`https://diogo-pereira.dev`); "off-origin" means a request leaving it.
 
 **Push protection** — GitHub's blocking of a push containing a detected credential, before it
 enters history; it matches credential patterns, not arbitrary personal data.
@@ -298,10 +323,19 @@ enters history; it matches credential patterns, not arbitrary personal data.
 **Registrar lock** — a registrar setting preventing a domain from being transferred away
 without deliberate unlocking.
 
+**RUM (Real User Monitoring)** — measurement collected from the browsers of actual visitors,
+as opposed to a synthetic test such as the Lighthouse gate, which measures one scripted
+visit under fixed conditions.
+
 **Secret scanning** — detecting credentials committed to a repository.
 
 **SHA pinning** — referencing a GitHub Action by full commit hash rather than a moving tag,
 so the code that runs cannot be changed under you.
+
+**SRI (Subresource Integrity)** — a cryptographic hash placed in a `script` or `link` tag; the
+browser refuses the file if its contents do not match, which protects against the host
+serving something different, at the cost of breaking the moment the host legitimately
+updates it.
 
 **Supply chain** — the set of third-party code and tools a build depends on, and a realistic
 attack path into any project that has one.
