@@ -65,6 +65,13 @@ to compare against.
   Every route is checked, and the median of three runs is taken so a single noisy run cannot
   block a merge.
 
+- A privacy test asserting, on every route and in all three browser engines, that the site
+  sets no cookie, writes nothing to browser storage, and contacts no third party. It
+  records attempted writes as well as what is left behind, so a value written and then
+  removed is still caught. Third parties are governed by an allowlist with a reason per
+  entry rather than a blanket prohibition, which would have to be deleted the first time
+  one is added.
+
 ### Changed
 
 - Host moved from Cloudflare Pages to Cloudflare Workers static assets. ADR-010 supersedes
@@ -72,6 +79,12 @@ to compare against.
 - Release dates dropped in favour of milestones as sequencing containers.
 
 ### Fixed
+
+- End-to-end tests that wait for network idle no longer time out under full parallel load.
+  Reaching network idle on the heaviest route was measured at 24 seconds against Playwright's
+  30-second default and failed once at 31.3. The budget is raised where the wait happens
+  rather than the retry count in CI, which would have let an intermittent failure pass on a
+  second attempt and hidden the instability instead of removing it.
 
 - Text no longer reflows when the web fonts load. The site shipped a single weight in six
   writing systems, so every heading rendered at the wrong weight and bold text inside
