@@ -52,8 +52,7 @@ to compare against.
   deployment on mobile emulation: accessibility 100, best practices and SEO at least 95, a
   transfer budget on JavaScript, and a check that no page asks search engines not to index it.
   Every route is checked, and the median of three runs is taken so a single noisy run cannot
-  block a merge. The performance threshold is 90 rather than 95 until the font loading work is
-  done; ADR-013 records why.
+  block a merge.
 
 ### Changed
 
@@ -62,6 +61,13 @@ to compare against.
 - Release dates dropped in favour of milestones as sequencing containers.
 
 ### Fixed
+
+- Text no longer reflows when the web fonts load. The site shipped a single weight in six
+  writing systems, so every heading rendered at the wrong weight and bold text inside
+  markdown was synthesised, and the metric-matched fallbacks that should have hidden the
+  swap resolved against fonts only Windows and macOS have. It now ships the four faces it
+  uses, in the Latin subset, preloaded, and does not swap them in after the page is drawn.
+  See ADR-014.
 
 - The 404 page shipped as an empty shell. Nuxt forces `404.html` to render without
   server-side rendering, so the error page only appeared after client-side JavaScript ran.

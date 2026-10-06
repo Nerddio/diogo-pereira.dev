@@ -50,25 +50,17 @@ transferred JavaScript exceeds its budget.
 | Category       | Threshold |
 | -------------- | --------- |
 | Accessibility  | 100       |
-| Performance    | >= 90     |
+| Performance    | >= 95     |
 | Best practices | >= 95     |
 | SEO            | >= 95     |
 
-**The performance threshold is 90 at the time of writing, not the 95 the Definition of Done
-asks for.** The first run of this gate against a real preview measured 94 and 91 on the two
-markdown routes, against 100 everywhere else. The cause is not the gate and not page weight:
-cumulative layout shift of 0.146 and 0.187, where every other route is zero. `@nuxt/fonts`
-generates metric-matched fallback faces, but each resolves through `local()` against Georgia,
-Times New Roman and Segoe UI — fonts a bare Ubuntu runner does not have — so no override
-applies and the body text reflows when the real font arrives. Adding Linux families to the
-fallback list does not help: fontaine's metrics database, which the overrides are computed
-from, has no entry for DejaVu Serif or Liberation Serif.
-
-That is a font loading decision with visual consequences, and it is US-46 rather than part of
-this one. The threshold is 90 so the rest of the gate can start enforcing now, and US-46 closes
-by returning it to 95. A temporary threshold with a ticket against it is a different thing from
-a threshold quietly lowered to make a build pass, and the difference is that this paragraph
-exists.
+**The performance threshold was 90 between 5 and 6 October 2026.** The first run of this gate
+against a real preview measured 94 and 91 on the two markdown routes against 100 everywhere
+else, caused by cumulative layout shift of 0.146 and 0.187 when the web font swapped in. That
+was a font loading defect rather than anything about this gate, so the threshold was held at 90
+with US-46 against it rather than the gate being delayed. ADR-014 fixed the shift and the
+threshold returned to 95. Recorded because a threshold that moves without a trail is a gate
+that means whatever the last build scored.
 
 Mobile emulation and simulated throttling, both of which are Lighthouse's defaults — the
 settings are left alone rather than configured, so there is less to drift.
