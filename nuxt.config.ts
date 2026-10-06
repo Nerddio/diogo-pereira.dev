@@ -1,6 +1,9 @@
 import tailwindcss from '@tailwindcss/vite'
 import markdown from './build/vite-markdown'
-import { TITLE_SUFFIX } from './app/utils/site'
+import { TITLE_SUFFIX, SITE_URL } from './app/utils/site'
+import { buildSitemap } from './build/sitemap'
+import { writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import fontDisplay from './build/vite-font-display'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -17,6 +20,19 @@ export default defineNuxtConfig({
       // The suffix is shared with the composable that builds og:title, so a
       // social card and a browser tab cannot disagree about the site's name.
       titleTemplate: `%s${TITLE_SUFFIX}`,
+    },
+  },
+
+  // US-26. The sitemap is written from the routes Nitro actually prerendered,
+  // after prerendering finishes, so it cannot list a page that does not exist
+  // or omit one that does. buildSitemap throws rather than emitting an empty
+  // file if the filtering ever matches nothing.
+  hooks: {
+    'nitro:init'(nitro) {
+      nitro.hooks.hook('prerender:done', async ({ prerenderedRoutes }) => {
+        const xml = buildSitemap(prerenderedRoutes, SITE_URL)
+        await writeFile(join(nitro.options.output.publicDir, 'sitemap.xml'), xml, 'utf8')
+      })
     },
   },
 

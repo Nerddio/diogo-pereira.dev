@@ -1,4 +1,6 @@
 <script setup lang="ts">
+usePersonSchema()
+
 useSeo({
   title: 'About',
   description:
