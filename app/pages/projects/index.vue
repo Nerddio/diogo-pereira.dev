@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { projects } from '~/utils/projects'
 
-useSeoMeta({
+useSeo({
   title: 'Projects',
   description:
     'Flagship engineering projects by Diogo Pereira, each with a public repository, architecture decision records and a live URL.',

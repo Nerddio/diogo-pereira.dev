@@ -48,6 +48,10 @@ to compare against.
   than through Lighthouse CI, so the merge gate measures with the current Lighthouse rather
   than a version two majors behind.
 
+- A canonical URL, Open Graph tags and a Twitter card on every route, with a site-wide
+  social card image drawn from the site's own type and colour tokens. Every page sets them
+  through one composable, so a page cannot ship without them by being forgotten.
+
 - Lighthouse budgets as a merge gate, measured against the pull request's own preview
   deployment on mobile emulation: accessibility 100, best practices and SEO at least 95, a
   transfer budget on JavaScript, and a check that no page asks search engines not to index it.

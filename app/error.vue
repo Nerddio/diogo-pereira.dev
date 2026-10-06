@@ -10,8 +10,9 @@ const props = defineProps<{ error: NuxtError }>()
 
 const isNotFound = props.error.statusCode === 404
 
-useSeoMeta({
+useSeo({
   title: isNotFound ? 'Page not found' : 'Something went wrong',
+  noindex: true,
 })
 </script>
 

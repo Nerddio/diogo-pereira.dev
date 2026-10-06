@@ -22,7 +22,7 @@ const bodies = import.meta.glob<string>('../../../content/projects/*.md', {
 })
 const html = bodies[`../../../content/projects/${slug}.md`] ?? ''
 
-useSeoMeta({
+useSeo({
   title: project.title,
   description: project.summary,
 })

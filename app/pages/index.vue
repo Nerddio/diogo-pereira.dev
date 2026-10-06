@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useSeoMeta({
+useSeo({
   title: 'Full-stack engineer',
   description:
     'Diogo Pereira — full-stack engineer based in Gouda, Netherlands. EU work rights, no sponsorship required.',

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useSeoMeta({
+useSeo({
   title: 'About',
   description:
     'Diogo Pereira — full-stack engineer. Three years building production web applications end to end at Foldaco International: booking platform, EU VAT automation, forty-plus WooCommerce sites, Power BI reporting.',
