@@ -1,5 +1,6 @@
 import tailwindcss from '@tailwindcss/vite'
 import markdown from './build/vite-markdown'
+import { TITLE_SUFFIX } from './app/utils/site'
 import fontDisplay from './build/vite-font-display'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -13,7 +14,9 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      titleTemplate: '%s · Diogo Pereira',
+      // The suffix is shared with the composable that builds og:title, so a
+      // social card and a browser tab cannot disagree about the site's name.
+      titleTemplate: `%s${TITLE_SUFFIX}`,
     },
   },
 

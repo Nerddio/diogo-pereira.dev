@@ -8,9 +8,9 @@
 // Consequence worth knowing: /404 is also reachable directly and returns 200
 // there, because it is a real route. The robots meta keeps that copy out of
 // search results, and US-26 will exclude it from the sitemap.
-useSeoMeta({
+useSeo({
   title: 'Page not found',
-  robots: 'noindex, follow',
+  noindex: true,
 })
 </script>
 

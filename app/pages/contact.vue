@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useSeoMeta({
+useSeo({
   title: 'Contact',
   description:
     'Get in touch with Diogo Pereira — full-stack engineer in Gouda, Netherlands. Email or LinkedIn.',
