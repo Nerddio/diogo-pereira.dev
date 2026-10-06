@@ -35,3 +35,37 @@ export const OG_IMAGE = {
 export function absoluteUrl(path: string): string {
   return new URL(path, SITE_URL).toString()
 }
+
+/** The contact surface. Email and LinkedIn only, per the project constraints. */
+export const PROFILES = {
+  linkedin: 'https://www.linkedin.com/in/diogo-marques-pereira/',
+  github: 'https://github.com/Nerddio',
+} as const
+
+/**
+ * US-26. The JSON-LD `Person` entity, so a search engine can resolve this site
+ * to a named individual rather than guessing from page text.
+ *
+ * Deliberately no email address. Schema.org permits one, and the mailto: link
+ * on the Contact page is already harvestable, so this is a question of degree
+ * rather than of kind -- but a machine-readable field is a materially easier
+ * target than a link in markup, and the gain is nothing a recruiter needs.
+ *
+ * The address is locality and country only. No street, no postcode. A postal
+ * address on an indexed domain cannot be withdrawn once it is crawled, and the
+ * project constraints rule one out on the site itself; a structured-data block
+ * is still the site.
+ */
+export const PERSON = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE_NAME,
+  jobTitle: 'Full-stack engineer',
+  url: absoluteUrl('/'),
+  sameAs: [PROFILES.linkedin, PROFILES.github],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Gouda',
+    addressCountry: 'NL',
+  },
+} as const
