@@ -284,12 +284,20 @@ denied rather than allowed.
 **Beacon** — a small script whose only job is to report measurements back to a server; it
 renders nothing and the visitor never sees it.
 
+**Consent banner** — the prompt asking a visitor to agree before a site stores or reads
+something on their device; required by what it does, not by the word "cookie", so a
+cookie-free tool that writes an identifier to `localStorage` needs one just as much.
+
 **CSP (Content Security Policy)** — a response header listing which origins a page may load
 scripts, styles and other resources from, so injected markup cannot pull in code from
 somewhere else.
 
 **Dependabot** — GitHub's tool for alerting on vulnerable dependencies and opening update
 pull requests.
+
+**ePrivacy Directive** — the EU instrument behind cookie banners; its Article 5(3) is
+triggered by storing information on, or reading information already stored in, a visitor's
+own device, which is why it is about the device rather than about cookies specifically.
 
 **GDPR (General Data Protection Regulation)** — the EU regulation governing processing of
 personal data.
@@ -303,6 +311,10 @@ inspected through the browser rather than from the page.
 
 **IndexedDB** — a database built into the browser, holding structured data per site with no
 expiry unless the site or the visitor removes it.
+
+**Lawful basis** — the justification the GDPR requires before personal data may be
+processed at all, such as consent or legitimate interest; separate from, and not satisfied
+by, the ePrivacy question of what is stored on the device.
 
 **Least privilege** — granting only the permissions actually required, so a compromise has
 the smallest possible blast radius.
@@ -331,6 +343,10 @@ visit under fixed conditions.
 
 **SHA pinning** — referencing a GitHub Action by full commit hash rather than a moving tag,
 so the code that runs cannot be changed under you.
+
+**Site token** — a public identifier in an analytics snippet saying which site is
+reporting. It ships in the HTML of every page and is not a credential, despite looking like
+one.
 
 **SRI (Subresource Integrity)** — a cryptographic hash placed in a `script` or `link` tag; the
 browser refuses the file if its contents do not match, which protects against the host

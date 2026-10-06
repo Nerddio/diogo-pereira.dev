@@ -72,6 +72,12 @@ to compare against.
   entry rather than a blanket prohibition, which would have to be deleted the first time
   one is added.
 
+- Architecture decision record 007: cookieless analytics, shipped to previews as well as
+  production so both merge gates measure what actually ships, and the reasoning for
+  publishing no consent banner — that nothing is stored on or read from the visitor's
+  device, asserted by the privacy test rather than taken from the vendor's documentation,
+  rather than a claim that data protection law does not apply.
+
 ### Changed
 
 - Host moved from Cloudflare Pages to Cloudflare Workers static assets. ADR-010 supersedes
