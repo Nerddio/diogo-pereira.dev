@@ -80,6 +80,12 @@ to compare against.
 
 ### Fixed
 
+- End-to-end tests that wait for network idle no longer time out under full parallel load.
+  Reaching network idle on the heaviest route was measured at 24 seconds against Playwright's
+  30-second default and failed once at 31.3. The budget is raised where the wait happens
+  rather than the retry count in CI, which would have let an intermittent failure pass on a
+  second attempt and hidden the instability instead of removing it.
+
 - Text no longer reflows when the web fonts load. The site shipped a single weight in six
   writing systems, so every heading rendered at the wrong weight and bold text inside
   markdown was synthesised, and the metric-matched fallbacks that should have hidden the

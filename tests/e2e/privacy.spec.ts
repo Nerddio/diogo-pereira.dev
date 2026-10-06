@@ -90,6 +90,12 @@ async function recordStorageAttempts(page: Page): Promise<void> {
 test.describe('the site stores nothing in the visitor browser', () => {
   for (const route of ROUTES) {
     test(`${route} sets no cookie and writes to no storage`, async ({ page, context }) => {
+      // See the note in no-client-database.spec.ts: `networkidle` under full
+      // parallel load has been measured within six seconds of the 30-second
+      // default, so these tests set their own budget rather than inheriting a
+      // margin that is already known to be too thin.
+      test.setTimeout(60_000)
+
       await recordStorageAttempts(page)
       await page.goto(route, { waitUntil: 'networkidle' })
 
@@ -115,6 +121,8 @@ test.describe('the site stores nothing in the visitor browser', () => {
 test.describe('the site contacts only itself', () => {
   for (const route of ROUTES) {
     test(`${route} makes no unlisted off-origin request`, async ({ page, baseURL }) => {
+      test.setTimeout(60_000)
+
       const ownHost = new URL(baseURL!).host
       const offenders = new Set<string>()
 
