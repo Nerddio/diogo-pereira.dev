@@ -302,6 +302,10 @@ own device, which is why it is about the device rather than about cookies specif
 **GDPR (General Data Protection Regulation)** — the EU regulation governing processing of
 personal data.
 
+**Harvesting** — automated collection of contact details from public pages, usually email
+addresses for spam lists or phone numbers for dialling lists; the reason publishing to an
+indexed domain is effectively permanent, since deleting the page cannot recall the copy.
+
 **HSTS (HTTP Strict Transport Security)** — a mechanism instructing browsers to use HTTPS
 only; the `.dev` TLD is preloaded, so HTTPS is mandatory and not merely preferred.
 
@@ -381,6 +385,10 @@ identifier.
 
 **Landmark** — a semantic region of a page (`main`, `nav`, `header`, `footer`) that assistive
 technology can navigate between.
+
+**`mailto:` link** — a link whose target is an email address rather than a page, opening the
+reader's own mail client with the address filled in; it needs no server, which is why it
+replaces a contact form here.
 
 **Open Graph** — metadata tags controlling how a link is presented when shared.
 
