@@ -36,11 +36,41 @@ export function absoluteUrl(path: string): string {
   return new URL(path, SITE_URL).toString()
 }
 
-/** The contact surface. Email and LinkedIn only, per the project constraints. */
+/**
+ * The published email address. US-49, ADR-008.
+ *
+ * An address on this domain rather than a personal account, forwarded inward by
+ * Cloudflare Email Routing. ADR-008 publishes it unobfuscated on purpose, and
+ * that is only defensible because an address existing for this and nothing else
+ * can be retired and replaced if it is ever drowned. The account this replaced
+ * was also a Google login, so publishing it gave away half a credential pair
+ * with no way to take it back.
+ */
+export const EMAIL = 'contact@diogo-pereira.dev'
+
+/**
+ * The contact surface, in one place so that it can be audited in one place.
+ * US-38 searches the repository and its history before release for anything
+ * that should not be published; a surface spread across templates is one such a
+ * search can agree with while the rendered page disagrees.
+ */
 export const PROFILES = {
+  email: `mailto:${EMAIL}`,
   linkedin: 'https://www.linkedin.com/in/diogo-marques-pereira/',
   github: 'https://github.com/Nerddio',
 } as const
+
+/**
+ * A URL as a reader should see it: no scheme, no `www.`, no trailing slash.
+ *
+ * The Contact page shows these links as readable text rather than as raw URLs.
+ * Deriving that text rather than writing it out means the label cannot
+ * disagree with where the link actually goes -- which is the failure a reader
+ * has no way to detect, because the only visible half is the one that lies.
+ */
+export function displayUrl(url: string): string {
+  return url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
+}
 
 /**
  * US-26. The JSON-LD `Person` entity, so a search engine can resolve this site

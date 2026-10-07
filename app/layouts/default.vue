@@ -65,26 +65,17 @@
     <footer class="text-muted border-rule mt-16 border-t py-8 text-sm">
       <ul class="flex flex-wrap gap-x-6 gap-y-2">
         <li>
-          <a
-            class="hover:text-accent underline underline-offset-4"
-            href="mailto:diogo.work.pereira@gmail.com"
-          >
+          <a class="hover:text-accent underline underline-offset-4" :href="PROFILES.email">
             Email
           </a>
         </li>
         <li>
-          <a
-            class="hover:text-accent underline underline-offset-4"
-            href="https://github.com/Nerddio"
-          >
+          <a class="hover:text-accent underline underline-offset-4" :href="PROFILES.github">
             GitHub
           </a>
         </li>
         <li>
-          <a
-            class="hover:text-accent underline underline-offset-4"
-            href="https://www.linkedin.com/in/diogo-marques-pereira/"
-          >
+          <a class="hover:text-accent underline underline-offset-4" :href="PROFILES.linkedin">
             LinkedIn
           </a>
         </li>
