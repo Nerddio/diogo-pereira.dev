@@ -20,6 +20,32 @@ export default defineNuxtConfig({
       // The suffix is shared with the composable that builds og:title, so a
       // social card and a browser tab cannot disagree about the site's name.
       titleTemplate: `%s${TITLE_SUFFIX}`,
+
+      // US-47, ADR-007. Cloudflare Web Analytics.
+      //
+      // The token is public by construction: it ships in the HTML of every
+      // page and anyone can read it from view-source. It says which site is
+      // reporting and grants nothing, so it is committed rather than injected
+      // from a secret at build time -- which would buy no protection and would
+      // break on Dependabot pull requests, which GitHub withholds secrets from.
+      //
+      // Unconditional, so preview deployments carry it too. Both merge gates
+      // run against the preview: a beacon present only in production would
+      // leave the privacy test's allowlist entry passing because the beacon is
+      // absent rather than permitted, and would leave the Lighthouse transfer
+      // budget weighing bytes that are not the ones shipped.
+      //
+      // `type: 'module'` is Cloudflare's own snippet. A module script is
+      // deferred by default, so it cannot block rendering, which is why this
+      // sits in the head rather than before the closing body tag -- the
+      // request starts earlier and the parser never waits on it.
+      script: [
+        {
+          src: 'https://static.cloudflareinsights.com/beacon.min.js',
+          type: 'module',
+          'data-cf-beacon': '{"token": "3fb916b2ea3a4e2ab31d19696cb74135"}',
+        },
+      ],
     },
   },
 

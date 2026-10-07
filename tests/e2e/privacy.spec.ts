@@ -33,7 +33,14 @@ declare global {
  * entry here survives: adding one is a visible line in a diff, attached to a
  * ticket, reviewed like any other change.
  */
-const ALLOWED_THIRD_PARTY_HOSTS: readonly string[] = []
+const ALLOWED_THIRD_PARTY_HOSTS: readonly string[] = [
+  // US-47, ADR-007. Cloudflare Web Analytics serves beacon.min.js from here.
+  // Permitted because it stores nothing on the visitor's device -- which the
+  // storage block below asserts directly on every run rather than taking from
+  // Cloudflare's documentation, so this entry cannot outlive the claim that
+  // justifies it.
+  'static.cloudflareinsights.com',
+]
 
 /**
  * Wraps the browser's storage APIs before any page script runs, recording

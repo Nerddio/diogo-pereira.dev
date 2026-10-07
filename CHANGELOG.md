@@ -97,6 +97,13 @@ to compare against.
   been retired if the published address were ever drowned -- the property ADR-008's case for
   publishing it unobfuscated depends on.
 
+- Cookieless analytics, shipped to preview deployments as well as production so that both
+  merge gates measure the configuration that actually reaches a visitor. The beacon sets no
+  cookie and writes nothing to browser storage, which the privacy suite asserts on every
+  route and every pull request rather than taking from the vendor's documentation. No
+  consent banner: nothing is stored on or read from the device, which is what the
+  requirement turns on. See ADR-007.
+
 ### Changed
 
 - Prerendered routes no longer ship framework JavaScript. Every route is rendered to complete
