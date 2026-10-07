@@ -1,12 +1,12 @@
 # ADR-007 — Cookieless analytics, and the resulting consent-banner position
 
-|                |                                          |
-| -------------- | ---------------------------------------- |
-| **Status**     | `Proposed — awaiting tech lead approval` |
-| **Date**       | 6 October 2026                           |
-| **Deciders**   | Diogo Pereira (tech lead)                |
-| **Depends on** | ADR-002, ADR-010 (accepted)              |
-| **Relates to** | NFR-05, US-28 (merged), US-29, US-47     |
+|                |                                      |
+| -------------- | ------------------------------------ |
+| **Status**     | **Accepted** — 7 October 2026        |
+| **Date**       | 6 October 2026                       |
+| **Deciders**   | Diogo Pereira (tech lead)            |
+| **Depends on** | ADR-002, ADR-010 (accepted)          |
+| **Relates to** | NFR-05, US-28 (merged), US-29, US-47 |
 
 ## Context
 
