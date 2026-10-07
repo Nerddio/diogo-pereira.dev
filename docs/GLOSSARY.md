@@ -383,6 +383,10 @@ variants as duplicates.
 **Cookieless analytics** — visitor measurement that sets no cookies and stores no per-visitor
 identifier.
 
+**DMARC (Domain-based Message Authentication, Reporting and Conformance)** — a DNS record
+stating what a receiving mail server should do with mail that claims to be from a domain but
+fails its authentication checks; optional for receiving mail, relevant for sending it.
+
 **DNS (Domain Name System)** — the system translating domain names into server addresses.
 
 **JSON-LD** — a format for embedding structured data in a page so machines can interpret it.
@@ -393,6 +397,11 @@ technology can navigate between.
 **`mailto:` link** — a link whose target is an email address rather than a page, opening the
 reader's own mail client with the address filled in; it needs no server, which is why it
 replaces a contact form here.
+
+**MX record (Mail eXchanger)** — the DNS record naming which servers accept mail for a
+domain; without one an address at that domain is a string rather than a destination. A
+separate record type from the A, AAAA and CNAME records that serve a website, so adding one
+cannot affect the site.
 
 **Open Graph** — metadata tags controlling how a link is presented when shared.
 
@@ -407,5 +416,8 @@ what makes a page usable by assistive technology.
 
 **Skip link** — a link, first in tab order, allowing a keyboard user to jump past repeated
 navigation to the main content.
+
+**SPF (Sender Policy Framework)** — a DNS TXT record listing which servers may send mail
+claiming to come from a domain, so a receiving server can reject a forged sender.
 
 **TLD (Top-Level Domain)** — the final segment of a domain name, such as `.dev`.

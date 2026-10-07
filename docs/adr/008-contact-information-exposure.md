@@ -1,12 +1,12 @@
 # ADR-008 — Contact information exposure
 
-|                |                                          |
-| -------------- | ---------------------------------------- |
-| **Status**     | `Proposed — awaiting tech lead approval` |
-| **Date**       | 7 October 2026                           |
-| **Deciders**   | Diogo Pereira (tech lead)                |
-| **Depends on** | ADR-002, ADR-003 (accepted)              |
-| **Relates to** | NFR-05, US-38, US-48, US-49, D24         |
+|                |                                  |
+| -------------- | -------------------------------- |
+| **Status**     | **Accepted** — 7 October 2026    |
+| **Date**       | 7 October 2026                   |
+| **Deciders**   | Diogo Pereira (tech lead)        |
+| **Depends on** | ADR-002, ADR-003 (accepted)      |
+| **Relates to** | NFR-05, US-38, US-48, US-49, D24 |
 
 ## Context
 
@@ -203,6 +203,13 @@ the specific loss, and it is unrecoverable.
   the address is disposable; it would not be acceptable for a personal account.
 - **A reply discloses the personal address** to that correspondent, since sending as the
   alias is not free. Acceptable: the recipient is someone already being answered.
+- **Forwarded mail can be classified as spam by the destination provider**, and the first
+  test message was. Forwarding re-sends the message from Cloudflare's servers while it still
+  claims to come from the original sender's domain, so the sender authentication fails and
+  the mismatch is exactly what a spam filter looks for. Nothing is misconfigured; it is
+  inherent to forwarding. The destination mailbox needs a rule exempting the address, and
+  US-49 does not count as done until a message arrives in the inbox rather than the spam
+  folder. An unmonitored spam folder would make this change worse than no change.
 - **The document a visitor produces is a printed web page, not a designed CV.** Some
   recruitment processes also expect a file to arrive by email, which still means asking.
 - **A recruiter who prefers the phone has to email first.**
