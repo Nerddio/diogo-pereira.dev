@@ -35,15 +35,24 @@ export default defineNuxtConfig({
       // absent rather than permitted, and would leave the Lighthouse transfer
       // budget weighing bytes that are not the ones shipped.
       //
-      // `type: 'module'` is Cloudflare's own snippet. A module script is
-      // deferred by default, so it cannot block rendering, which is why this
-      // sits in the head rather than before the closing body tag -- the
-      // request starts earlier and the parser never waits on it.
+      // `type: 'module'` is Cloudflare's own snippet, and so is the position:
+      // their instruction is to place it before the closing body tag.
+      //
+      // The first version of this put it in the head, reasoning that a module
+      // script is deferred and therefore cannot block rendering. That confused
+      // execution with fetching. Deferring execution does nothing about the
+      // request, which starts the moment the tag is discovered -- in the head,
+      // that means a new origin (DNS, TCP, TLS) and 11 kB competing with the
+      // stylesheet and the fonts for bandwidth during exactly the window that
+      // decides first paint. Measured at 90-92 on four routes against 98 for
+      // the same content without it, with zero layout shift and zero blocking
+      // time, so the cost was purely in when the page could paint.
       script: [
         {
           src: 'https://static.cloudflareinsights.com/beacon.min.js',
           type: 'module',
           'data-cf-beacon': '{"token": "3fb916b2ea3a4e2ab31d19696cb74135"}',
+          tagPosition: 'bodyClose',
         },
       ],
     },
