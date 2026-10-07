@@ -155,6 +155,10 @@ the Options API's object of named sections.
 **Design tokens** — the named primitive values of a design system (colours, spacing, type
 scale) defined once and referenced everywhere.
 
+**Print stylesheet** — CSS inside an `@media print` block, applied only when a page is
+printed or saved as a PDF, so the same markup can hide navigation and reflow into a document
+without a second file existing anywhere.
+
 **SFC (Single-File Component)** — a Vue `.vue` file containing template, script and style for
 one component.
 

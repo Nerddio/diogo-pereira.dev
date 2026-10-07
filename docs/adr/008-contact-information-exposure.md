@@ -77,20 +77,28 @@ A recruiter needs to know he is in the Netherlands and can legally work there. "
 answers that completely. A street address answers nothing anyone needs and is a
 personal-safety question as much as a privacy one.
 
-### No downloadable CV file
+### No downloadable CV file. A print stylesheet instead
 
-Experience lives as HTML on the About page instead.
+Experience lives as HTML on the About page, and a `@media print` stylesheet (US-48) turns
+that page into a clean document the visitor's own browser saves as a PDF.
 
-What this buys: a page can be corrected in place, where a PDF goes stale in every inbox it
-was ever forwarded to with no way to reach those copies. HTML is also what the site's
-existing metadata, structured data and accessibility work already apply to; a PDF would be
-a second artefact with none of it, outside every gate in the pipeline.
+This serves a real case rather than a hypothetical one: a visitor arriving from LinkedIn has
+not necessarily seen a CV, and may want something to keep or forward rather than a page to
+read. The gap is the artefact, not the information -- the About page already carries the
+experience content at the level the public CV states it.
 
-What this gives up, stated plainly because it is a real cost: a cold visitor who wants a
-document cannot take one without emailing first, and some recruitment workflows are built
-around receiving a file. This is the weakest part of this decision and the most likely to be
-revisited. The mitigation is that the email route produces a current document rather than
-whatever was uploaded months ago.
+Generating the document in the visitor's browser rather than shipping a file is what removes
+the costs. Nothing enters git history, so nothing becomes permanent by accident. There is no
+document metadata, because no document exists until the visitor makes one -- no author
+field, no producer string, no local filesystem path left behind by whatever exported it. It
+cannot go stale, because it is rendered from the page as it stands. And it stays inside
+every gate the pipeline already runs: Lighthouse, the accessibility scan and the link check
+all apply to the page it is made from.
+
+What this gives up: a browser-printed page looks like a browser-printed page, not a designed
+CV. Some recruitment processes also expect to receive a file by email, and that still means
+asking. Both are real costs and neither is worth a permanent artefact sitting outside the
+pipeline.
 
 Note on reasoning this record does _not_ use: the project brief argued that "HTML outranks a
 PDF for search". Search engines do index PDFs, and no attempt was made here to verify a
@@ -112,6 +120,35 @@ capture addresses of interested visitors. It needs a backend and a store of pers
 both removed by ADR-002 and ADR-003, and it withholds a document from someone evaluating you
 in order to extract their details first. For a candidate seeking work, that is the wrong way
 round.
+
+**A CV PDF with the phone number removed, published on the site — rejected.** Proposed as a
+way to serve a visitor who arrives from LinkedIn having never seen a CV, with a note
+directing anyone who would rather call to the copy held on LinkedIn. The goal is right, and
+the print stylesheet above serves it; the mechanism carries three costs that are invisible
+at the moment the file is committed.
+
+Removing text from a PDF and hiding it are different operations that look identical. A white
+box drawn over a number, or white text, leaves the characters in the text layer, where
+`pdftotext` recovers them in one command. Even a genuine deletion can leave the earlier
+version in the file, because PDFs support incremental updates that append a revision rather
+than rewriting the bytes.
+
+PDFs also carry metadata nobody sees: author, creator and producer strings, timestamps, and
+depending on the exporting tool the local filesystem path and account name of the source
+document.
+
+And committing it makes it permanent, which is the mechanic this whole record is about. The
+wrong version landing once puts a phone number in the history of every clone, and unlike a
+leaked credential a phone number cannot be rotated.
+
+None of that makes it impossible. Stripping the metadata, plus a test that extracts the
+committed file's text layer and fails the build on a phone-number pattern, would make it
+safe, and that test is roughly fifteen lines. It was rejected because the print stylesheet
+reaches the same goal with none of the surface.
+
+The accompanying idea of holding the phone-bearing copy on LinkedIn needs checking before
+anything relies on it: if the mechanism is a document featured on a public profile, the
+number is public anyway and the split buys nothing.
 
 **A contact form instead of `mailto:` — rejected.** Already out of scope: it needs spam
 handling, a mail service and a privacy notice for two fields, plus a backend this
@@ -137,7 +174,8 @@ the specific loss, and it is unrecoverable.
 - The irreversible items are never published, so the decision cannot be regretted. Every
   published item is one that can be withdrawn in a meaningful sense or is already public.
 - Experience content sits inside the pipeline's existing metadata, structured data,
-  accessibility and performance gates rather than in a file outside all of them.
+  accessibility and performance gates rather than in a file outside all of them, and the
+  document a visitor takes away is generated from it, so it cannot disagree with the page.
 - Nothing about the contact surface depends on a backend, a store of personal data, or a
   GDPR position more complicated than "none is collected".
 
@@ -145,8 +183,8 @@ the specific loss, and it is unrecoverable.
 
 - **The published email will be scraped and will receive spam.** This is the price of being
   reachable without an account, and it is paid at the mailbox.
-- **No downloadable CV.** A visitor wanting a file must ask. Some recruitment processes
-  assume a file exists and this will cost a small number of them.
+- **The document a visitor produces is a printed web page, not a designed CV.** Some
+  recruitment processes also expect a file to arrive by email, which still means asking.
 - **A recruiter who prefers the phone has to email first.**
 - **US-38 has to actually run.** This decision is only true if the repository is checked,
   and the check must cover git history, which is the part that cannot be fixed afterwards.
@@ -174,6 +212,9 @@ no phone number, no postal address, no file. The JSON-LD `Person` block carries
 reading the files rather than the specification. The full history search is US-38's job and
 has not yet been run, so this record describes the working tree and the built output, not
 yet the history.
+
+The print stylesheet is a decision taken here, not a thing that exists yet. US-48 carries
+it, and until that ships a visitor who wants a document still has to ask by email.
 
 **Reversibility**
 

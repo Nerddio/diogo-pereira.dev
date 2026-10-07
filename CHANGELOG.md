@@ -80,9 +80,11 @@ to compare against.
 
 - Architecture decision record 008: contact information exposure. Email, LinkedIn and GitHub
   are published; a phone number, a postal address and a downloadable CV file are not, in the
-  pages, the structured data, the working tree or git history. Records that the email is
-  deliberately unobfuscated, because every available concealment costs a reader or an
-  assistive technology more than it costs a scraper.
+  pages, the structured data, the working tree or git history. A print stylesheet on the
+  About page gives a visitor a document to keep without one ever being committed, carrying
+  metadata, or going stale. Records that the email is deliberately unobfuscated, because
+  every available concealment costs a reader or an assistive technology more than it costs
+  a scraper.
 
 ### Changed
 
