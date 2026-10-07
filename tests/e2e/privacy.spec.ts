@@ -40,6 +40,17 @@ const ALLOWED_THIRD_PARTY_HOSTS: readonly string[] = [
   // Cloudflare's documentation, so this entry cannot outlive the claim that
   // justifies it.
   'static.cloudflareinsights.com',
+
+  // The endpoint the beacon posts its measurements to. A separate host from
+  // the one above and a separate job: that one serves a script, this one
+  // receives data leaving the visitor's browser, which makes it the entry that
+  // matters most here.
+  //
+  // Found by this test failing, not by reading documentation. Cloudflare's own
+  // pages describe the script's origin and say nothing about where it reports,
+  // so an allowlist written from the documentation would have been wrong and
+  // would have looked complete.
+  'cloudflareinsights.com',
 ]
 
 /**
