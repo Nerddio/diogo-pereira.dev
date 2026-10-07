@@ -82,9 +82,11 @@ to compare against.
   are published; a phone number, a postal address and a downloadable CV file are not, in the
   pages, the structured data, the working tree or git history. A print stylesheet on the
   About page gives a visitor a document to keep without one ever being committed, carrying
-  metadata, or going stale. Records that the email is deliberately unobfuscated, because
-  every available concealment costs a reader or an assistive technology more than it costs
-  a scraper.
+  metadata, or going stale. The published email moves to an address on the site's own domain,
+  forwarded at no cost, because the personal account it replaces is also a login and could
+  never have been retired if it were drowned. Records that the address is deliberately
+  unobfuscated, because every available concealment costs a reader or an assistive
+  technology more than it costs a scraper.
 
 ### Changed
 

@@ -6,7 +6,7 @@
 | **Date**       | 7 October 2026                           |
 | **Deciders**   | Diogo Pereira (tech lead)                |
 | **Depends on** | ADR-002, ADR-003 (accepted)              |
-| **Relates to** | NFR-05, US-38, D24                       |
+| **Relates to** | NFR-05, US-38, US-48, US-49, D24         |
 
 ## Context
 
@@ -60,9 +60,26 @@ legitimate reader more than it costs a scraper.
   screen reader, which puts it straight through the WCAG 2.2 AA conformance ADR-006 and
   NFR-04 commit to.
 
-The control that actually works is at the mailbox, not on the page: the published address is
-dedicated to this purpose and separable from a primary personal account, so if it is ever
-drowned it can be retired without disrupting anything else. Spam filtering handles the rest.
+The control that actually works is at the mailbox, not on the page. The address published is
+on the domain this site already owns, forwarded to a personal inbox by Cloudflare Email
+Routing, which carries unlimited inbound mail at no cost on the plan this project already
+uses. Because it exists for this purpose and nothing else, it can be retired and replaced if
+it is ever drowned -- and that property is what makes publishing it acceptable at all. Spam
+filtering handles the rest. US-49 carries the change.
+
+It replaced a personal Gmail address, which was the original intention and was wrong for a
+reason worth recording rather than quietly correcting. A Gmail address is also a Google
+account login, so publishing one on an indexed domain gives away half a credential pair,
+permanently, and invites phishing that works better for being addressed to an account known
+to be live. It also has no retirement path, which defeats the mitigation above: the argument
+for publishing an address unobfuscated rests on being able to abandon it, and nobody can
+abandon the address their logins recover to.
+
+What the alias does not do is conceal the personal address from someone who receives a
+reply, because routing forwards mail inward and sending as the alias is a paid feature this
+project does not buy. That is the right side of the trade. The exposure removed is to
+everyone who never writes -- which is the whole of the scraping problem -- and the exposure
+kept is to a person already being answered deliberately.
 
 ### No phone number
 
@@ -182,7 +199,10 @@ the specific loss, and it is unrecoverable.
 **Accepted costs**
 
 - **The published email will be scraped and will receive spam.** This is the price of being
-  reachable without an account, and it is paid at the mailbox.
+  reachable without an account, and it is paid at the mailbox. It is survivable only because
+  the address is disposable; it would not be acceptable for a personal account.
+- **A reply discloses the personal address** to that correspondent, since sending as the
+  alias is not free. Acceptable: the recipient is someone already being answered.
 - **The document a visitor produces is a printed web page, not a designed CV.** Some
   recruitment processes also expect a file to arrive by email, which still means asking.
 - **A recruiter who prefers the phone has to email first.**
@@ -207,14 +227,19 @@ than a link in markup and neither buys a recruiter anything.
 **Verified before acceptance**
 
 The current Contact page publishes an email address, LinkedIn and GitHub, and nothing else —
-no phone number, no postal address, no file. The JSON-LD `Person` block carries
+no phone number, no postal address, no file. That address is still the personal Gmail one;
+US-49 replaces it and must land before this record describes the site accurately. Cloudflare's
+pricing documentation was checked on 7 October 2026 for the claim that inbound routing is
+free: it lists inbound Email Routing as unlimited on the Workers Free plan. The JSON-LD `Person` block carries
 `addressLocality` and `addressCountry` only, with no email and no street. Both confirmed by
 reading the files rather than the specification. The full history search is US-38's job and
 has not yet been run, so this record describes the working tree and the built output, not
 yet the history.
 
-The print stylesheet is a decision taken here, not a thing that exists yet. US-48 carries
-it, and until that ships a visitor who wants a document still has to ask by email.
+Two decisions here are taken rather than built. US-48 carries the print stylesheet, and until
+it ships a visitor wanting a document still has to ask by email. US-49 carries the address
+change, and until it ships the personal address remains published — which is why it is M4
+work rather than backlog.
 
 **Reversibility**
 
