@@ -45,7 +45,7 @@ useSeo({
         </NuxtLink>
         <a
           class="hover:text-accent underline underline-offset-4"
-          href="https://github.com/Nerddio"
+          :href="PROFILES.github"
           target="_blank"
           rel="noopener"
         >

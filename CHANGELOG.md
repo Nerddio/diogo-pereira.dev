@@ -88,6 +88,15 @@ to compare against.
   unobfuscated, because every available concealment costs a reader or an assistive
   technology more than it costs a scraper.
 
+- The published contact address is now on this site's own domain, and every contact link --
+  the email, LinkedIn and GitHub, in the Contact page, the footer and the home page -- is
+  defined once in `app/utils/site.ts` rather than written into four templates. The readable
+  labels on the Contact page are derived from those URLs, so a label cannot disagree with
+  where its link goes.
+  It replaces a personal account that was also a login, and which therefore could never have
+  been retired if the published address were ever drowned -- the property ADR-008's case for
+  publishing it unobfuscated depends on.
+
 ### Changed
 
 - Host moved from Cloudflare Pages to Cloudflare Workers static assets. ADR-010 supersedes

@@ -18,25 +18,25 @@ useSeo({
       <li>
         <a
           class="hover:text-accent font-heading text-lg underline underline-offset-4"
-          href="mailto:diogo.work.pereira@gmail.com"
+          :href="PROFILES.email"
         >
-          diogo.work.pereira@gmail.com
+          {{ EMAIL }}
         </a>
       </li>
       <li>
         <a
           class="hover:text-accent font-heading text-lg underline underline-offset-4"
-          href="https://www.linkedin.com/in/diogo-marques-pereira/"
+          :href="PROFILES.linkedin"
         >
-          linkedin.com/in/diogo-marques-pereira
+          {{ displayUrl(PROFILES.linkedin) }}
         </a>
       </li>
       <li>
         <a
           class="hover:text-accent font-heading text-lg underline underline-offset-4"
-          href="https://github.com/Nerddio"
+          :href="PROFILES.github"
         >
-          github.com/Nerddio
+          {{ displayUrl(PROFILES.github) }}
         </a>
       </li>
     </ul>
