@@ -72,6 +72,22 @@ to compare against.
   entry rather than a blanket prohibition, which would have to be deleted the first time
   one is added.
 
+- Architecture decision record 007: cookieless analytics, shipped to previews as well as
+  production so both merge gates measure what actually ships, and the reasoning for
+  publishing no consent banner — that nothing is stored on or read from the visitor's
+  device, asserted by the privacy test rather than taken from the vendor's documentation,
+  rather than a claim that data protection law does not apply.
+
+- Architecture decision record 008: contact information exposure. Email, LinkedIn and GitHub
+  are published; a phone number, a postal address and a downloadable CV file are not, in the
+  pages, the structured data, the working tree or git history. A print stylesheet on the
+  About page gives a visitor a document to keep without one ever being committed, carrying
+  metadata, or going stale. The published email moves to an address on the site's own domain,
+  forwarded at no cost, because the personal account it replaces is also a login and could
+  never have been retired if it were drowned. Records that the address is deliberately
+  unobfuscated, because every available concealment costs a reader or an assistive
+  technology more than it costs a scraper.
+
 ### Changed
 
 - Host moved from Cloudflare Pages to Cloudflare Workers static assets. ADR-010 supersedes
