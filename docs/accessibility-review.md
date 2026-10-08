@@ -107,20 +107,57 @@ while focus stays behind.
 
 ## Results
 
-Reviewed by: _not yet performed_
-Date: _not yet performed_
-Version reviewed: _commit or preview URL_
+Reviewed by: Diogo Pereira
+Date: 8 October 2026
+Version reviewed: production, `https://diogo-pereira.dev`, at commit 7994ebc
 
-| #   | Item                           | Result | Notes |
-| --- | ------------------------------ | ------ | ----- |
-| 1   | Keyboard traversal, no trap    |        |       |
-| 2   | Visible focus                  |        |       |
-| 3   | 200% zoom and 320px reflow     |        |       |
-| 4   | Non-text contrast              |        |       |
-| 5   | Reduced motion                 |        |       |
-| 6   | Landmark and heading structure |        |       |
-| 7   | Skip link                      |        |       |
+| #   | Item                           | Result | Notes                                                                                                                                                      |
+| --- | ------------------------------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Keyboard traversal, no trap    | Pass   | Every link reachable forward and back. No trap.                                                                                                            |
+| 2   | Visible focus                  | Pass   | A rectangle around the focused element on every control: `2px solid var(--color-accent)` with a 2px offset, declared once in the base layer.               |
+| 3   | 200% zoom and 320px reflow     | Pass   | No content lost, no overlap, no horizontal scrolling at 320px.                                                                                             |
+| 4   | Non-text contrast              | Pass   | Focus indicator at 7.56:1 against the page background, well past the 3:1 required. Two caveats below.                                                      |
+| 5   | Reduced motion                 | Pass   | Nothing moves with `prefers-reduced-motion: reduce` emulated. The site declares no animation, so this guards future CSS rather than current behaviour.     |
+| 6   | Landmark and heading structure | Pass   | One `main` and one `h1` per page, heading levels descending without skips.                                                                                 |
+| 7   | Skip link                      | Pass   | Home page: Tab, Enter, Tab put focus on "Read the case study", the first link inside `main`. Focus moved rather than the page merely scrolling. See below. |
+
+### Item 4, in detail
+
+Measured rather than estimated, against `--color-paper` `#fcfcfa`:
+
+| Token            | Hex       | Ratio   | Required           |
+| ---------------- | --------- | ------- | ------------------ |
+| `--color-accent` | `#0f5c5c` | 7.56:1  | 3:1 (1.4.11)       |
+| `--color-ink`    | `#1a1a18` | 16.97:1 | 4.5:1 (1.4.3)      |
+| `--color-muted`  | `#5c5c58` | 6.54:1  | 4.5:1 (1.4.3)      |
+| `--color-border` | `#90908c` | 3.12:1  | 3:1 (1.4.11)       |
+| `--color-rule`   | `#dededa` | 1.31:1  | exempt, decorative |
+
+Two things a future reader should know rather than infer.
+
+**`--color-border` passes by 0.12.** One step lighter on a palette would break 1.4.11 silently,
+because nothing in the pipeline measures these ratios. The margin is real but thin.
+
+**The footer rule is below 3:1 and exempt only because it is decorative.** The layout already
+asserts this in a comment, and the reasoning holds — the footer is identified by its landmark
+rather than by the line, so nothing is lost to a visitor who cannot see it. But this is the one
+item in this review that is a judgement rather than a measurement, and another reviewer could
+reasonably decide it the other way.
+
+### Item 7, in detail
+
+On a short page, activating a skip link produces no visible change, because there is nothing to
+scroll. That is correct behaviour — and it is also exactly how a broken skip link looks, where
+the page scrolls, it appears to work, and focus never moved. The check is therefore where focus
+lands on the next Tab rather than what the page does. It landed inside `main`.
+
+## Not covered by this review
+
+Stated so the scope of the claim is clear. This was a sighted keyboard review in a desktop
+browser. It did not involve a screen reader, a magnifier, voice control, or anyone who relies on
+assistive technology daily. Seven items passing means seven items passed; it does not mean the
+site has been used by the people it is meant to serve.
 
 A review with an empty table is not a review. If an item fails, it is fixed and the item is
-re-run; the record shows the final state and says what was found on the way, because "what
-was wrong before release" is the part worth reading later.
+re-run; the record shows the final state and says what was found on the way, because "what was
+wrong before release" is the part worth reading later.
