@@ -20,11 +20,27 @@ const THRESHOLDS = {
 } as const
 
 /**
- * Transferred JavaScript per route. Measured against the built site served with
- * compression -- 88,066 bytes on the heaviest route -- plus the 20% headroom
- * NFR-02 asks for. ADR-013 records why this is anchored at M2 rather than M1.
+ * Transferred JavaScript per route: NFR-02's rule of the measured baseline plus
+ * 20% headroom, applied to a baseline that ADR-015 changed underneath it.
+ *
+ * Every route measures 10,311 bytes on 8 October 2026 -- the analytics beacon
+ * of US-47 and nothing else, since prerendered routes ship no framework
+ * JavaScript. 10,311 plus 20% is 12,373, rounded to 12,500.
+ *
+ * It was 105,000, derived from a baseline of 88,066 before ADR-015. Left there,
+ * this gate could not fail: the 91,104 bytes of framework runtime that ADR-015
+ * removed could return in full and still pass, which would have made it a
+ * control that is enforced, green, and incapable of catching the thing it
+ * exists to catch -- the defect this project has now found seven times.
+ *
+ * The consequence worth knowing: almost all of this budget is now a
+ * third-party file nobody here controls. A beacon more than a fifth larger
+ * breaks the build on a change nobody made. That is accepted deliberately --
+ * it is a real change in what a visitor downloads and the gate should say so --
+ * but the response is a decision with a reason, not a reflex to raise the
+ * number, which is how a budget stops meaning anything.
  */
-const MAX_SCRIPT_BYTES = 105_000
+const MAX_SCRIPT_BYTES = 12_500
 
 /**
  * Lighthouse's own variability guidance notes the median of five runs is twice

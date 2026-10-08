@@ -106,6 +106,12 @@ to compare against.
 
 ### Changed
 
+- The JavaScript transfer budget is 12,500 bytes per route, down from 105,000. The old figure
+  was derived from a baseline of 88,066 bytes that ADR-015 removed; against a site shipping
+  10,311 it could not fail, so the framework runtime could have returned in full and the gate
+  would have passed. The new figure is NFR-02's rule -- the measured baseline plus 20% --
+  applied to what the site now actually weighs.
+
 - Prerendered routes no longer ship framework JavaScript. Every route is rendered to complete
   HTML at build time and nothing on the site is interactive, so the hydration payload --
   91,104 bytes on the home page, 87% of the JavaScript budget -- existed to attach behaviour
