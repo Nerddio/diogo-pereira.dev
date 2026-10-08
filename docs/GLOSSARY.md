@@ -183,6 +183,9 @@ rather than warning.
 
 **axe** — an automated accessibility testing engine, used here inside Playwright.
 
+**Accessibility tree** — the structure a browser exposes to assistive technology, derived
+from the markup but not identical to it; what a screen reader actually reads.
+
 **CLS (Cumulative Layout Shift)** — a Core Web Vital measuring how much visible content moves
 unexpectedly during load.
 
@@ -193,6 +196,9 @@ would, rather than testing a unit in isolation.
 broken. Demonstrated by reintroducing the defect and watching the test go red; a test never
 observed failing provides no evidence, only reassurance.
 
+**Keyboard trap** — a place where keyboard focus can enter but not leave, stranding anyone
+not using a mouse. A WCAG Level A failure, because it makes the rest of the page unreachable.
+
 **Lighthouse** — an automated auditing tool scoring performance, accessibility, best
 practices and SEO.
 
@@ -202,12 +208,32 @@ element finishes rendering.
 **Performance budget** — an enforced limit on a performance metric or resource size, checked
 automatically so regressions cannot merge.
 
+**Non-text contrast** — the contrast requirement for things that are not words: control
+borders, focus indicators, icons that carry meaning. Separate from text contrast and more
+often missed, because a design reviewed for readable text can still have invisible borders.
+
 **Playwright** — a browser automation library used here for end-to-end tests.
+
+**`prefers-reduced-motion`** — a CSS media query reporting that the visitor has asked their
+operating system to reduce animation, usually because motion makes them unwell. Honouring it
+is a WCAG requirement, not a courtesy.
 
 **Quality gate** — an automated check that must pass before a change can merge.
 
+**Reflow** — WCAG's requirement that a page remain usable at 320 CSS pixels wide without
+horizontal scrolling, which is what a phone at 400% zoom amounts to. It tests layout, not
+font size.
+
 **Smoke test** — a shallow test confirming the critical paths work at all, rather than
 testing them exhaustively.
+
+**Success criterion** — one numbered, testable requirement in WCAG, such as 1.4.11
+Non-text Contrast. Conformance is claimed against criteria rather than against the
+guidelines as a whole.
+
+**Visible focus** — the visible indication of which element the keyboard is currently on.
+Removing it with `outline: none` and providing nothing in its place is the most common
+accessibility defect on the web.
 
 **WCAG 2.2 AA** — the Web Content Accessibility Guidelines at conformance level AA, the level
 commonly required by European public-sector and procurement rules.
