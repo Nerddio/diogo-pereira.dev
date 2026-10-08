@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto flex min-h-screen max-w-2xl flex-col px-6">
+  <div class="site-shell mx-auto flex min-h-screen max-w-2xl flex-col px-6">
     <!-- US-23. First focusable element on every page, visually hidden until it
          receives focus, so a keyboard user can jump past the header instead of
          tabbing through it on every navigation. -->

@@ -145,3 +145,149 @@
     color: var(--color-muted);
   }
 }
+
+/* ---------------------------------------------------------------------------
+   US-48, ADR-008. The printed document.
+ 
+   ADR-008 chose not to publish a downloadable CV file: a page can be corrected
+   in place, where a PDF goes stale in every inbox it was ever forwarded to.
+   This is what replaces it. The visitor's own browser produces the document,
+   so nothing is committed, nothing carries author metadata, and it cannot
+   disagree with the page it came from.
+ 
+   Deliberately outside every `@layer`. Unlayered rules win over layered ones
+   in the cascade, which is what lets these element selectors override Tailwind
+   utilities without a single `!important`.
+   --------------------------------------------------------------------------- */
+/* Declared before the media query on purpose. Both rules are unlayered and
+   equally specific, so source order decides -- and the first version of this
+   put the hiding rule last, which meant the print block stayed hidden while
+   printing and the printed page never carried the name. */
+.print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 1.5cm;
+  }
+
+  html {
+    font-size: 11pt;
+  }
+
+  /* Ink and paper, literally. Browsers drop background colours when printing
+     anyway, so stating it keeps the contrast predictable rather than leaving
+     near-black text on a background the printer decided to discard. */
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  /* Site chrome. A printed page has no navigation to offer and no skip link to
+     activate; keeping them would spend the top of the sheet on controls that
+     cannot be used. */
+  a[href='#main'],
+  header,
+  footer,
+  .screen-only {
+    display: none;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  /* The layout shell centres a column and reserves a viewport height. On paper
+     @page owns the margins and the sheet owns the height. */
+  .site-shell {
+    display: block;
+    max-width: none;
+    min-height: 0;
+    padding: 0;
+  }
+
+  /* Screen spacing is built for scrolling and is enormous on A4. */
+  h1 {
+    font-size: 20pt;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 13pt;
+    margin-top: 7mm;
+  }
+
+  h3 {
+    font-size: 11pt;
+    margin-top: 0;
+  }
+
+  p,
+  li,
+  dt,
+  dd {
+    font-size: 10pt;
+    line-height: 1.45;
+  }
+
+  main p {
+    margin-top: 2mm;
+  }
+
+  main section,
+  main ul,
+  main dl {
+    margin-top: 3mm;
+  }
+
+  main li + li {
+    margin-top: 1.5mm;
+  }
+
+  /* A heading stranded at the foot of a page, and a bullet split across two,
+     are the two things that make a printed page look like an accident. */
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  section,
+  li,
+  .print-identity {
+    break-inside: avoid;
+  }
+
+  main img {
+    width: 28mm;
+    margin-bottom: 4mm;
+  }
+
+  /* On screen a link's destination is one hover away. On paper it is gone
+     unless it is written out, which is what NFR-04's "no link destination is
+     lost" means once the page leaves the browser. */
+  main a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 9pt;
+    word-break: break-all;
+  }
+
+  .print-identity {
+    margin-bottom: 6mm;
+    border-bottom: 1px solid #000;
+    padding-bottom: 3mm;
+  }
+
+  .print-identity p {
+    margin: 0;
+    font-size: 10pt;
+  }
+
+  .print-identity .print-name {
+    font-size: 20pt;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 1mm;
+  }
+}
