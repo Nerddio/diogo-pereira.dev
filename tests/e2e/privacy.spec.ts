@@ -33,7 +33,25 @@ declare global {
  * entry here survives: adding one is a visible line in a diff, attached to a
  * ticket, reviewed like any other change.
  */
-const ALLOWED_THIRD_PARTY_HOSTS: readonly string[] = []
+const ALLOWED_THIRD_PARTY_HOSTS: readonly string[] = [
+  // US-47, ADR-007. Cloudflare Web Analytics serves beacon.min.js from here.
+  // Permitted because it stores nothing on the visitor's device -- which the
+  // storage block below asserts directly on every run rather than taking from
+  // Cloudflare's documentation, so this entry cannot outlive the claim that
+  // justifies it.
+  'static.cloudflareinsights.com',
+
+  // The endpoint the beacon posts its measurements to. A separate host from
+  // the one above and a separate job: that one serves a script, this one
+  // receives data leaving the visitor's browser, which makes it the entry that
+  // matters most here.
+  //
+  // Found by this test failing, not by reading documentation. Cloudflare's own
+  // pages describe the script's origin and say nothing about where it reports,
+  // so an allowlist written from the documentation would have been wrong and
+  // would have looked complete.
+  'cloudflareinsights.com',
+]
 
 /**
  * Wraps the browser's storage APIs before any page script runs, recording

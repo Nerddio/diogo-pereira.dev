@@ -20,6 +20,41 @@ export default defineNuxtConfig({
       // The suffix is shared with the composable that builds og:title, so a
       // social card and a browser tab cannot disagree about the site's name.
       titleTemplate: `%s${TITLE_SUFFIX}`,
+
+      // US-47, ADR-007. Cloudflare Web Analytics.
+      //
+      // The token is public by construction: it ships in the HTML of every
+      // page and anyone can read it from view-source. It says which site is
+      // reporting and grants nothing, so it is committed rather than injected
+      // from a secret at build time -- which would buy no protection and would
+      // break on Dependabot pull requests, which GitHub withholds secrets from.
+      //
+      // Unconditional, so preview deployments carry it too. Both merge gates
+      // run against the preview: a beacon present only in production would
+      // leave the privacy test's allowlist entry passing because the beacon is
+      // absent rather than permitted, and would leave the Lighthouse transfer
+      // budget weighing bytes that are not the ones shipped.
+      //
+      // `type: 'module'` is Cloudflare's own snippet, and so is the position:
+      // their instruction is to place it before the closing body tag.
+      //
+      // The first version of this put it in the head, reasoning that a module
+      // script is deferred and therefore cannot block rendering. That confused
+      // execution with fetching. Deferring execution does nothing about the
+      // request, which starts the moment the tag is discovered -- in the head,
+      // that means a new origin (DNS, TCP, TLS) and 11 kB competing with the
+      // stylesheet and the fonts for bandwidth during exactly the window that
+      // decides first paint. Measured at 90-92 on four routes against 98 for
+      // the same content without it, with zero layout shift and zero blocking
+      // time, so the cost was purely in when the page could paint.
+      script: [
+        {
+          src: 'https://static.cloudflareinsights.com/beacon.min.js',
+          type: 'module',
+          'data-cf-beacon': '{"token": "3fb916b2ea3a4e2ab31d19696cb74135"}',
+          tagPosition: 'bodyClose',
+        },
+      ],
     },
   },
 
