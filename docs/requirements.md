@@ -105,7 +105,13 @@ _The M1 epic. Everything else is downstream of it. Live before pretty._
 
 **US-16 · Must** — As a Recruiter, I want languages and work rights stated plainly, so that I can rule out a sponsorship problem.
 
-- **Given** the About page, **when** I scan it, **then** Portuguese (native), English C2, French B2, Spanish B2, Dutch A2, EU work rights and Netherlands residency are stated.
+- **Given** the About page, **when** I scan it, **then** Portuguese (native), English C2, French B2, Spanish B2, Dutch B1, EU work rights and Netherlands residency are stated.
+
+> Amended 8 October 2026. This criterion was drafted on 4 September 2026 naming Dutch at A2;
+> the level has since risen to B1 and the public CV states B1. Amended rather than leaving the
+> page to contradict it, because what changed is the fact about the world and not the
+> requirement. Recorded as an amendment rather than edited silently: a criterion that quietly
+> rewrites itself to match the code has stopped testing anything.
 
 **US-17 · Should** — As a Visitor, I want a photograph, so that the page reads as a person.
 
