@@ -111,6 +111,14 @@ to compare against.
   settle whether the GDPR requires anything here, and a note asserting compliance would be the
   boilerplate US-29 exists to avoid.
 
+- An accessibility scan gating every merge: axe runs against all six routes and the 404 page,
+  asserting zero violations across the 70 rules covering WCAG 2.2 Level A and AA. This is not
+  what the Lighthouse accessibility score already checks -- Lighthouse runs a subset of those
+  rules and scores it, so 100 reads as complete and is not.
+- A manual accessibility review recorded in `docs/accessibility-review.md`, covering the seven
+  things no scanner can check: keyboard traversal, visible focus, 200% zoom and 320px reflow,
+  non-text contrast, reduced motion, landmark and heading structure, and the skip link.
+
 ### Changed
 
 - The JavaScript transfer budget is 12,500 bytes per route, down from 105,000. The old figure
