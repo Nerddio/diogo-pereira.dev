@@ -2,7 +2,7 @@
 
 |                |                                                              |
 | -------------- | ------------------------------------------------------------ |
-| **Status**     | `Proposed — awaiting tech lead approval`                     |
+| **Status**     | **Accepted** — 8 October 2026                                |
 | **Date**       | 8 October 2026                                               |
 | **Deciders**   | Diogo Pereira (tech lead)                                    |
 | **Depends on** | ADR-002, ADR-006, ADR-011 (accepted)                         |
