@@ -83,6 +83,31 @@ export default defineNuxtConfig({
     plugins: [markdown(), tailwindcss(), fontDisplay()],
   },
 
+  // US-50, ADR-015. Prerendered routes ship no client-side JavaScript.
+  //
+  // Every route here is rendered to complete HTML at build time, and nothing
+  // on this site is interactive: no event handlers, no plugins, no middleware,
+  // no client-only components, and the single computed() is derived from a
+  // prop at render time. The framework runtime that was being shipped existed
+  // to hydrate pages -- to attach Vue to markup the server had already
+  // produced -- so that a document which already worked could become a
+  // document which already worked. That cost 91,104 bytes on the home page.
+  //
+  // `noScripts` omits the entry scripts, the import map, the payload script
+  // and the JavaScript resource hints. CSS is untouched. Scripts declared in
+  // app.head are not Nuxt's and are kept, which is what lets the analytics
+  // beacon survive.
+  //
+  // What this gives up, stated because it is a real loss: pages no longer
+  // hydrate, so <NuxtLink> stops prefetching and every navigation is a full
+  // page load rather than a client-side route change. On five prerendered
+  // pages behind a CDN that is a fraction of a second, and the end-to-end
+  // suite already proved every route is complete without JavaScript -- the
+  // no-javascript project has been asserting exactly this property since M1.
+  routeRules: {
+    '/**': { noScripts: true },
+  },
+
   // ADR-002: static site generation. Every route is prerendered at build
   // time; there is no runtime server in production.
   ssr: true,

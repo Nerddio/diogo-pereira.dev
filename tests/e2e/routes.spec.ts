@@ -39,22 +39,11 @@ test.describe('unknown routes', () => {
     expect(body.length).toBeGreaterThan(0)
   })
 
-  // The 200-route tests above assert no console errors. This one deliberately
-  // asserts only uncaught exceptions: a document served with a 404 status makes
-  // the browser log resource-loading errors that are correct behaviour, not
-  // defects, so asserting on them here would fail for the wrong reason. An
-  // uncaught exception is the signal that matters — it is what a broken
-  // hydration of the error page would produce.
-  test('the 404 page hydrates without throwing', async ({ page }) => {
-    const thrown: string[] = []
-
-    page.on('pageerror', (error) => {
-      thrown.push(error.message)
-    })
-
-    await page.goto('/a-route-that-does-not-exist', { waitUntil: 'networkidle' })
-    expect(thrown).toEqual([])
-  })
+  // US-50 removed the test that asserted the error page hydrated without
+  // throwing. With no framework JavaScript on the page there is no hydration
+  // and nothing that can throw, so it had become a test that could not fail --
+  // worse than no test, because it still reported a pass. The property that
+  // replaced it lives in no-hydration.spec.ts and can go red.
 })
 
 // US-12. The criterion is that the home page carries a route into the projects

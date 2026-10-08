@@ -99,6 +99,13 @@ to compare against.
 
 ### Changed
 
+- Prerendered routes no longer ship framework JavaScript. Every route is rendered to complete
+  HTML at build time and nothing on the site is interactive, so the hydration payload --
+  91,104 bytes on the home page, 87% of the JavaScript budget -- existed to attach behaviour
+  that does not exist. Transferred script fell to zero on every route and Lighthouse
+  performance rose from 98 to 100, giving a perfect score in all four categories. Navigation
+  is now a full page load rather than a client-side route change. See ADR-015.
+
 - Host moved from Cloudflare Pages to Cloudflare Workers static assets. ADR-010 supersedes
   ADR-004.
 - Release dates dropped in favour of milestones as sequencing containers.

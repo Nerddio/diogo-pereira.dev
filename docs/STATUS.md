@@ -148,11 +148,11 @@ findable by looking at the site. See ADR-014.
 | D25     | Dark mode (V1.1) will ship a visitor toggle with the choice persisted in `localStorage`, and the US-28 privacy test will be amended with a documented exception at that point rather than in advance. First-party storage the visitor deliberately chose is not tracking, but the test stays strict until the thing it would permit exists                                                                                                                                                                                                  | 6 Oct  | Accepted                         |
 | ADR-007 | Cookieless analytics shipped to previews as well as production, and no consent banner. The beacon ships everywhere so both merge gates measure what actually ships; the dashboard separates continuous integration traffic by `Host`. No banner because nothing is stored on or read from the visitor's device -- asserted by US-28 rather than taken from Cloudflare's documentation -- and not because data protection law was judged inapplicable                                                                                        | 7 Oct  | Accepted                         |
 | ADR-008 | Contact exposure: email, LinkedIn and GitHub are published; a phone number, a postal address and a CV file appear in neither the pages, the structured data, the working tree nor git history. The published email moves to an address on the owned domain, because the personal account it replaced is also a Google login and could never have been retired if drowned. A print stylesheet replaces the CV file, so the document is generated in the visitor's browser rather than committed, carrying no metadata and unable to go stale | 7 Oct  | Accepted                         |
+| ADR-015 | Prerendered routes ship no framework JavaScript. The site renders to complete HTML at build time and nothing on it is interactive, so the hydration payload -- 91,104 bytes on the home page, 87% of the script budget -- was attaching behaviour that does not exist. Transferred script fell to zero on every route and performance rose from 98 to 100. Found because the Lighthouse gate refused US-47, and because the no-javascript suite had been proving the runtime unnecessary since M1 without anyone reading it that way        | 8 Oct  | Accepted                         |
 
-ADRs 007 and 008 are accepted, completing the 001-008 range US-31 asks for. ADR-008 takes two
-decisions that are recorded but not yet built: US-48, the print stylesheet, in the backlog;
-and US-49, the contact address, in M4, because until it ships the personal address is still
-the one published.
+ADRs 007 and 008 are accepted, completing the 001-008 range US-31 asks for. ADR-008's contact address shipped as US-49; its print
+stylesheet, US-48, remains a decision rather than a thing that exists. ADR-015 is accepted and
+shipped.
 
 ---
 
@@ -224,14 +224,19 @@ Recorded so later numbers have something to be compared against.
 
 | Cumulative layout shift, the two markdown routes | 0.166 and 0.208 | 6 Oct, before ADR-014, measured against the production build |
 | Cumulative layout shift, every route | 0.000 | 6 Oct, after ADR-014 |
-| Lighthouse, all five routes (mobile) | 99 / 100 / 100 / 100 | 6 Oct, this repository's own gate, median of three runs |
-| Script transferred, home and project routes | 84,421 and 89,208 bytes | 6 Oct, against the 105,000 budget |
+| Lighthouse, all five routes (mobile) | 100 / 100 / 100 / 100 | 8 Oct, after ADR-015 -- was 99 / 100 / 100 / 100 on 6 Oct |
+| Script transferred, every route | 0 bytes | 8 Oct, after ADR-015 -- was 91,104 and 96,316 measured by the gate on 7 Oct |
 | Font faces shipped | 4, Latin only | 6 Oct — was 18 across six writing systems |
 
 NFR-02's budget is set at 105,000 bytes: the measured 88,066 plus the 20% headroom, anchored
 at M2 rather than M1 because the figure recorded at M1 was the main chunk rather than total
 transferred script. ADR-013 records that honestly rather than treating a later measurement as
 the original.
+
+That budget is now vacuous. Against a baseline of zero bytes it cannot fire, so the framework
+runtime could return in full and the gate would pass. The figure has to be reset once US-47
+lands and the beacon's weight is known; until then one of this project's gates is decorative,
+which is recorded here rather than left to be rediscovered.
 
 ---
 
