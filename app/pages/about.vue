@@ -25,7 +25,20 @@ useSeo({
       class="mb-10 block h-auto w-40 sm:w-48"
     />
 
-    <h1 class="font-heading text-4xl font-medium tracking-tight sm:text-5xl">About</h1>
+    <!-- US-48. Printed only. Hiding the site header to print the page would
+         otherwise produce a document that never says whose experience it is:
+         the name lives in the header and the contact details in the footer,
+         and a print stylesheet removes both. Every value here comes from the
+         contact surface in app/utils/site.ts rather than being written out
+         again. -->
+    <div class="print-only print-identity">
+      <p class="print-name font-heading">{{ SITE_NAME }}</p>
+      <p>Full-stack engineer · Gouda, Netherlands · EU work rights</p>
+      <p>{{ EMAIL }}</p>
+      <p>{{ displayUrl(PROFILES.linkedin) }} · {{ displayUrl(PROFILES.github) }}</p>
+    </div>
+
+    <h1 class="screen-only font-heading text-4xl font-medium tracking-tight sm:text-5xl">About</h1>
 
     <p class="mt-8 text-lg leading-relaxed">
       I build production web applications end to end — database schema through REST API to a Vue
@@ -89,17 +102,18 @@ useSeo({
 
     <h2 class="font-heading mt-16 text-2xl font-medium tracking-tight">Education</h2>
 
-    <section class="mt-6 space-y-4">
-      <div>
-        <h3 class="font-heading text-lg font-medium">BSc Computer Science</h3>
-        <p class="text-muted mt-1">
-          Instituto Politécnico de Leiria, Portugal · September 2019 – July 2023
-        </p>
-      </div>
-      <div>
-        <h3 class="font-heading text-lg font-medium">Claude Code in Action</h3>
-        <p class="text-muted mt-1">Anthropic · June 2026</p>
-      </div>
+    <section class="mt-6">
+      <h3 class="font-heading text-lg font-medium">BSc Computer Science</h3>
+      <p class="text-muted mt-1">
+        Universidade de Leiria e Oeste, Leiria, Portugal · September 2019 – July 2023
+      </p>
+    </section>
+
+    <h2 class="font-heading mt-16 text-2xl font-medium tracking-tight">Certifications</h2>
+
+    <section class="mt-6">
+      <h3 class="font-heading text-lg font-medium">Claude Code in Action</h3>
+      <p class="text-muted mt-1">Anthropic · June 2026</p>
     </section>
 
     <h2 class="font-heading mt-16 text-2xl font-medium tracking-tight">Languages</h2>
@@ -108,12 +122,12 @@ useSeo({
          than a flat list of items. Assistive technology announces the pairing. -->
     <dl class="mt-6 space-y-2">
       <div class="flex gap-3">
-        <dt class="font-heading w-28 font-medium">Portuguese</dt>
-        <dd class="text-muted">Native</dd>
-      </div>
-      <div class="flex gap-3">
         <dt class="font-heading w-28 font-medium">English</dt>
         <dd class="text-muted">C2</dd>
+      </div>
+      <div class="flex gap-3">
+        <dt class="font-heading w-28 font-medium">Dutch</dt>
+        <dd class="text-muted">B1</dd>
       </div>
       <div class="flex gap-3">
         <dt class="font-heading w-28 font-medium">French</dt>
@@ -124,8 +138,8 @@ useSeo({
         <dd class="text-muted">B2</dd>
       </div>
       <div class="flex gap-3">
-        <dt class="font-heading w-28 font-medium">Dutch</dt>
-        <dd class="text-muted">B1</dd>
+        <dt class="font-heading w-28 font-medium">Portuguese</dt>
+        <dd class="text-muted">Native</dd>
       </div>
     </dl>
 

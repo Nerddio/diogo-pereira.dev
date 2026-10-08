@@ -119,6 +119,14 @@ to compare against.
   things no scanner can check: keyboard traversal, visible focus, 200% zoom and 320px reflow,
   non-text contrast, reduced motion, landmark and heading structure, and the skip link.
 
+- A print stylesheet, so the About page saves as a readable one-piece document from any
+  browser. Site navigation and the footer are dropped, a printed-only block carries the name
+  and contact details those would otherwise have taken with them, link destinations are
+  written out because paper cannot be hovered, and headings stay with the content beneath
+  them. ADR-008 chose this over committing a CV file: the visitor's browser produces the
+  document, so nothing enters git history, nothing carries author metadata, and it cannot
+  disagree with the page it was made from.
+
 ### Changed
 
 - The About page states Dutch at B1 rather than A2, which it had outgrown.
