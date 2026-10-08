@@ -3,7 +3,7 @@
 The single place to look for where this project actually is. Updated at the end of every
 milestone, and whenever a decision is accepted.
 
-**Last updated:** 6 October 2026 · **Current milestone:** M4 · **Release:** no fixed
+**Last updated:** 8 October 2026 · **Current milestone:** M5 · **Release:** no fixed
 date; milestones are sequencing containers, not commitments (D14)
 
 **Live:** https://diogo-pereira.dev
@@ -17,11 +17,14 @@ date; milestones are sequencing containers, not commitments (D14)
 | M0 — Discovery, requirements, planning, ADRs, domain, repository               | —      | **Complete**                       |
 | M1 — E1: live on the real domain, gates green                                  | 23     | **Complete** — 9 of 10; #9 carried |
 | M2 — All routes, real content, metadata, plus #9                               | 37     | **Complete**                       |
-| M4 — Tests, privacy assertions, accessibility pass, ADRs 007–008, case study   | 22     | **Next**                           |
-| M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | 21     | Not started                        |
+| M4 — Tests, privacy assertions, accessibility pass, ADRs 007–008               | 22     | **Complete**                       |
+| M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | 21     | **Next**                           |
 
 M3 dissolved into M2 (D6). Numbering gaps are deliberate — identifiers are allocated once
-and never reused (D12). Total backlog: 103 points across 39 stories and 8 epics.
+and never reused (D12). Total backlog: 103 points across 39 stories and 8 epics. That total is the
+backlog as estimated at M0; thirteen stories have been added since (US-39 to US-51) and
+none of them re-estimated, so read it as the size of the original plan rather than of the
+current one.
 
 **M1 did not fully meet its own definition**, and that is recorded rather than rounded
 off. The milestone was "every gate green"; the Lighthouse gate does not exist yet, because
@@ -106,6 +109,62 @@ source asks for 500 and 600, so the designed weight hierarchy was not rendering 
 that six writing systems were being served to a site written in English. None of that was
 findable by looking at the site. See ADR-014.
 
+---
+
+## M4 — complete
+
+E7 quality, plus the two contact and privacy decisions M0 reserved. The theme of the
+milestone was replacing claims with assertions: privacy asserted by a test rather than
+taken from a vendor's documentation, accessibility verified by a scanner and a signed
+manual pass rather than asserted in a README.
+
+**Shipped**
+
+| Pull request | What                                                                                  |
+| ------------ | ------------------------------------------------------------------------------------- |
+| #76          | No cookies, no browser storage, no unexpected third party — closing US-28             |
+| #79          | ADRs 007 and 008 accepted, completing the 001–008 range — closing US-31               |
+| #80          | A contact address on the owned domain — closing US-49                                 |
+| #82          | Framework JavaScript removed from every prerendered route — ADR-015, closing US-50    |
+| #81          | Cookieless analytics — closing US-47                                                  |
+| #85          | The script budget reset to the measured baseline — closing US-51, D26                 |
+| #86          | A privacy note — closing US-29                                                        |
+| #87          | Every route scanned against WCAG 2.2 AA, and the manual pass recorded — closing US-30 |
+| #91, #92     | Dutch stated at B1, and US-16 amended to match                                        |
+| #93          | The About page prints as a standalone document — closing US-48                        |
+
+**Delivered**
+
+- A privacy suite that wraps the storage APIs before any page script runs, reads cookies
+  through the browser context rather than `document.cookie` — which cannot see an
+  `HttpOnly` cookie and would have reported a clean page either way — and fails on contact
+  with any host not on a written allowlist.
+- An axe scan of all seven routes against the 70 rules that carry a WCAG 2.2 A or AA tag,
+  in Chromium only: axe is a rule engine over the DOM, so running it in three engines
+  reports one check as three passes.
+- A manual accessibility pass over the seven things no scanner can check — keyboard
+  traversal, visible focus, 200% zoom, 320px reflow, non-text contrast, reduced motion, and
+  landmark and heading structure — recorded in `docs/accessibility-review.md`, signed and
+  dated against a named commit.
+- Cookieless analytics on every deployment including previews, so both merge gates measure
+  what actually ships.
+- The framework runtime deleted from every prerendered route: transferred script to zero,
+  performance 98 to 100, and the budget reset underneath it so it could still fail.
+- ADRs 007, 008 and 015 accepted. The 001–008 range US-31 asks for is complete.
+- A print stylesheet, so the About page saves as a document from the visitor's browser —
+  the alternative ADR-008 promised in place of a committed CV file.
+
+**Not done, and deliberately so**
+
+- **No Content-Security-Policy.** NFR-06 asks for one as a Should and it does not exist.
+  The site has no inline event handlers and no user input, so the cross-site scripting it
+  would mitigate has no entry point today; the honest reason it is absent is that nobody
+  has written the ticket, not that it was weighed and declined. Carried to the backlog
+  rather than quietly dropped.
+- **The print stylesheet has no test.** Nothing in the suite can assert that a printed page
+  is readable, and a test asserting `display: none` on a selector would pass forever
+  without proving anything. The verification is manual and stays manual.
+
 ## Decision log
 
 | #       | Decision                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Date   | State                            |
@@ -151,8 +210,8 @@ findable by looking at the site. See ADR-014.
 | ADR-015 | Prerendered routes ship no framework JavaScript. The site renders to complete HTML at build time and nothing on it is interactive, so the hydration payload -- 91,104 bytes on the home page, 87% of the script budget -- was attaching behaviour that does not exist. Transferred script fell to zero on every route and performance rose from 98 to 100. Found because the Lighthouse gate refused US-47, and because the no-javascript suite had been proving the runtime unnecessary since M1 without anyone reading it that way          | 8 Oct  | Accepted                         |
 | D26     | The script transfer budget reset to 12,500 bytes from 105,000. NFR-02's rule -- the measured baseline plus 20% -- applied to a baseline that ADR-015 moved: every route now ships 10,311 bytes, the analytics beacon and nothing else. The old figure could not fail against a site that light, so the 91,104 bytes of framework runtime ADR-015 removed could have returned in full and passed. Recorded here rather than as an ADR because ADR-013 already decided how the budget is derived and that is unchanged; only the baseline moved | 8 Oct  | Accepted                         |
 
-ADRs 007 and 008 are accepted, completing the 001-008 range US-31 asks for. ADR-008's contact address shipped as US-49; its print
-stylesheet, US-48, remains a decision rather than a thing that exists. ADR-015 is accepted and
+ADRs 007 and 008 are accepted, completing the 001-008 range US-31 asks for. Both have shipped in full:
+ADR-008's contact address as US-49, and its print stylesheet as US-48. ADR-015 is accepted and
 shipped.
 
 ---
@@ -225,8 +284,8 @@ Recorded so later numbers have something to be compared against.
 
 | Cumulative layout shift, the two markdown routes | 0.166 and 0.208 | 6 Oct, before ADR-014, measured against the production build |
 | Cumulative layout shift, every route | 0.000 | 6 Oct, after ADR-014 |
-| Lighthouse, all five routes (mobile) | 99 / 100 / 100 / 100 | 8 Oct, with analytics -- 100 across the board without it, 99 / 100 / 100 / 100 on 6 Oct before ADR-015 |
-| Script transferred, every route | 10,311 bytes | 8 Oct, the analytics beacon alone -- was 0 after ADR-015, and 91,104 to 96,316 before it |
+| Lighthouse, all six routes (mobile) | 99 / 100 / 100 / 100 | 8 Oct, with analytics -- 100 across the board without it. The sixth route is /privacy, added by US-29 |
+| Script transferred, every route | 10,311 bytes, 10,286 on /projects/portfolio-site | 8 Oct, the analytics beacon alone -- was 0 after ADR-015, and 91,104 to 96,316 before it |
 | Font faces shipped | 4, Latin only | 6 Oct — was 18 across six writing systems |
 
 NFR-02's budget is set at 105,000 bytes: the measured 88,066 plus the 20% headroom, anchored
@@ -347,3 +406,28 @@ Recorded at the time rather than reconstructed at the end.
   Pages now carries a "legacy" label in its own dashboard, and `@lhci/cli` has had no
   release in fifteen months. Verifying a specification against its primary source before
   building on it caught both.
+
+- The budget refused a ticket, and was right to. Adding analytics pushed transferred script
+  past the 105,000-byte gate, which forced a question nobody had asked in two milestones:
+  what is the budget already full of? The answer was 91,104 bytes of framework runtime
+  hydrating pages with nothing to hydrate. Deleting it took script to zero on every route
+  and performance from 98 to 100, and the analytics then fitted with 94 kB to spare. The
+  evidence that deleting it was safe had been green since M1 — the JavaScript-disabled
+  suite proves every route is complete without JavaScript, which is the same fact as the
+  JavaScript being unnecessary, read in the other direction. It sat there for three weeks
+  pointing the wrong way.
+- The third-party allowlist in the privacy test was written from Cloudflare's documentation
+  and was wrong. The beacon loads from `static.cloudflareinsights.com` and posts its
+  measurements to `cloudflareinsights.com`, a second host no page of that documentation
+  names. The test failing is the only reason it is known. An allowlist written from the
+  documentation alone would have passed review, looked complete, and silently permitted a
+  host nobody had decided to permit.
+- The end-to-end suite cannot be run locally, by design rather than by omission. It asserts
+  properties of a deployment, and `playwright.config.ts` carries no `webServer` block
+  because ADR-002 produces no server output for `nuxt preview` to serve. So four gates can
+  be checked before pushing and two cannot: the E2E suite and the Lighthouse budgets only
+  ever run against a branch inside the pipeline. This surfaced when `pnpm test:e2e` was
+  recommended as a pre-commit check and failed on a missing `PLAYWRIGHT_BASE_URL` — the
+  reason having been written at the top of that config file the whole time. Pointing it at
+  production instead would have been worse: it would have tested `main`, passed, and said
+  nothing at all about the branch.
