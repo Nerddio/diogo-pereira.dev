@@ -125,7 +125,7 @@ useSeo({
       </div>
       <div class="flex gap-3">
         <dt class="font-heading w-28 font-medium">Dutch</dt>
-        <dd class="text-muted">A2</dd>
+        <dd class="text-muted">B1</dd>
       </div>
     </dl>
 
