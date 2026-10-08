@@ -70,6 +70,11 @@
           </a>
         </li>
         <li>
+          <NuxtLink class="hover:text-accent underline underline-offset-4" to="/privacy">
+            Privacy
+          </NuxtLink>
+        </li>
+        <li>
           <a class="hover:text-accent underline underline-offset-4" :href="PROFILES.github">
             GitHub
           </a>

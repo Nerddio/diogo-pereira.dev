@@ -61,6 +61,16 @@ export const PROFILES = {
 } as const
 
 /**
+ * This website's own repository.
+ *
+ * Deliberately separate from the `repository` field in a project's markdown
+ * frontmatter, which is that project's repository. The two happen to be the
+ * same URL today because the only project indexed here is this site, and
+ * folding them together would break the moment that stops being true.
+ */
+export const REPOSITORY = 'https://github.com/Nerddio/diogo-pereira.dev'
+
+/**
  * A URL as a reader should see it: no scheme, no `www.`, no trailing slash.
  *
  * The Contact page shows these links as readable text rather than as raw URLs.

@@ -104,6 +104,13 @@ to compare against.
   consent banner: nothing is stored on or read from the device, which is what the
   requirement turns on. See ADR-007.
 
+- A privacy note at `/privacy`, linked from the footer. It states what the site stores (nothing
+  in your browser), the single third party it contacts and both of that party's hosts by name,
+  why there is no cookie banner, and that every claim on the page is asserted by tests which
+  fail the build if they stop holding. It claims no legal conclusion: ADR-007 declined to
+  settle whether the GDPR requires anything here, and a note asserting compliance would be the
+  boilerplate US-29 exists to avoid.
+
 ### Changed
 
 - The JavaScript transfer budget is 12,500 bytes per route, down from 105,000. The old figure
