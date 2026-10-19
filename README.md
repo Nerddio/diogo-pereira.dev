@@ -132,6 +132,7 @@ the one that was tested.
 | [Decision records](docs/adr/)                        | Every significant technical decision, with what it gave up                        |
 | [Runbook](docs/runbook.md)                           | Rollback, domain renewal, credential rotation — rollback rehearsed, not described |
 | [Accessibility review](docs/accessibility-review.md) | The manual WCAG 2.2 AA pass, signed and dated                                     |
+| [Retrospective](docs/retrospective.md)               | What worked, what did not, and what changes next time                             |
 | [Status](docs/STATUS.md)                             | Current milestone, decision log, open questions, live risks                       |
 | [Glossary](docs/GLOSSARY.md)                         | Every term used in this repository                                                |
 
