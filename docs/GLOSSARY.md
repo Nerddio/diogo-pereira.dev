@@ -88,8 +88,17 @@ project alter what the build produces without forking the tool.
 **CDN (Content Delivery Network)** — a geographically distributed set of servers that cache
 and serve content from a location near the visitor.
 
+**Component (C4)** — the parts inside a single container, drawn at C4 Level 3; not drawn in
+this project, because one container of prerendered files has nothing to decompose.
+
+**Container (C4)** — a separately deployable or runnable part of a system: an application, a
+service, a database, or a browser application. Nothing to do with Docker. This site has one.
+
 **Edge** — the CDN location nearest the visitor, where requests are served without reaching
 an origin server.
+
+**ERD (Entity-Relationship Diagram)** — a diagram of database tables and the relationships
+between them; absent here because there is no database. See `docs/architecture.md`.
 
 **Frontmatter** — the structured metadata block at the top of a markdown file, used here to
 carry typed project fields validated at build time.
@@ -118,6 +127,9 @@ routing, rendering strategies, build output and deployment presets.
 
 **Nitro** — the server engine underneath Nuxt that produces deployment-specific build output.
 
+**OpenAPI** — a machine-readable specification of an HTTP API: its endpoints, their parameters
+and their responses; absent here because there is no API. See `docs/architecture.md`.
+
 **Preset** — a Nitro configuration that adapts the build output to a particular hosting
 target.
 
@@ -137,6 +149,9 @@ has no runtime server.
 
 **Static assets** — files served exactly as built (HTML, CSS, JavaScript, images) with no
 computation per request.
+
+**System context (C4 Level 1)** — the outermost C4 view: the system as one box, the people who
+use it, and the systems it exchanges anything with.
 
 **WebAssembly (WASM)** — a binary instruction format that runs in the browser at near-native
 speed, used to ship languages other than JavaScript to the web. Nuxt Content compiles SQLite
