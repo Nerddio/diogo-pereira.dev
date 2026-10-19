@@ -119,6 +119,12 @@ to compare against.
   things no scanner can check: keyboard traversal, visible focus, 200% zoom and 320px reflow,
   non-text contrast, reduced motion, landmark and heading structure, and the skip link.
 
+- A contact-surface sweep, run by `pnpm sweep`, asserting that no phone number, postal
+  address or CV file is present in the working tree, the build output or the full git
+  history, and that every commit carries a GitHub noreply address. Proven to fail by
+  planting a violation, and recorded in a release checklist that states what it cannot
+  check as well as what it can.
+
 - A glossary audit: twelve terms the artefacts used without defining, a written rule for
   what belongs in the glossary and what does not, and an honest statement of what the
   audit does and does not establish in place of a completeness claim nobody can prove.

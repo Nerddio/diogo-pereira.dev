@@ -131,6 +131,7 @@ the one that was tested.
 | [Architecture](docs/architecture.md)                 | C4 context and container diagrams, and which artefacts are deliberately absent    |
 | [Decision records](docs/adr/)                        | Every significant technical decision, with what it gave up                        |
 | [Runbook](docs/runbook.md)                           | Rollback, domain renewal, credential rotation — rollback rehearsed, not described |
+| [Release checklist](docs/release-checklist.md)       | The pre-release contact-surface sweep, what it proves and what it cannot          |
 | [Accessibility review](docs/accessibility-review.md) | The manual WCAG 2.2 AA pass, signed and dated                                     |
 | [Retrospective](docs/retrospective.md)               | What worked, what did not, and what changes next time                             |
 | [Status](docs/STATUS.md)                             | Current milestone, decision log, open questions, live risks                       |

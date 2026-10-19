@@ -18,7 +18,8 @@
     "format:check": "prettier --check .",
     "typecheck": "nuxt typecheck",
     "test:e2e": "playwright test",
-    "lighthouse": "node build/lighthouse-gate.ts"
+    "lighthouse": "node build/lighthouse-gate.ts",
+    "sweep": "bash build/contact-surface-sweep.sh"
   },
   "dependencies": {
     "nuxt": "4.5.2",
