@@ -119,6 +119,10 @@ to compare against.
   things no scanner can check: keyboard traversal, visible focus, 200% zoom and 320px reflow,
   non-text contrast, reduced motion, landmark and heading structure, and the skip link.
 
+- A README a stranger can clone and run from, with the cold run performed and timed rather
+  than assumed, the two quality gates that cannot run from a clone named explicitly, and
+  the project's known limitations stated rather than left to be discovered.
+
 - An operations runbook covering rollback, domain renewal and deploy-credential rotation,
   with the rollback rehearsed against production and the observed times recorded rather
   than estimated.
