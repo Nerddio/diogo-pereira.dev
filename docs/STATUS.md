@@ -3,8 +3,9 @@
 The single place to look for where this project actually is. Updated at the end of every
 milestone, and whenever a decision is accepted.
 
-**Last updated:** 19 October 2026 · **Current milestone:** M5 · **Release:** no fixed
-date; milestones are sequencing containers, not commitments (D14)
+**Last updated:** 19 October 2026 · **Released:** **v1.0.0 on 19 October 2026** ·
+**Current milestone:** none — v1 is complete. Milestones were sequencing containers, not
+commitments (D14), and the release carries no date claim because it never had one.
 
 **Live:** https://diogo-pereira.dev
 
@@ -18,7 +19,7 @@ date; milestones are sequencing containers, not commitments (D14)
 | M1 — E1: live on the real domain, gates green                                  | 23     | **Complete** — 9 of 10; #9 carried |
 | M2 — All routes, real content, metadata, plus #9                               | 37     | **Complete**                       |
 | M4 — Tests, privacy assertions, accessibility pass, ADRs 007–008               | 22     | **Complete**                       |
-| M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | 21     | **Next**                           |
+| M5 — README, C4, runbook, rollback rehearsal, CHANGELOG, v1.0.0, retrospective | 21     | **Complete**                       |
 
 M3 dissolved into M2 (D6). Numbering gaps are deliberate — identifiers are allocated once
 and never reused (D12). Total backlog: 103 points across 39 stories and 8 epics. That total is the
@@ -165,6 +166,53 @@ manual pass rather than asserted in a README.
   is readable, and a test asserting `display: none` on a selector would pass forever
   without proving anything. The verification is manual and stays manual.
 
+---
+
+## M5 — complete
+
+E8 plus the security headers US-53 added when NFR-06 turned out to be unimplemented. Eight
+user stories, eight pull requests, all on 19 October.
+
+**Shipped**
+
+| Pull request | What                                                                           |
+| ------------ | ------------------------------------------------------------------------------ |
+| #110         | Three security response headers, asserted by exact value — ADR-016, US-53      |
+| #111         | C4 context and container diagrams as committed Mermaid — US-32                 |
+| #112         | The operations runbook, with the rollback rehearsed against production — US-35 |
+| #113         | A README a stranger can clone and run from, cold run timed — US-33             |
+| #118         | The retrospective — US-36                                                      |
+| #119         | The glossary audit and its inclusion rule — US-37                              |
+| #120         | The pre-release contact-surface sweep — US-38                                  |
+| #121         | The changelog promoted to v1.0.0 — US-34                                       |
+
+**v1.0.0 is tagged** at `80eb9ce`, annotated, with a GitHub release published. The tag is
+protected by a ruleset restricting creations, updates and deletions on `v*`.
+
+**Delivered**
+
+- Three response headers shipped and asserted; the Content-Security-Policy deferred with a
+  named trigger rather than left as an unmet Should (ADR-016).
+- Architecture documented at C4 Levels 1 and 2, with a section on which artefacts are
+  deliberately absent and why.
+- A runbook whose rollback was performed against production rather than described: about
+  five seconds to take effect, thirteen to full consistency, no downtime.
+- A README verified by a cold run in a clean container — 25 seconds from clone to a running
+  development server, no step requiring guesswork.
+- A retrospective assembled from notes kept at the time, recording eight controls that
+  passed while not working.
+- A glossary audit that stopped the glossary claiming a completeness nobody can prove.
+- A contact-surface sweep, proven by planting a violation, passing on the exact commit the
+  tag points at.
+
+**Not done, and deliberately so**
+
+- **No Content-Security-Policy.** ADR-016 records the reasoning and the condition that
+  reopens it: the first inline script, which D25 already schedules for V1.1 dark mode.
+- **Five tickets raised and left open** — US-54 to US-58. An open, prioritised backlog is
+  evidence of a live project; closing them to tidy the board would delete that and replace
+  it with nothing.
+
 ## Decision log
 
 | #       | Decision                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Date   | State                            |
@@ -212,6 +260,7 @@ manual pass rather than asserted in a README.
 | ADR-016 | Three security response headers served from `_headers` and asserted by exact value on every route; the Content-Security-Policy deferred. The policy would have to permit the two analytics hosts and the inline JSON-LD, it fails silently when wrong, and the cross-site scripting it mitigates has no entry point on a site with no input handler and, since ADR-015, no client-side JavaScript. Reopened by the first inline script, which D25 already schedules for V1.1 dark mode. Corrects a wrong argument made for `Referrer-Policy`: browsers have defaulted to `strict-origin-when-cross-origin` since Chrome 85, so no full URL was leaking                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | 19 Oct | Accepted                         |
 | D27     | D22 overclaimed and is corrected here rather than edited. It states that the `font-display` build plugin "throws if it finds nothing to rewrite, so the workaround cannot silently stop applying". It throws when a stylesheet carries `@font-face` rules that were not rewritten; it skips stylesheets carrying none (`if (!css.includes('@font-face')) continue`). When the network blocks Google Fonts, @nuxt/fonts emits no rules at all, the plugin has nothing to inspect, and the build exits 0 having shipped zero `@font-face` rules, zero woff2 files and zero preloads. Found by US-33's cold run in a network-restricted container. That is the exact incident the plugin was written in response to, so the control guards a different failure from the one that occurred. Production is unaffected: CI reaches Google Fonts. Fix tracked as US-58                                                                                                                                                                                                                                                                                                 | 19 Oct | Accepted                         |
 | D28     | Two personal email addresses are permanently in the git history and are accepted rather than removed: the account address that authored the first four commits, before the noreply convention existed, and the address published as the contact surface until US-49 replaced it with one on the owned domain. **Neither is written out here.** Naming them in this record would add a fresh copy to the repository and its history, which is the exposure the entry exists to describe; the sweep caught exactly that when this entry was first drafted. `build/contact-surface-sweep.sh` holds them as SHA-256 digests for the same reason. Rewriting history was considered and declined: it would renumber all 85 commits, invalidating the commit `docs/accessibility-review.md` is signed against; would require disabling branch protection to force-push `main`; and would not remove them, since GitHub keeps unreachable objects fetchable by SHA and visible on existing pull request pages until a support-requested collection. Prevented from recurring by the account-level email privacy settings in `docs/release-checklist.md`. Found by US-38 | 19 Oct | Accepted                         |
+| D29     | Tag protection enabled on `v*` and verified by attempting a deletion rather than by reading the settings page. `git push --delete origin v1.0.0` was refused by the ruleset and the tag survived. The ruleset restricts creations, updates and deletions with an empty bypass list, so deleting a release tag requires editing the ruleset first — a visible act rather than a quiet one. Restricting updates matters most: `git tag -f` is one character away, and a release tag that silently moves makes its changelog entry false. Closes REPOSITORY SETUP item 13, which said to check availability rather than assume it                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 19 Oct | Accepted                         |
 
 ADRs 007 and 008 are accepted, completing the 001-008 range US-31 asks for. Both have shipped in full:
 ADR-008's contact address as US-49, and its print stylesheet as US-48. ADR-015 is accepted and
@@ -290,6 +339,8 @@ Recorded so later numbers have something to be compared against.
 | Cumulative layout shift, every route | 0.000 | 6 Oct, after ADR-014 |
 | Lighthouse, all six routes (mobile) | 99 / 100 / 100 / 100 | 8 Oct, with analytics -- 100 across the board without it. The sixth route is /privacy, added by US-29 |
 | Script transferred, every route | 10,311 bytes, 10,286 on /projects/portfolio-site | 8 Oct, the analytics beacon alone -- was 0 after ADR-015, and 91,104 to 96,316 before it |
+| Cold run, clean Linux container | 25s from `git clone` to a running dev server | 19 Oct, nothing pre-installed; reader not independent, Linux only |
+| Rollback, rehearsed against production | ~5s to take effect, 13s to full consistency, no downtime | 19 Oct, measured by removing a response header and watching |
 | Font faces shipped | 4, Latin only | 6 Oct — was 18 across six writing systems |
 
 NFR-02's budget is set at 105,000 bytes: the measured 88,066 plus the 20% headroom, anchored
@@ -435,3 +486,27 @@ Recorded at the time rather than reconstructed at the end.
   reason having been written at the top of that config file the whole time. Pointing it at
   production instead would have been worse: it would have tested `main`, passed, and said
   nothing at all about the branch.
+
+### Recorded after the v1.0.0 retrospective was written
+
+These arrived on release day, after `docs/retrospective.md` was assembled and merged. They
+are kept here rather than inserted into that document, which is a record of what was known
+when it was written.
+
+- **The contact-surface sweep caught its own author.** D28 was first drafted with both
+  leaked email addresses spelled out — documenting an exposure by repeating it. The sweep
+  failed the commit. The record now describes the addresses without naming them and the
+  script holds them as digests. First time in this project a control caught the person
+  writing it in the act of causing the thing it guards.
+- **Three defects were found in that sweep by making it fail on purpose**, which is the
+  practice the retrospective proposes for flagship 2, applied immediately: it searched only
+  tracked files, it matched its own pattern definitions, and its staleness guard fired on
+  documentation edits that cannot affect the build.
+- **An external dependency stopped the project for the first time.** GitHub Actions was
+  degraded for most of the afternoon; runs went from four minutes to twenty-nine and then
+  queued. It was found by looking, exactly as the runbook says it would be, and the first
+  diagnosis — the runner image migration announced that morning — was wrong. The status page
+  confirmed the incident twenty minutes later.
+- **The squash-merge trap cost a conflict.** Branching from an already-merged branch
+  duplicates its work, because the squashed commit on `main` is a new object and the branch
+  is no longer an ancestor of it. Now defined in the glossary.
