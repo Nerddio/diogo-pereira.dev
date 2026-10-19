@@ -270,6 +270,13 @@ follows the Keep a Changelog format.
 
 **Cherry-pick** — applying a single commit from one branch onto another, rather than merging the whole branch.
 
+**Cold run** — following setup instructions from scratch in an environment that has never
+built the project, to find the steps that only work because something was already installed.
+
+**Corepack** — the Node tool that reads `packageManager` in `package.json` and fetches that
+exact package-manager version, so everyone builds with the same one without installing it
+globally.
+
 **Default branch** — the branch a repository shows first and that pull requests target by default; changing it moves a pointer and leaves the old branch untouched.
 
 **Force push** — overwriting a remote branch's history; `--force-with-lease` is the safe form,
@@ -303,18 +310,16 @@ named in the ruleset is not enforced.
 
 **Reset** — moving a branch pointer to another commit; `--soft` keeps the working tree and staged changes, `--hard` discards both, making it the command that actually destroys work.
 
-**Rollback** — returning production to a previous known-good state.
-
-**RTO (Recovery Time Objective)** — the target time to restore service after a failure.
-
-**Runbook** — short operational instructions for recurring or emergency tasks.
-
 **Roll forward** — recovering by deploying a newer build that fixes the problem, rather than
 returning to an older one; correct when the fix is known and small.
 
 **Rollback** — returning production to a previously deployed version, used when something is
 wrong and the fix is not yet understood. Measured here at about five seconds; see
 `docs/runbook.md`.
+
+**RTO (Recovery Time Objective)** — the target time to restore service after a failure.
+
+**Runbook** — short operational instructions for recurring or emergency tasks.
 
 **Semantic versioning (SemVer)** — the `MAJOR.MINOR.PATCH` scheme where major means a
 breaking change, minor a backwards-compatible feature, and patch a fix.
