@@ -119,6 +119,11 @@ to compare against.
   things no scanner can check: keyboard traversal, visible focus, 200% zoom and 320px reflow,
   non-text contrast, reduced motion, landmark and heading structure, and the skip link.
 
+- Architecture documentation: C4 system context and container diagrams as committed
+  Mermaid rather than exported images, the build and deploy path in prose, and a section
+  recording which architecture artefacts are deliberately absent and why — no
+  entity-relationship diagram, no OpenAPI contract, no component diagram.
+
 - Security response headers on every route: `X-Content-Type-Options`, `Referrer-Policy` and
   `Permissions-Policy`, served from a `_headers` file and asserted by exact value on every
   route and on the 404 as a merge gate. No Content-Security-Policy; ADR-016 records why and
