@@ -1,0 +1,13 @@
+# US-53, NFR-06. Response headers applied to every route.
+#
+# Cloudflare reads this file as configuration for the static assets rather than
+# serving it. tests/e2e/headers.spec.ts asserts both halves of that: the three
+# headers arrive on every route, and this file is not reachable at /_headers.
+#
+# Content-Security-Policy is deliberately absent. ADR-016 records why, and what
+# would have to change for it to be added.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

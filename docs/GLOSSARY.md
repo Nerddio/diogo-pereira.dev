@@ -4,7 +4,7 @@ Every term, acronym and piece of shorthand introduced in this project, defined i
 sentence. Added to as the project proceeds. If a term is used in an artefact and is not
 here, that is a defect.
 
-Last updated: 6 October 2026.
+Last updated: 19 October 2026.
 
 ---
 
@@ -325,6 +325,9 @@ somewhere else.
 **Dependabot** — GitHub's tool for alerting on vulnerable dependencies and opening update
 pull requests.
 
+**Defence in depth** — layering a control that is not strictly needed today, so that a
+later change does not silently remove the only protection against something.
+
 **ePrivacy Directive** — the EU instrument behind cookie banners; its Article 5(3) is
 triggered by storing information on, or reading information already stored in, a visitor's
 own device, which is why it is about the device rather than about cookies specifically.
@@ -360,14 +363,30 @@ discarded when the tab closes.
 **MFA (Multi-Factor Authentication)** — requiring a second proof of identity beyond a
 password.
 
+**MIME sniffing** — a browser ignoring the content type a server declared and inferring one
+from the bytes instead; the mechanism by which a file served as data can end up executed as
+script, and what `X-Content-Type-Options: nosniff` switches off.
+
 **Origin** — the combination of scheme, host and port that the browser treats as one
 security boundary (`https://diogo-pereira.dev`); "off-origin" means a request leaving it.
+
+**`Permissions-Policy`** — a response header naming which browser capabilities a page may
+use; an empty allowlist `()` means no origin at all may use that capability, the site itself
+included.
 
 **Push protection** — GitHub's blocking of a push containing a detected credential, before it
 enters history; it matches credential patterns, not arbitrary personal data.
 
+**Referrer** — the address of the page a visitor came from, sent by the browser to the next
+site; how much of it is sent is controlled by the `Referrer-Policy` response header, and the
+HTTP field itself is spelled `Referer`, a misspelling fixed into the standard in 1996.
+
 **Registrar lock** — a registrar setting preventing a domain from being transferred away
 without deliberate unlocking.
+
+**Response header** — a line of metadata a server sends ahead of a page, telling the browser
+how to treat what follows; it is configuration rather than content, so it never appears in
+the page itself.
 
 **RUM (Real User Monitoring)** — measurement collected from the browsers of actual visitors,
 as opposed to a synthetic test such as the Lighthouse gate, which measures one scripted
@@ -395,6 +414,9 @@ they would want, and what is therefore worth defending; being able to say why a 
 unnecessary is as strong a signal as implementing one.
 
 **TLS certificate** — the credential proving a domain's identity, enabling HTTPS.
+
+**`X-Content-Type-Options: nosniff`** — a response header instructing the browser to trust
+the declared content type rather than sniffing the bytes.
 
 ---
 

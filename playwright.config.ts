@@ -48,15 +48,17 @@ export default defineConfig({
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
-      // accessibility.spec.ts runs in chromium only. See the note at the top of
-      // that file: axe is a rule engine over the DOM, so running it in three
-      // engines would report one check as three passes.
-      testIgnore: /no-javascript\.spec\.ts|accessibility\.spec\.ts/,
+      // accessibility.spec.ts and headers.spec.ts run in chromium only. See the
+      // note at the top of each: axe is a rule engine over the DOM, and
+      // response headers come from the host rather than the renderer, so
+      // running either across three engines would report one check as three
+      // passes.
+      testIgnore: /no-javascript\.spec\.ts|accessibility\.spec\.ts|headers\.spec\.ts/,
     },
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
-      testIgnore: /no-javascript\.spec\.ts|accessibility\.spec\.ts/,
+      testIgnore: /no-javascript\.spec\.ts|accessibility\.spec\.ts|headers\.spec\.ts/,
     },
 
     // NFR-03: every route must be readable with client-side JavaScript off.
