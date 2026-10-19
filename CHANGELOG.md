@@ -119,6 +119,10 @@ to compare against.
   things no scanner can check: keyboard traversal, visible focus, 200% zoom and 320px reflow,
   non-text contrast, reduced motion, landmark and heading structure, and the skip link.
 
+- A retrospective, assembled from notes kept while the work happened rather than
+  reconstructed at the end, recording eight controls that passed while not working and
+  what that pattern changes for the next project.
+
 - A README a stranger can clone and run from, with the cold run performed and timed rather
   than assumed, the two quality gates that cannot run from a clone named explicitly, and
   the project's known limitations stated rather than left to be discovered.
