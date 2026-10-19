@@ -119,6 +119,11 @@ to compare against.
   things no scanner can check: keyboard traversal, visible focus, 200% zoom and 320px reflow,
   non-text contrast, reduced motion, landmark and heading structure, and the skip link.
 
+- Security response headers on every route: `X-Content-Type-Options`, `Referrer-Policy` and
+  `Permissions-Policy`, served from a `_headers` file and asserted by exact value on every
+  route and on the 404 as a merge gate. No Content-Security-Policy; ADR-016 records why and
+  what would reopen it.
+
 - A print stylesheet, so the About page saves as a readable one-piece document from any
   browser. Site navigation and the footer are dropped, a printed-only block carries the name
   and contact details those would otherwise have taken with them, link destinations are
