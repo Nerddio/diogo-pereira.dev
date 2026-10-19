@@ -1,10 +1,24 @@
 # Glossary
 
-Every term, acronym and piece of shorthand introduced in this project, defined in one
-sentence. Added to as the project proceeds. If a term is used in an artefact and is not
-here, that is a defect.
+Every term, acronym and piece of shorthand this project uses that a reader might have to
+look up, defined in one sentence. Added to as the project proceeds.
 
-Last updated: 19 October 2026.
+**What is in scope.** Domain vocabulary: engineering, process, hosting, accessibility,
+security, and this project's own conventions. Deliberately out of scope: general
+abbreviations a reader of any technical document already knows — EU, PDF, CV, UI, AI. The
+boundary is written down so that a term's absence is identifiably a decision rather than an
+oversight.
+
+**What the audit establishes, and what it does not.** US-37 ran a mechanical pass over the
+README, the changelog, every file in `docs/` and all sixteen decision records, extracting
+acronyms and diffing them against the headwords defined here. That pass is repeatable.
+Multiword terms were reviewed by judgement, which is not. So this raises confidence that
+the glossary is complete; it does not prove it. The previous wording — "if a term is used
+in an artefact and is not here, that is a defect" — asserted a completeness nobody can
+demonstrate, which is the same class of unfalsifiable claim this project spent six weeks
+finding in its own controls.
+
+Last updated: 19 October 2026, after the US-37 audit.
 
 ---
 
@@ -45,6 +59,10 @@ there is one deployed version.
 
 **Leading indicator** — a measure taken during the work that predicts the outcome.
 
+**MIT licence** — a short permissive licence allowing reuse, modification and
+redistribution provided the copyright notice is kept; here it covers the code only, with
+written content and imagery reserved.
+
 **MoSCoW** — a prioritisation scheme classifying scope as Must, Should, Could, or
 Won't-have-this-time.
 
@@ -52,6 +70,9 @@ Won't-have-this-time.
 settling design arguments; if it cannot cause a feature to be cut, it is written wrong.
 
 **Product owner** — the role that decides scope, priority and what counts as done.
+
+**Pull request** — a proposal to merge one branch into another, carrying the diff, the
+discussion and the status checks; the unit at which work is reviewed and gated here.
 
 **Retrospective** — a written review at the end of a piece of work recording what worked,
 what did not, and what changes next time, written at the time rather than reconstructed
@@ -141,6 +162,9 @@ JavaScript loads, updating the page without full navigations.
 **SPA fallback** — an HTML file containing no prerendered content, served by a static host
 for a path it has no file for, so the application can boot in the browser and render the route
 itself. Correct for a client-side route, wrong for a page a visitor reaches as a destination.
+
+**SQL (Structured Query Language)** — the language used to query and define relational
+databases.
 
 **SSG (Static Site Generation)** — producing every route's HTML at build time, so production
 has no runtime server.
@@ -273,6 +297,9 @@ follows the Keep a Changelog format.
 **Cold run** — following setup instructions from scratch in an environment that has never
 built the project, to find the steps that only work because something was already installed.
 
+**Concurrency (in CI)** — a workflow setting that groups runs so a newer one can cancel the
+run it supersedes; absent here, see US-57.
+
 **Corepack** — the Node tool that reads `packageManager` in `package.json` and fetches that
 exact package-manager version, so everyone builds with the same one without installing it
 globally.
@@ -281,6 +308,9 @@ globally.
 
 **Force push** — overwriting a remote branch's history; `--force-with-lease` is the safe form,
 which aborts if the remote moved since you last saw it.
+
+**Gradual deployment** — releasing a new version to a share of traffic rather than all at
+once, so both versions serve requests during the transition.
 
 **Linear history** — a commit history with no merge commits, produced here by squash merging.
 
@@ -299,6 +329,9 @@ one can be made live again; this project can return to any of the 100 most recen
 and tested as a real artefact before merging.
 
 **Prune** — deleting local remote-tracking references whose upstream branch no longer exists.
+
+**R2** — Cloudflare's object storage service. Not used here; it appears only as one of the
+bindings whose absence makes a rollback straightforward.
 
 **Rebase** — replaying commits onto a new base; `rebase -i` (interactive) additionally allows
 reordering, squashing or rewording them.
@@ -328,6 +361,8 @@ breaking change, minor a backwards-compatible feature, and patch a fix.
 availability; none is claimed here, deliberately.
 
 **Squash merge** — combining all commits on a branch into one commit on the target branch.
+The merged commit is a new object, so the original branch is no longer an ancestor of
+`main`; branching from an already-merged branch therefore duplicates its work.
 
 ---
 
@@ -471,6 +506,18 @@ fails its authentication checks; optional for receiving mail, relevant for sendi
 
 **DNS (Domain Name System)** — the system translating domain names into server addresses.
 
+**DNSSEC (Domain Name System Security Extensions)** — cryptographic signatures on DNS
+answers, so a resolver can tell a genuine answer from a forged one; not enabled here, see
+US-56.
+
+**HTTPS (HyperText Transfer Protocol Secure)** — HTTP carried inside an encrypted TLS
+connection, so content cannot be read or altered in transit; mandatory on `.dev`, which is
+HSTS-preloaded.
+
+**ICANN (Internet Corporation for Assigned Names and Numbers)** — the body coordinating
+domain names globally and setting registrar policy, including the sixty-day transfer lock
+after a registration.
+
 **JSON-LD** — a format for embedding structured data in a page so machines can interpret it.
 
 **Landmark** — a semantic region of a page (`main`, `nav`, `header`, `footer`) that assistive
@@ -494,6 +541,10 @@ cannot affect the site.
 **Semantic HTML** — using elements for their meaning rather than their appearance, which is
 what makes a page usable by assistive technology.
 
+**SEO (Search Engine Optimisation)** — making a site's content and metadata legible to
+search engines so it appears for the queries it should; here, that a name resolves to this
+site.
+
 **Sitemap** — an XML file listing a site's URLs to aid crawling.
 
 **Skip link** — a link, first in tab order, allowing a keyboard user to jump past repeated
@@ -503,3 +554,6 @@ navigation to the main content.
 claiming to come from a domain, so a receiving server can reject a forged sender.
 
 **TLD (Top-Level Domain)** — the final segment of a domain name, such as `.dev`.
+
+**WHOIS** — the public record of who registered a domain, which by default can publish the
+registrant's name, postal address, telephone number and email; redacted for this domain.
