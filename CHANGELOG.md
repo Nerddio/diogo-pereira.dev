@@ -119,6 +119,10 @@ to compare against.
   things no scanner can check: keyboard traversal, visible focus, 200% zoom and 320px reflow,
   non-text contrast, reduced motion, landmark and heading structure, and the skip link.
 
+- A glossary audit: twelve terms the artefacts used without defining, a written rule for
+  what belongs in the glossary and what does not, and an honest statement of what the
+  audit does and does not establish in place of a completeness claim nobody can prove.
+
 - A retrospective, assembled from notes kept while the work happened rather than
   reconstructed at the end, recording eight controls that passed while not working and
   what that pattern changes for the next project.
