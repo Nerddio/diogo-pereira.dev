@@ -285,6 +285,9 @@ Active LTS is the appropriate choice for production.
 
 **Pinning** — fixing a dependency to one exact version rather than a range that can move.
 
+**Deployment version** — one immutable build of a Worker, kept by the host so a previous
+one can be made live again; this project can return to any of the 100 most recent.
+
 **Preview deployment** — a deployment of a branch to its own URL, so a change can be reviewed
 and tested as a real artefact before merging.
 
@@ -305,6 +308,13 @@ named in the ruleset is not enforced.
 **RTO (Recovery Time Objective)** — the target time to restore service after a failure.
 
 **Runbook** — short operational instructions for recurring or emergency tasks.
+
+**Roll forward** — recovering by deploying a newer build that fixes the problem, rather than
+returning to an older one; correct when the fix is known and small.
+
+**Rollback** — returning production to a previously deployed version, used when something is
+wrong and the fix is not yet understood. Measured here at about five seconds; see
+`docs/runbook.md`.
 
 **Semantic versioning (SemVer)** — the `MAJOR.MINOR.PATCH` scheme where major means a
 breaking change, minor a backwards-compatible feature, and patch a fix.
@@ -402,6 +412,10 @@ without deliberate unlocking.
 **Response header** — a line of metadata a server sends ahead of a page, telling the browser
 how to treat what follows; it is configuration rather than content, so it never appears in
 the page itself.
+
+**Rotation (of a credential)** — replacing a secret with a new one and revoking the old, which
+is the only response that helps once a secret has been exposed; deleting it from a file or a
+commit does not, because anything published should be assumed already copied.
 
 **RUM (Real User Monitoring)** — measurement collected from the browsers of actual visitors,
 as opposed to a synthetic test such as the Lighthouse gate, which measures one scripted

@@ -119,6 +119,10 @@ to compare against.
   things no scanner can check: keyboard traversal, visible focus, 200% zoom and 320px reflow,
   non-text contrast, reduced motion, landmark and heading structure, and the skip link.
 
+- An operations runbook covering rollback, domain renewal and deploy-credential rotation,
+  with the rollback rehearsed against production and the observed times recorded rather
+  than estimated.
+
 - Architecture documentation: C4 system context and container diagrams as committed
   Mermaid rather than exported images, the build and deploy path in prose, and a section
   recording which architecture artefacts are deliberately absent and why — no
