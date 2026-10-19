@@ -136,12 +136,35 @@ by reading, and it is now established by doing.
 `diogo-pereira.dev` is registered at Cloudflare Registrar and renews annually at cost. It
 is the only recurring expense in the project.
 
-Cloudflare dashboard → **Domain Registration** → **Manage Domains** → `diogo-pereira.dev`.
-Check, and record here:
+Cloudflare dashboard → **Domain Registration** → `diogo-pereira.dev` → **Settings**.
 
-- The expiry date.
-- That **auto-renew is on**.
-- That the **registrar transfer lock** is on.
+Verified 19 October 2026:
+
+| Item            | State                                                       |
+| --------------- | ----------------------------------------------------------- |
+| Registrar       | Cloudflare, status Active                                   |
+| Expires         | 3 September 2027                                            |
+| Auto-renew      | **On** — scheduled 4 August 2027, a month before expiry     |
+| Renewal price   | $12.20/yr, inside NFR-13's €15/year ceiling                 |
+| WHOIS redaction | **Enabled**                                                 |
+| Transfer lock   | **On**, by ICANN's mandatory 60-day hold after registration |
+| DNSSEC          | Not enabled — see US-56                                     |
+
+**WHOIS redaction was checked from outside, not from the dashboard.** The registrar's
+settings page says what Cloudflare intends; a public lookup at `lookup.icann.org` says what
+anyone querying the domain actually receives. They agreed. This matters more than it looks:
+NFR-14 and ADR-008 forbid a postal address or phone number in the working tree, the build
+output and git history, and neither covers WHOIS — which is a public record that would
+carry exactly those fields by default. The rule had a surface nobody had written a
+requirement for.
+
+🔒 **The transfer lock changes character around 3 November 2026.** Today it is enforced by
+ICANN policy — Cloudflare's own Unlock control is disabled because the domain was registered
+within the last 60 days. Once that window closes the lock remains on, but it becomes a
+setting that anyone holding the Cloudflare account could switch off. From that date the lock
+is only as strong as multi-factor authentication on that account, which is already the
+highest-value control in the project. Re-check the lock after 3 November and record it here
+again.
 
 If the domain lapsed, the site would not merely go offline: `.dev` is on the HSTS preload
 list, so browsers refuse plain HTTP to it, and anyone could eventually register it and
