@@ -66,6 +66,31 @@ already knows an address can hash it and confirm it. They avoid creating a new c
 is the only part still under anyone's control. Anything whose digest is not listed still
 fails.
 
+## Tagging a release
+
+In this order. The sweep must pass on the exact commit being tagged, which is why it comes
+before the tag and not after it — a tag on the commit before the check is a tag on an
+unchecked commit.
+
+```bash
+git checkout main
+git pull
+pnpm generate && pnpm sweep          # must print SWEEP PASSED
+git tag -a vX.Y.Z -m "vX.Y.Z — <one line>"
+git push origin vX.Y.Z
+```
+
+**Annotated (`-a`), never lightweight.** An annotated tag is an object in the repository
+carrying a message, a tagger and a date, and it can be signed. A lightweight tag is a bare
+pointer with none of that, and nothing records who created it or why.
+
+Before tagging, `CHANGELOG.md` must already be on `main` with the release section promoted
+from `[Unreleased]` and the comparison links updated. The tag points at a commit; if the
+changelog entry is not in that commit, the release describes itself incorrectly forever.
+
+There is no `version` field in `package.json` to keep in step — see the note at the top of
+`CHANGELOG.md` for why.
+
 ## Prevention, which is the part that lasts
 
 - [x] Local git identity set to the GitHub noreply address.

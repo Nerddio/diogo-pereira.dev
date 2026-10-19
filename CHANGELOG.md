@@ -5,10 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this
 project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-Comparison links are added when v1.0.0 is tagged; until the first release there is nothing
-to compare against.
+**The git tag is the version.** `package.json` deliberately carries no `version` field:
+this is a private application rather than a published package, and a version recorded in two
+places is a version that can disagree with itself with nothing to catch it.
 
 ## [Unreleased]
+
+## [1.0.0] - 2026-10-19
 
 ### Added
 
@@ -220,3 +223,6 @@ to compare against.
   to that tag cannot alter what runs in continuous integration.
 - `esbuild` forced to 0.28.1 or later. Earlier versions let any page open in the same
   browser read files from the machine through the development server.
+
+[unreleased]: https://github.com/Nerddio/diogo-pereira.dev/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/Nerddio/diogo-pereira.dev/releases/tag/v1.0.0
