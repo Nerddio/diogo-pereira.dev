@@ -18,7 +18,8 @@ in an artefact and is not here, that is a defect" — asserted a completeness no
 demonstrate, which is the same class of unfalsifiable claim this project spent six weeks
 finding in its own controls.
 
-Last updated: 19 October 2026, after the US-37 audit.
+Last updated: 20 October 2026. The mechanical audit described above ran on 19 October (US-37);
+entries added after that date were added individually and are not covered by it.
 
 ---
 
@@ -306,8 +307,16 @@ globally.
 
 **Default branch** — the branch a repository shows first and that pull requests target by default; changing it moves a pointer and leaves the old branch untouched.
 
+**Fast-forward** — advancing a branch pointer to a newer commit that already contains the old
+one, so no merge commit is needed; a push is accepted only as a fast-forward unless it is forced.
+
 **Force push** — overwriting a remote branch's history; `--force-with-lease` is the safe form,
 which aborts if the remote moved since you last saw it.
+
+**Git auto-maintenance** — housekeeping git runs in the background after ordinary commands
+(repacking objects, expiring reflogs); it holds `.lock` files while it works, and a process killed
+mid-run leaves them behind, blocking every later command that needs the index until they are
+deleted.
 
 **Gradual deployment** — releasing a new version to a share of traffic rather than all at
 once, so both versions serve requests during the transition.
