@@ -17,7 +17,8 @@ useSeo({
     <p class="mt-8 text-lg leading-relaxed">
       One entry, and that is deliberate. A project with a public repository, dated decision records,
       a pipeline that gates every merge and a live URL is worth more than several write-ups nobody
-      can check. The second flagship is in progress and will appear here when it is real.
+      can check. The second flagship has not started yet. It will appear here when it is real, not
+      when it is announced.
     </p>
 
     <ul class="mt-12 space-y-12">

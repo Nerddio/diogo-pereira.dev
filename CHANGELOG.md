@@ -11,6 +11,18 @@ places is a version that can disagree with itself with nothing to catch it.
 
 ## [Unreleased]
 
+### Fixed
+
+- Post-release copy on the home, About, projects and case study pages. All four still described
+  the site as in progress and the second flagship as imminent, which stopped being true when
+  v1.0.0 was tagged. The case study also stated that the Lighthouse budgets were "not yet a merge
+  gate" — written before the gate shipped in M2 — which directly contradicted the pipeline it was
+  describing, and quoted a decision-record count that had been wrong by four for two weeks.
+- Hard counts removed from prose where they add nothing and go stale silently: the end-to-end test
+  count, and the case study's opening claim of five pages, which stopped being true once the site
+  had six routes and a prerendered 404. The one count left, the decision records, is re-verified
+  from the release checklist before a release rather than trusted.
+
 ## [1.0.0] - 2026-10-19
 
 ### Added

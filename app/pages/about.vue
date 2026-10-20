@@ -48,9 +48,9 @@ useSeo({
     </p>
 
     <p class="mt-4 text-lg leading-relaxed">
-      Right now I am building this site in the open — public decision records, a pipeline that gates
-      every merge, and a changelog — as the first of two flagship projects. The second starts once
-      this one is tagged.
+      I built this site in the open as the first of two flagship projects — public decision records,
+      a pipeline that gates every merge, a changelog and a retrospective written at the time. It
+      shipped at v1.0.0 in October 2026. The second has not started yet.
     </p>
 
     <h2 class="font-heading mt-16 text-2xl font-medium tracking-tight">Experience</h2>

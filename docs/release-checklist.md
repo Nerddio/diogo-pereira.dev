@@ -66,6 +66,20 @@ already knows an address can hash it and confirm it. They avoid creating a new c
 is the only part still under anyone's control. Anything whose digest is not listed still
 fails.
 
+## Counts stated in public copy
+
+The case study states the number of decision records. A number in prose goes stale silently —
+this one was wrong by four before anyone noticed — so it is re-checked here rather than
+trusted.
+
+```bash
+ls docs/adr/0*.md | wc -l                      # total records
+grep -c "Superseded" docs/adr/0*.md | grep -v ':0' | wc -l   # superseded
+```
+
+Update `content/projects/portfolio-site.md` if either has moved. It is the only hard count
+left in public copy; the test count and the others were removed for exactly this reason.
+
 ## Tagging a release
 
 In this order. The sweep must pass on the exact commit being tagged, which is why it comes
