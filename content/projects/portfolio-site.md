@@ -16,7 +16,7 @@ published: 2026-09-17
 
 ## The brief I set myself
 
-Five pages. The site is not the interesting part and was never meant to be — the process
+A small static site. The site is not the interesting part and was never meant to be — the process
 behind it is. Every significant choice has a dated record saying what was decided, what was
 rejected and what it cost. Requirements were written as user stories with testable acceptance
 criteria before any code. A pipeline refuses a merge until lint, type-checking, a production
@@ -93,9 +93,9 @@ Then three more: a **preview** deployment per pull request, an **e2e** run of th
 suite against that preview rather than against a local server, and a **deploy** job that runs
 only on merge to the main branch.
 
-Twenty-three end-to-end tests run across Chromium, Firefox and WebKit, plus a fourth project
-that runs with JavaScript disabled. That last one exists because the architectural claim is
-prerendering, and a claim that is not tested is a hope.
+End-to-end tests run across Chromium, Firefox and WebKit, plus a fourth project that runs with
+JavaScript disabled. That last one exists because the architectural claim is prerendering, and a
+claim that is not tested is a hope.
 
 Third-party actions are pinned to commit hashes rather than version tags, because a tag can be
 moved by whoever controls that repository. Install-time scripts are denied for every package,
@@ -103,13 +103,19 @@ because an install script runs with full rights on a machine holding the deploym
 
 ## Budgets
 
-Accessibility is targeted at WCAG 2.2 AA and verified rather than asserted. Production
-currently scores 100 on all four Lighthouse categories on mobile emulation. Those numbers are
-not yet a merge gate — that work is open, and the honest status is that the site meets the
-target while the gate that would hold it there does not exist.
+Accessibility is targeted at WCAG 2.2 AA and verified rather than asserted: every route is
+scanned against the seventy axe rules carrying a WCAG 2.2 A or AA tag, and a manual pass covers
+what no scanner can check.
 
-A first-load JavaScript budget is set from a measured baseline plus headroom, not from a
-figure chosen because it sounded strict.
+Lighthouse budgets are a merge gate rather than a measurement. Accessibility must be 100;
+performance, best practices and SEO must each be at least 95; and transferred script must stay
+inside a byte budget derived from the measured baseline rather than from a figure chosen
+because it sounded strict. Every threshold is checked against the pull request's own preview
+deployment.
+
+Production measures 99 for performance and 100 for the other three. The missing point is the
+analytics beacon, the only script the site ships — a trade-off made deliberately rather than
+discovered.
 
 ## What went wrong
 
@@ -145,7 +151,7 @@ None of them is the change.
 ## Read it yourself
 
 The [repository](https://github.com/Nerddio/diogo-pereira.dev) is public. The decision records
-live in `docs/adr` — twelve of them, including the one that was superseded and the ones written
-because something broke. `docs/STATUS.md` carries the decision log, the open risks and a
+live in `docs/adr` — sixteen records, fifteen accepted and one superseded, including the ones
+written because something broke. `docs/STATUS.md` carries the decision log, the open risks and a
 running list of things to raise at the retrospective, written at the time rather than
 reconstructed afterwards.

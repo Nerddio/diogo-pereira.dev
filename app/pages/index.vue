@@ -34,9 +34,10 @@ useSeo({
       <h2 class="font-heading text-2xl font-medium tracking-tight">Current focus</h2>
 
       <p class="mt-4 text-lg leading-relaxed">
-        Building this site in the open as the first of two flagship projects — public decision
-        records, a pipeline that gates every merge, and a changelog. The second starts once this one
-        is tagged.
+        This site is the first of two flagship projects, and it shipped — tagged v1.0.0 in October
+        2026, with public decision records, a pipeline that gates every merge, a changelog and a
+        retrospective written while the work happened. The second has not started yet; it will
+        appear on the projects page when it is real.
       </p>
 
       <p class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-lg">
