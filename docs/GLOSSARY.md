@@ -516,8 +516,13 @@ fails its authentication checks; optional for receiving mail, relevant for sendi
 **DNS (Domain Name System)** — the system translating domain names into server addresses.
 
 **DNSSEC (Domain Name System Security Extensions)** — cryptographic signatures on DNS
-answers, so a resolver can tell a genuine answer from a forged one; not enabled here, see
-US-56.
+answers, so a resolver can tell a genuine answer from a forged one; enabled here on
+21 October 2026, see US-56.
+
+**DS record (Delegation Signer)** — a fingerprint of a zone's signing key, published by the
+parent zone, which is what links a domain's DNSSEC signatures to the chain of trust above
+it; a DS record that does not match the key actually signing breaks resolution outright
+rather than degrading it.
 
 **HTTPS (HyperText Transfer Protocol Secure)** — HTTP carried inside an encrypted TLS
 connection, so content cannot be read or altered in transit; mandatory on `.dev`, which is

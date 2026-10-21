@@ -148,7 +148,7 @@ Verified 19 October 2026:
 | Renewal price   | $12.20/yr, inside NFR-13's €15/year ceiling                 |
 | WHOIS redaction | **Enabled**                                                 |
 | Transfer lock   | **On**, by ICANN's mandatory 60-day hold after registration |
-| DNSSEC          | Not enabled — see US-56                                     |
+| DNSSEC          | **Enabled** 21 October 2026 — see US-56                     |
 
 **WHOIS redaction was checked from outside, not from the dashboard.** The registrar's
 settings page says what Cloudflare intends; a public lookup at `lookup.icann.org` says what
@@ -157,6 +157,17 @@ NFR-14 and ADR-008 forbid a postal address or phone number in the working tree, 
 output and git history, and neither covers WHOIS — which is a public record that would
 carry exactly those fields by default. The rule had a surface nobody had written a
 requirement for.
+
+**DNSSEC was checked from outside, not from the dashboard.** Cloudflare's panel reports the
+zone as signed; an external validator walks the chain of trust from the root through `.dev`
+to this zone, which is what a visitor's resolver actually does. Cloudflare is both DNS host
+and registrar here, so it publishes the DS record at the registry itself, removing the
+mismatch between signing key and DS record that causes most DNSSEC outages. The failure mode
+is worth stating because it is not gradual: a broken chain makes validating resolvers refuse
+the zone outright rather than fall back to trusting it, so the domain stops resolving rather
+than degrading. If the chain ever breaks, disable DNSSEC at Cloudflare and expect removal to
+take minutes rather than seconds, because the DS record at the parent has its own cache
+lifetime.
 
 🔒 **The transfer lock changes character around 3 November 2026.** Today it is enforced by
 ICANN policy — Cloudflare's own Unlock control is disabled because the domain was registered
