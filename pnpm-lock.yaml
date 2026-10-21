@@ -52,8 +52,8 @@ importers:
         specifier: 13.5.0
         version: 13.5.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(supports-color@10.2.2)
       markdown-it:
-        specifier: 15.0.2
-        version: 15.0.2
+        specifier: 15.0.3
+        version: 15.0.3
       prettier:
         specifier: 3.9.9
         version: 3.9.9
@@ -975,6 +975,7 @@ packages:
   '@opentelemetry/sdk-trace-base@2.11.0':
     resolution: {integrity: sha512-H19x/TX/LZdqiYOjM7fqtSxwlplC5pgelavqbQdHbhdq0q/AI/TGkM2dfGuuynTXmJPeF2HoZVoPDu+TGoW78A==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.3.0 <1.10.0'
 
@@ -1962,8 +1963,8 @@ packages:
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
-  argparse@3.0.2:
-    resolution: {integrity: sha512-mFdDM6WqWKraGLsVb+C9CahPnzTXOefAOLq3jYcca2YZ8bEWpr++Tzj+zSaKW9+X9L5uSxcm1AZ3Y6aZJ09OhQ==}
+  argparse@3.0.3:
+    resolution: {integrity: sha512-Sn98ftV3KfsO8xfLPHG6oT8y+b0yvbrLgZjgPDXsharNY15tTAjqIsIju4S32nl6/iEUNNE4v+yL2Zhm8ooP3w==}
 
   ast-kit@2.2.0:
     resolution: {integrity: sha512-m1Q/RaVOnTp9JxPX+F+Zn7IcLYMzM8kZofDImfsKZd8MbR+ikdOzTeztStWqfrqIxZnYWryyI9ePm3NGjnZgGw==}
@@ -3438,8 +3439,8 @@ packages:
     resolution: {integrity: sha512-ayF7iT+44LXdxJLTrTd3TLQpFDDvPCBxXxbv+pMUSuHA5Q8zyAfwkRP6aHHwNVFBUFWtxAHqwNJxF8vMZLAbVg==}
     engines: {node: '>=18'}
 
-  markdown-it@15.0.2:
-    resolution: {integrity: sha512-q4IGxMv56jCqT4OCRCADBoDP3LO4MhmTXjFbphHPXs4g3j9Xg5RDnxqN8IF/3vIWEU+VCnUq+7JUg/cfy2E6Qw==}
+  markdown-it@15.0.3:
+    resolution: {integrity: sha512-+Az7Ojz3iRGu8KYMvJ6xVhvrxP3eE+vEtJX75Ow88XBpcQNV/0lGX5ZynIIBftREo4DC2jsveAMDaeltmm8QvQ==}
     hasBin: true
 
   marky@1.3.0:
@@ -7163,7 +7164,7 @@ snapshots:
 
   argparse@2.0.1: {}
 
-  argparse@3.0.2: {}
+  argparse@3.0.3: {}
 
   ast-kit@2.2.0:
     dependencies:
@@ -8650,9 +8651,9 @@ snapshots:
       type-fest: 4.41.0
       web-worker: 1.5.0
 
-  markdown-it@15.0.2:
+  markdown-it@15.0.3:
     dependencies:
-      argparse: 3.0.2
+      argparse: 3.0.3
       entities: 8.1.0
       linkify-it: 6.1.0
       mdurl: 2.1.0

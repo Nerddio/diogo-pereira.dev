@@ -37,7 +37,7 @@
     "eslint-config-prettier": "10.1.8",
     "gray-matter": "4.0.3",
     "lighthouse": "13.5.0",
-    "markdown-it": "15.0.2",
+    "markdown-it": "15.0.3",
     "prettier": "3.9.9",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3",
