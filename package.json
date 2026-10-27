@@ -22,7 +22,7 @@
     "sweep": "bash build/contact-surface-sweep.sh"
   },
   "dependencies": {
-    "nuxt": "4.5.2",
+    "nuxt": "4.6.2",
     "vue": "3.5.43",
     "vue-router": "5.3.1"
   },
